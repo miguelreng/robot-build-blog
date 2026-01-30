@@ -9,10 +9,10 @@ import Layout from '../layouts/Layout.astro';
 		
 		<div class="space-y-8">
             <div class="relative">
-			    <input type="password" id="password" placeholder="Builder Password" class="w-full bg-transparent border-b border-[#403F3C]/10 py-3 text-[14px] text-[#403F3C] outline-none font-medium focus:border-[#403F3C]/30 transition-colors pr-20" />
-                <button id="toggle-pass" class="absolute right-0 top-1/2 -translate-y-1/2 text-[10px] uppercase font-bold text-[#403F3C]/20 hover:text-[#403F3C] transition-colors font-yellix">Show</button>
+			    <input type="password" id="password" placeholder="Builder Password" class="w-full bg-[#403F3C]/5 border-none rounded-[100px] px-6 py-4 text-[14px] text-[#403F3C] outline-none font-medium focus:ring-1 focus:ring-[#403F3C]/10 transition-all pr-20" />
+                <button id="toggle-pass" class="absolute right-6 top-1/2 -translate-y-1/2 text-[10px] uppercase font-bold text-[#403F3C]/20 hover:text-[#403F3C] transition-colors font-yellix">Show</button>
             </div>
-            <div class="flex items-center gap-2">
+            <div class="flex items-center gap-2 px-2">
                 <input type="checkbox" id="remember-me" class="w-3 h-3 accent-[#403F3C]" />
                 <label for="remember-me" class="text-[11px] font-medium text-[#403F3C]/40">Remember me on this device</label>
             </div>
@@ -35,20 +35,20 @@ import Layout from '../layouts/Layout.astro';
                 <section>
                     <h2 class="text-[10px] uppercase tracking-[0.2em] text-[#403F3C]/30 mb-4 font-bold">Source & Configuration</h2>
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                        <select id="memo-select" class="bg-[#403F3C]/5 border-none rounded-sm px-4 py-3 text-[13px] text-[#403F3C] outline-none font-medium cursor-pointer font-yellix">
+                        <select id="memo-select" class="bg-[#403F3C]/5 border-none rounded-[100px] px-6 py-4 text-[13px] text-[#403F3C] outline-none font-medium cursor-pointer font-yellix appearance-none">
                             <option value="">Select Builders Memo...</option>
                         </select>
-                        <input type="password" id="api-key" placeholder="OpenRouter API Key" class="bg-[#403F3C]/5 border-none rounded-sm px-4 py-3 text-[13px] text-[#403F3C] outline-none font-mono" />
+                        <input type="password" id="api-key" placeholder="OpenRouter API Key" class="bg-[#403F3C]/5 border-none rounded-[100px] px-6 py-4 text-[13px] text-[#403F3C] outline-none font-mono" />
                     </div>
                 </section>
 
                 <section>
                     <div class="flex justify-between items-center mb-4">
                         <h2 class="text-[10px] uppercase tracking-[0.2em] text-[#403F3C]/30 font-bold">Draft Content (MDX)</h2>
-                        <button id="ai-btn" class="bg-white border border-[#403F3C]/10 text-[#403F3C] text-[10px] font-bold uppercase px-3 py-1.5 rounded-[100px] hover:bg-zinc-50 transition-colors font-yellix">Fine-tune with AI</button>
+                        <button id="ai-btn" class="bg-white border border-[#403F3C]/10 text-[#403F3C] text-[10px] font-bold uppercase px-6 py-2 rounded-[100px] hover:bg-zinc-50 transition-colors font-yellix">Fine-tune with AI</button>
                     </div>
-                    <textarea id="editor" class="w-full h-[600px] bg-[#403F3C]/5 border-none rounded-sm p-8 text-[14px] text-[#403F3C]/80 font-medium leading-relaxed outline-none focus:bg-[#403F3C]/8 transition-all resize-none font-mono" placeholder="Select a memo to begin..."></textarea>
-                    <button id="publish-btn" class="w-full mt-6 bg-[#403F3C] text-[#F8F6F3] text-[12px] font-bold uppercase tracking-widest py-4 rounded-[100px] hover:opacity-90 transition-opacity font-yellix">Ship to Production</button>
+                    <textarea id="editor" class="w-full h-[600px] bg-[#403F3C]/5 border-none rounded-[24px] p-10 text-[14px] text-[#403F3C]/80 font-medium leading-relaxed outline-none focus:bg-[#403F3C]/8 transition-all resize-none font-mono shadow-inner" placeholder="Select a memo to begin..."></textarea>
+                    <button id="publish-btn" class="w-full mt-6 bg-[#403F3C] text-[#F8F6F3] text-[12px] font-bold uppercase tracking-widest py-5 rounded-[100px] hover:opacity-90 transition-opacity font-yellix">Ship to Production</button>
                 </section>
             </div>
 
@@ -57,24 +57,24 @@ import Layout from '../layouts/Layout.astro';
                 <section>
                     <h2 class="text-[10px] uppercase tracking-[0.2em] text-[#403F3C]/30 mb-6 font-bold">Interactive Components</h2>
                     <div class="space-y-3" id="toolbox">
-                        <div draggable="true" class="component-card group p-4 border border-[#403F3C]/5 rounded-sm bg-white hover:border-[#403F3C]/20 cursor-grab active:cursor-grabbing transition-all" data-type="slider">
+                        <div draggable="true" class="component-card group p-6 border border-[#403F3C]/5 rounded-[20px] bg-white hover:border-[#403F3C]/20 cursor-grab active:cursor-grabbing transition-all shadow-sm hover:shadow-md" data-type="slider">
                             <div class="text-[11px] font-bold text-[#403F3C]/60 mb-1 group-hover:text-[#403F3C]">Before/After Slider</div>
-                            <div class="text-[10px] text-[#403F3C]/30">Drag to compare two results.</div>
+                            <div class="text-[10px] text-[#403F3C]/30">Drag to compare results.</div>
                         </div>
-                        <div draggable="true" class="component-card group p-4 border border-[#403F3C]/5 rounded-sm bg-white hover:border-[#403F3C]/20 cursor-grab active:cursor-grabbing transition-all" data-type="video">
+                        <div draggable="true" class="component-card group p-6 border border-[#403F3C]/5 rounded-[20px] bg-white hover:border-[#403F3C]/20 cursor-grab active:cursor-grabbing transition-all shadow-sm hover:shadow-md" data-type="video">
                             <div class="text-[11px] font-bold text-[#403F3C]/60 mb-1 group-hover:text-[#403F3C]">Autonomous Video</div>
-                            <div class="text-[10px] text-[#403F3C]/30">Auto-playing loop for demos.</div>
+                            <div class="text-[10px] text-[#403F3C]/30">Auto-playing loop demos.</div>
                         </div>
-                        <div draggable="true" class="component-card group p-4 border border-[#403F3C]/5 rounded-sm bg-white hover:border-[#403F3C]/20 cursor-grab active:cursor-grabbing transition-all" data-type="chart">
+                        <div draggable="true" class="component-card group p-6 border border-[#403F3C]/5 rounded-[20px] bg-white hover:border-[#403F3C]/20 cursor-grab active:cursor-grabbing transition-all shadow-sm hover:shadow-md" data-type="chart">
                             <div class="text-[11px] font-bold text-[#403F3C]/60 mb-1 group-hover:text-[#403F3C]">Telemetry Chart</div>
-                            <div class="text-[10px] text-[#403F3C]/30">Visualize logs or performance.</div>
+                            <div class="text-[10px] text-[#403F3C]/30">Visualize logs or stats.</div>
                         </div>
                     </div>
                 </section>
 
-                <section class="bg-[#403F3C]/[0.02] p-6 rounded-sm border border-[#403F3C]/5">
+                <section class="bg-[#403F3C]/[0.02] p-8 rounded-[24px] border border-[#403F3C]/5">
                     <h2 class="text-[10px] uppercase tracking-[0.2em] text-[#403F3C]/30 mb-4 font-bold">Markdown Tips</h2>
-                    <ul class="text-[11px] text-[#403F3C]/50 space-y-2 leading-relaxed">
+                    <ul class="text-[11px] text-[#403F3C]/50 space-y-3 leading-relaxed">
                         <li><span class="font-bold text-[#403F3C]/70"># Header</span> for titles</li>
                         <li><span class="font-bold text-[#403F3C]/70">**Bold**</span> for emphasis</li>
                         <li><span class="font-bold text-[#403F3C]/70">> Quote</span> for insights</li>
@@ -88,12 +88,12 @@ import Layout from '../layouts/Layout.astro';
 
     <!-- Component Config Modal -->
     <div id="modal" class="fixed inset-0 bg-[#F8F6F3]/90 backdrop-blur-sm z-[200] hidden items-center justify-center p-6 font-yellix">
-        <div class="bg-white border border-[#403F3C]/10 p-8 rounded-[24px] max-w-[400px] w-full shadow-2xl">
-            <h2 id="modal-title" class="text-sm font-bold uppercase tracking-widest text-[#403F3C] mb-6">Component Settings</h2>
-            <div id="modal-fields" class="space-y-4 mb-8"></div>
+        <div class="bg-white border border-[#403F3C]/10 p-10 rounded-[32px] max-w-[450px] w-full shadow-2xl">
+            <h2 id="modal-title" class="text-sm font-bold uppercase tracking-widest text-[#403F3C] mb-8">Component Settings</h2>
+            <div id="modal-fields" class="space-y-4 mb-10"></div>
             <div class="flex gap-4">
-                <button id="modal-save" class="flex-1 bg-[#403F3C] text-white text-[10px] font-bold uppercase py-3 rounded-[100px]">Insert Component</button>
-                <button id="modal-cancel" class="flex-1 border border-[#403F3C]/10 text-[#403F3C]/40 text-[10px] font-bold uppercase py-3 rounded-[100px]">Cancel</button>
+                <button id="modal-save" class="flex-1 bg-[#403F3C] text-white text-[10px] font-bold uppercase py-4 rounded-[100px]">Insert Component</button>
+                <button id="modal-cancel" class="flex-1 border border-[#403F3C]/10 text-[#403F3C]/40 text-[10px] font-bold uppercase py-4 rounded-[100px]">Cancel</button>
             </div>
         </div>
     </div>
@@ -108,7 +108,6 @@ import Layout from '../layouts/Layout.astro';
         
         let activeComponent = '';
 
-        // Detección automática al cargar
         if (localStorage.getItem('builder_status') === 'authorized') {
             document.getElementById('auth-view')?.classList.add('hidden');
             document.getElementById('console-view')?.classList.remove('hidden');
@@ -155,29 +154,31 @@ import Layout from '../layouts/Layout.astro';
             modal.style.display = 'flex';
             modalFields.innerHTML = '';
             
+            const fieldClasses = "w-full bg-[#403F3C]/5 border-none py-4 px-6 text-[13px] outline-none rounded-[100px] focus:ring-1 focus:ring-[#403F3C]/10 transition-all font-medium text-[#403F3C]";
+
             if (type === 'slider') {
                 modalTitle.innerText = 'Slider Settings';
                 modalFields.innerHTML = `
-                    <input type="text" placeholder="Before Image URL" class="w-full bg-[#403F3C]/5 border-none p-3 text-[12px] outline-none rounded-sm" id="field-before">
-                    <input type="text" placeholder="After Image URL" class="w-full bg-[#403F3C]/5 border-none p-3 text-[12px] outline-none rounded-sm" id="field-after">
+                    <input type="text" placeholder="Before Image URL" class="${fieldClasses}" id="field-before">
+                    <input type="text" placeholder="After Image URL" class="${fieldClasses}" id="field-after">
                 `;
             } else if (type === 'video') {
                 modalTitle.innerText = 'Video Settings';
-                modalFields.innerHTML = `<input type="text" placeholder="Video URL (.mp4)" class="w-full bg-[#403F3C]/5 border-none p-3 text-[12px] outline-none rounded-sm" id="field-video">`;
+                modalFields.innerHTML = `<input type="text" placeholder="Video URL (.mp4)" class="${fieldClasses}" id="field-video">`;
             } else if (type === 'chart') {
                 modalTitle.innerText = 'Chart Configuration';
                 modalFields.innerHTML = `
-                    <select id="chart-type" class="w-full bg-[#403F3C]/5 border-none p-3 text-[12px] outline-none mb-4 rounded-sm">
+                    <select id="chart-type" class="${fieldClasses} appearance-none">
                         <option value="line">Line Chart (Trend)</option>
                         <option value="bar">Bar Chart (Comparison)</option>
                         <option value="pie">Pie Chart (Distribution)</option>
                     </select>
-                    <input type="text" id="chart-title" placeholder="Chart Title" class="w-full bg-[#403F3C]/5 border-none p-3 text-[12px] outline-none mb-4 rounded-sm">
-                    <div class="grid grid-cols-2 gap-4 mb-4">
-                        <input type="text" id="field-xaxis" placeholder="X-Axis Key" class="bg-[#403F3C]/5 border-none p-3 text-[12px] outline-none rounded-sm">
-                        <input type="text" id="field-yaxis" placeholder="Y-Axis Key" class="bg-[#403F3C]/5 border-none p-3 text-[12px] outline-none rounded-sm">
+                    <input type="text" id="chart-title" placeholder="Chart Title" class="${fieldClasses}">
+                    <div class="grid grid-cols-2 gap-4">
+                        <input type="text" id="field-xaxis" placeholder="X-Axis Key" class="${fieldClasses}">
+                        <input type="text" id="field-yaxis" placeholder="Y-Axis Key" class="${fieldClasses}">
                     </div>
-                    <textarea id="chart-data" class="w-full bg-[#403F3C]/5 border-none p-3 text-[11px] font-mono outline-none h-32 rounded-sm" placeholder='[{"name": "A", "value": 10}]'></textarea>
+                    <textarea id="chart-data" class="w-full bg-[#403F3C]/5 border-none p-6 text-[11px] font-mono outline-none h-32 rounded-[20px] focus:ring-1 focus:ring-[#403F3C]/10" placeholder='[{"name": "A", "value": 10}]'></textarea>
                 `;
             }
         }
