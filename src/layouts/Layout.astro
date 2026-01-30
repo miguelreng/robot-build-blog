@@ -9,7 +9,8 @@ const isPublish = Astro.url.pathname === '/publish';
 		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 		<meta name="viewport" content="width=device-width" />
 		<meta name="generator" content={Astro.generator} />
-		<title>{title} | Robot Memos</title>
+		<title>{title} | CEO & Builders</title>
+		<meta name="description" content="Engineering memos and technical progress from the builders at Robot.com." />
 		<style is:global>
 			@font-face {
 				font-family: 'Yellix';
@@ -23,24 +24,27 @@ const isPublish = Astro.url.pathname === '/publish';
 				background-color: #F8F6F3;
 				color: #403F3C;
 				-webkit-font-smoothing: antialiased;
+				font-feature-settings: "ss01" on;
 				margin: 0;
 				padding: 0;
                 font-size: 15px;
 			}
+			/* GLOBAL TEXT NORMALIZE - NO MORE TRACKING OR LOWERCASE */
 			* {
 				text-transform: none !important;
                 font-family: 'Yellix', sans-serif !important;
+                letter-spacing: normal !important; /* Forces normal tracking everywhere */
 			}
             h1 { font-size: 32px !important; font-weight: 500 !important; }
             h2 { font-size: 24px !important; font-weight: 500 !important; }
+            
             outline: none !important;
 		</style>
 	</head>
 	<body class="selection:bg-[#403F3C] selection:text-[#F8F6F3]">
-		<main class="w-full flex flex-col items-center py-10 md:py-16">
-			<!-- Header Compacted - Wider (680px) -->
-			<div class={`${isPublish ? 'w-full max-w-[1240px]' : 'w-full max-w-[680px]'} px-6 space-y-12`}>
-				<header class="flex flex-col gap-6 w-full border-b border-[#403F3C]/5 pb-8">
+		<main class="w-full flex flex-col items-center py-20 md:py-32">
+			<div class={`${isPublish ? 'w-full max-w-[1240px]' : 'w-full max-w-[680px]'} px-6 space-y-24`}>
+				<header class="flex flex-col gap-8 w-full border-b border-[#403F3C]/5 pb-12">
 					<div class="flex justify-between items-center w-full">
 						<a href="/" class="flex items-center gap-3 text-[#403F3C]">
 							<img src="/logo-robot.svg" alt="Robot.com" class="h-5 w-auto" />
@@ -62,31 +66,29 @@ const isPublish = Astro.url.pathname === '/publish';
                         </div>
 					</nav>
 				</header>
-            </div>
 
-			<div class={`${isPublish ? 'w-full max-w-[1240px]' : 'w-full max-w-[680px]'} px-6 flex flex-col items-center`}>
                 {published && (
-                    <div class="grid grid-cols-3 gap-8 border-y border-[#403F3C]/5 py-10 w-full font-yellix mt-4">
+                    <div class="grid grid-cols-3 gap-8 border-y border-[#403F3C]/5 py-10 w-full font-yellix">
                         <div class="flex flex-col gap-2">
                             <div class="text-[14px] text-[#403F3C]/40 font-medium italic">Published</div>
-                            <div class="text-[16px] font-medium tracking-tight text-[#403F3C]">{published}</div>
+                            <div class="text-[16px] font-medium text-[#403F3C]">{published}</div>
                         </div>
                         <div class="flex flex-col gap-2">
                             <div class="text-[14px] text-[#403F3C]/40 font-medium italic">Builder</div>
-                            <div class="text-[16px] font-medium tracking-tight text-[#403F3C]">{builder}</div>
+                            <div class="text-[16px] font-medium text-[#403F3C]">{builder}</div>
                         </div>
                         <div class="flex flex-col gap-2">
                             <div class="text-[14px] text-[#403F3C]/40 font-medium italic">Quarter</div>
-                            <div class="text-[16px] font-medium tracking-tight text-[#403F3C]">{quarter}</div>
+                            <div class="text-[16px] font-medium text-[#403F3C]">{quarter}</div>
                         </div>
                     </div>
                 )}
 
-				<div class="w-full pt-10">
+				<div class="w-full">
 					<slot />
 				</div>
                 
-                <footer class="mt-24 pt-12 border-t border-[#403F3C]/5 flex flex-col gap-8 w-full">
+                <footer class="pt-16 border-t border-[#403F3C]/5 flex flex-col gap-10 w-full">
                     <img src="/logo-robot.svg" alt="Robot.com" class="h-4 w-auto opacity-20" />
                     <div class="text-[14px] text-[#403F3C]/30 font-bold">
                         © {new Date().getFullYear()} Robot.com Foundation
