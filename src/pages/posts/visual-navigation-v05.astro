@@ -1,16 +1,24 @@
 ---
 import Layout from '../../layouts/Layout.astro';
-import * as post from '../content/posts/visual-navigation-v05.mdx';
-const { Content, frontmatter } = post;
+import { getEntry, render } from 'astro:content';
+
+const entry = await getEntry('posts', 'visual-navigation-v05');
+
+if (!entry) {
+  return Astro.redirect('/404');
+}
+
+const { Content } = await render(entry);
+const { title, pubDate, author } = entry.data;
 ---
 
-<Layout title={frontmatter.title}>
+<Layout title={title}>
   <div class="mb-12">
     <div class="text-[10px] uppercase tracking-[0.2em] text-zinc-400 mb-4">
-      {frontmatter.pubDate} — By {frontmatter.author}
+      {pubDate.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })} — By {author}
     </div>
     <h1 class="text-4xl font-medium tracking-tight mb-8 leading-tight">
-      {frontmatter.title}
+      {title}
     </h1>
   </div>
 
