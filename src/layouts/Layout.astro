@@ -32,7 +32,7 @@ const { title, builder, published, quarter } = Astro.props;
 		</style>
 	</head>
 	<body class="selection:bg-[#403F3C] selection:text-[#F8F6F3]">
-		<main class="max-w-[580px] mx-auto px-6 py-20 md:py-32">
+		<main class={(Astro.url.pathname === '/publish' ? "max-w-[1200px]" : "max-w-[580px]") + " mx-auto px-6 py-20 md:py-32"}>
 			<header class="mb-24 flex flex-col gap-8">
 				<div class="flex justify-between items-center">
 					<a href="/" class="flex items-center gap-3">
