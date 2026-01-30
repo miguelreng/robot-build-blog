@@ -53,14 +53,16 @@ const isPublish = Astro.url.pathname === '/publish';
 							</span>
 						</a>
 					</div>
-					<nav class="flex justify-between items-center w-full uppercase tracking-[0.1em]">
-                        <div class="flex gap-8 text-[13px] text-[#403F3C]/60 font-medium">
+					<nav class="flex justify-between items-center w-full">
+                        <div class="flex gap-8 text-[15px] text-[#403F3C]/60 font-medium tracking-normal">
                             <a href="/" class="hover:text-[#403F3C] transition-colors">Home</a>
                             <a href="/builders" class="hover:text-[#403F3C] transition-colors">Builders</a>
+                            <a href="/discussion" class="hover:text-[#403F3C] transition-colors">Discussion</a>
+                            <a href="/ai-directory" class="hover:text-[#403F3C] transition-colors">AI Directory</a>
                         </div>
-                        <div class="flex items-center gap-6 border-l border-[#403F3C]/10 pl-6 text-[13px]">
-                            <a href="/publish" id="nav-publish" class="font-bold text-[#403F3C]/30 hover:text-[#403F3C] transition-all">Publish</a>
-                            <button id="nav-logout" class="hidden font-bold text-[#403F3C]/20 hover:text-[#403F3C] transition-all">Logout</button>
+                        <div class="flex items-center gap-6 border-l border-[#403F3C]/10 pl-6 text-[15px]">
+                            <a href="/publish" id="nav-publish" class="font-medium text-[#403F3C]/30 hover:text-[#403F3C] transition-all tracking-normal">Publish</a>
+                            <button id="nav-logout" class="hidden font-medium text-[#403F3C]/20 hover:text-[#403F3C] transition-all tracking-normal">Logout</button>
                         </div>
 					</nav>
 				</header>
