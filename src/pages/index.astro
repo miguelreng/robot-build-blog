@@ -1,0 +1,43 @@
+---
+import Layout from '../layouts/Layout.astro';
+import { getCollection } from 'astro:content';
+
+const posts = [
+	{
+		url: '/posts/visual-navigation-v05',
+		frontmatter: {
+			title: "Visual Navigation 0.5: From Simulation to Reality",
+			pubDate: "2026-01-20",
+			description: "Improving computer vision pipelines for sidewalk image analysis in Arlington."
+		}
+	}
+];
+---
+
+<Layout title="Home">
+	<div class="mb-20">
+		<h1 class="text-4xl font-medium tracking-tight mb-6">The Build</h1>
+		<p class="text-zinc-500 text-lg leading-relaxed max-w-lg">
+			Engineering memos and technical progress from the builders at Robot.com.
+		</p>
+	</div>
+
+	<div class="space-y-24">
+		{posts.map((post) => (
+			<article class="group">
+				<div class="text-[10px] uppercase tracking-[0.2em] text-zinc-400 mb-4">
+					{post.frontmatter.pubDate}
+				</div>
+				<h2 class="text-2xl font-medium mb-4 group-hover:text-zinc-600 transition-colors">
+					<a href={post.url}>{post.frontmatter.title}</a>
+				</h2>
+				<p class="text-zinc-600 leading-relaxed mb-6 max-w-xl">
+					{post.frontmatter.description}
+				</p>
+				<a href={post.url} class="text-xs font-medium uppercase tracking-widest border-b border-zinc-200 pb-1 hover:border-black transition-colors">
+					Read Memo
+				</a>
+			</article>
+		))}
+	</div>
+</Layout>
