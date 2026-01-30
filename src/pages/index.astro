@@ -6,47 +6,48 @@ const posts = await getCollection('posts');
 posts.sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
 
 const builders = [
-	{ name: "Lorena Cardona", role: "Data Engineer", image: "https://i.pravatar.cc/150?u=lorena" },
-	{ name: "Jonathan Deiloff", role: "Data Engineer", image: "https://i.pravatar.cc/150?u=jonathan" },
-	{ name: "David Cardozo", role: "Data Advisor", image: "https://i.pravatar.cc/150?u=david" },
-	{ name: "Kevin Torres", role: "Data Analyst", image: "https://i.pravatar.cc/150?u=kevin" }
+	{ name: "Lorena Cardona", role: "Data Engineer", image: "https://github.com/lorenacardona.png" },
+	{ name: "Jonathan Deiloff", role: "Data Engineer", image: "https://github.com/jonathandeiloff.png" },
+	{ name: "David Cardozo", role: "Data Advisor", image: "https://github.com/davidcardozo.png" },
+	{ name: "Kevin Torres", role: "Data Analyst", image: "https://github.com/kevintorres.png" }
 ];
 
 const discussions = [
 	{ topic: "On-device training latency", tag: "Performance" },
-	{ topic: "Arlington sidewalk edge cases", tag: "Computer Vision" },
-	{ topic: "Battery thermal management", tag: "Hardware" }
+	{ topic: "Arlington sidewalk edge cases", tag: "Computer Vision" }
 ];
 
 const aiDirectory = [
 	{ tool: "PyTorch", category: "Framework" },
 	{ tool: "OpenCV", category: "Vision" },
-	{ tool: "ROS2", category: "Middleware" },
-	{ tool: "UNet", category: "Model Architectures" }
+	{ tool: "ROS2", category: "Middleware" }
 ];
 ---
 
 <Layout title="Home">
-	<div class="space-y-24">
-		{/* CEO Note */}
-		<section class="mb-24">
-			<div class="text-[#403F3C]/60 text-[18px] leading-relaxed italic mb-10 font-medium max-w-lg text-balance">
+	<div class="space-y-12 md:space-y-16">
+		{/* CEO Note - Compacted */}
+		<section class="mb-12">
+			<div class="text-[#403F3C]/60 text-[16px] md:text-[18px] leading-relaxed italic mb-6 font-medium max-w-lg text-balance">
 				"Building general-purpose robots requires more than just code; it requires a commitment to raw, fast, and transparent iteration. This blog is our window into that process."
 			</div>
-			<div class="flex flex-col gap-2">
-				<div class="text-[16px] font-bold text-[#403F3C]">Felipe Chávez</div>
-				<div class="text-[14px] text-[#403F3C]/40 font-bold">CEO at Robot.com</div>
-				<div class="h-12 w-40 mt-4 opacity-50 border-b border-[#403F3C]/10 flex items-end pb-2 text-[12px] text-[#403F3C]/20 uppercase tracking-[0.2em]">
-					Waiting for signature...
+			<div class="flex items-center gap-6">
+                <div class="flex flex-col gap-0.5">
+                    <div class="text-[15px] font-bold text-[#403F3C]">Felipe Chávez</div>
+                    <div class="text-[13px] text-[#403F3C]/40 font-bold">CEO at Robot.com</div>
+                </div>
+				{/* Signature Fake */}
+				<div class="font-serif italic text-2xl text-[#403F3C]/30 select-none pb-1 border-b border-[#403F3C]/5 px-2">
+					fchavez
 				</div>
 			</div>
 		</section>
 
-		<div class="space-y-20">
+		<div class="space-y-12">
 			{/* Memos Section */}
 			<section>
-				<h2 class="text-[14px] text-[#403F3C]/40 mb-6 font-medium border-b border-[#403F3C]/5 pb-6">Memos</h2>
-				<ul class="space-y-6 pt-4">
+				<h2 class="text-[13px] text-[#403F3C]/40 mb-3 font-medium border-b border-[#403F3C]/5 pb-3">Memos</h2>
+				<ul class="space-y-4">
 					{posts.map((post) => (
 						<li class="w-full">
 							<a 
@@ -54,9 +55,9 @@ const aiDirectory = [
                                 class="flex items-baseline justify-between w-full group preview-trigger"
                                 data-preview={post.data.coverImage || "https://images.unsplash.com/photo-1485125639709-a60c3a500bf1?q=80&w=300"}
                             >
-								<span class="text-[16px] font-medium text-[#403F3C] group-hover:underline decoration-1 underline-offset-4">{post.data.title}</span>
-								<div class="flex-grow mx-4 border-b border-[#A2A19E]/30"></div>
-								<span class="text-[14px] text-[#403F3C] font-medium whitespace-nowrap">{post.data.pubDate.toLocaleDateString('en-US', { month: '2-digit', day: '2-digit' })}</span>
+								<span class="text-[15px] font-medium text-[#403F3C] group-hover:underline decoration-1 underline-offset-4">{post.data.title}</span>
+								<div class="flex-grow mx-4 border-b border-[#A2A19E]/15"></div>
+								<span class="text-[13px] text-[#403F3C] font-medium whitespace-nowrap">{post.data.pubDate.toLocaleDateString('en-US', { month: '2-digit', day: '2-digit' })}</span>
 							</a>
 						</li>
 					))}
@@ -65,8 +66,8 @@ const aiDirectory = [
 
 			{/* Builders Section */}
 			<section>
-				<h2 class="text-[14px] text-[#403F3C]/40 mb-6 font-medium border-b border-[#403F3C]/5 pb-6">Builders</h2>
-				<ul class="space-y-6 pt-4">
+				<h2 class="text-[13px] text-[#403F3C]/40 mb-3 font-medium border-b border-[#403F3C]/5 pb-3">Builders</h2>
+				<ul class="space-y-4">
 					{builders.map((builder) => (
 						<li class="w-full">
 							<a 
@@ -74,9 +75,9 @@ const aiDirectory = [
                                 class="flex items-baseline justify-between w-full group preview-trigger"
                                 data-preview={builder.image}
                             >
-								<span class="text-[16px] font-medium text-[#403F3C] group-hover:underline decoration-1 underline-offset-4">{builder.name}</span>
-								<div class="flex-grow mx-4 border-b border-[#A2A19E]/30"></div>
-								<span class="text-[14px] text-[#403F3C] font-medium whitespace-nowrap">{builder.role}</span>
+								<span class="text-[15px] font-medium text-[#403F3C] group-hover:underline decoration-1 underline-offset-4">{builder.name}</span>
+								<div class="flex-grow mx-4 border-b border-[#A2A19E]/15"></div>
+								<span class="text-[13px] text-[#403F3C] font-medium whitespace-nowrap">{builder.role}</span>
 							</a>
 						</li>
 					))}
@@ -85,29 +86,29 @@ const aiDirectory = [
 
 			{/* Discussion Section */}
 			<section>
-				<h2 class="text-[14px] text-[#403F3C]/40 mb-6 font-medium border-b border-[#403F3C]/5 pb-6">Discussion</h2>
-				<ul class="space-y-6 pt-4">
+				<h2 class="text-[13px] text-[#403F3C]/40 mb-3 font-medium border-b border-[#403F3C]/5 pb-3">Discussion</h2>
+				<ul class="space-y-4">
 					{discussions.map((item) => (
 						<li class="w-full line-through opacity-30">
 							<div class="flex items-baseline justify-between w-full group">
-								<span class="text-[16px] font-medium text-[#403F3C]">{item.topic}</span>
-								<div class="flex-grow mx-4 border-b border-[#A2A19E]/30"></div>
-								<span class="text-[14px] text-[#403F3C] font-medium whitespace-nowrap">{item.tag}</span>
+								<span class="text-[15px] font-medium text-[#403F3C]">{item.topic}</span>
+								<div class="flex-grow mx-4 border-b border-[#A2A19E]/15"></div>
+								<span class="text-[13px] text-[#403F3C] font-medium whitespace-nowrap">{item.tag}</span>
 							</div>
 						</li>
 					))}
 				</ul>
 			</section>
 
-			{/* AI Directory Section */}
+			{/* Tools Section */}
 			<section>
-				<h2 class="text-[14px] text-[#403F3C]/40 mb-6 font-medium border-b border-[#403F3C]/5 pb-6">AI Directory</h2>
-				<ul class="space-y-6 pt-4">
+				<h2 class="text-[13px] text-[#403F3C]/40 mb-3 font-medium border-b border-[#403F3C]/5 pb-3">Tools</h2>
+				<ul class="space-y-4">
 					{aiDirectory.map((item) => (
-						<li class="flex items-baseline justify-between w-full group cursor-pointer">
-							<span class="text-[16px] font-medium text-[#403F3C] opacity-60 group-hover:opacity-100 group-hover:underline decoration-1 underline-offset-4 transition-all">{item.tool}</span>
-							<div class="flex-grow mx-4 border-b border-[#A2A19E]/30"></div>
-							<span class="text-[14px] text-[#403F3C] font-medium whitespace-nowrap">{item.category}</span>
+						<li class="flex items-baseline justify-between w-full group cursor-pointer opacity-60 hover:opacity-100 transition-opacity">
+							<span class="text-[15px] font-medium text-[#403F3C] group-hover:underline decoration-1 underline-offset-4">{item.tool}</span>
+							<div class="flex-grow mx-4 border-b border-[#A2A19E]/15"></div>
+							<span class="text-[13px] text-[#403F3C] font-medium whitespace-nowrap">{item.category}</span>
 						</li>
 					))}
 				</ul>
@@ -117,8 +118,8 @@ const aiDirectory = [
 
     {/* Floating Preview Mount */}
     <div id="hover-preview" class="fixed pointer-events-none z-[100] opacity-0 transition-opacity duration-200">
-		<div class="w-[100px] h-[100px] overflow-hidden rounded-[20px] border border-[#403F3C]/10 shadow-2xl bg-white">
-			<img id="preview-img" src="" class="w-full h-full object-cover grayscale hover:grayscale-0 transition-all" />
+		<div class="w-[100px] h-[100px] overflow-hidden rounded-[20px] border border-[#403F3C]/10 shadow-2xl bg-white text-0">
+			<img id="preview-img" src="" class="w-full h-full object-cover grayscale hover:grayscale-0 transition-all scale-105" />
 		</div>
 	</div>
 
@@ -135,11 +136,7 @@ const aiDirectory = [
 					preview.style.opacity = '1';
 				}
 			});
-
-			el.addEventListener('mouseleave', () => {
-				if (preview) preview.style.opacity = '0';
-			});
-
+			el.addEventListener('mouseleave', () => { if (preview) preview.style.opacity = '0'; });
 			el.addEventListener('mousemove', (e: any) => {
 				if (preview) {
 					preview.style.left = `${e.clientX + 20}px`;
