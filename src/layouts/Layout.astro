@@ -17,37 +17,34 @@ const { title } = Astro.props;
 				font-style: normal;
 				font-display: swap;
 			}
-			@font-face {
-				font-family: 'Graphik';
-				src: url('/fonts/Graphik-Regular.woff2') format('woff2');
-				font-weight: 400;
-				font-style: normal;
-				font-display: swap;
-			}
 			body {
-				font-family: 'Graphik', system-ui, sans-serif;
-				background-color: #ffffff;
-				color: #000000;
+				font-family: 'Yellix', system-ui, sans-serif;
+				background-color: #F8F6F3;
+				color: #403F3C;
 				-webkit-font-smoothing: antialiased;
 				font-feature-settings: "ss01" on;
 			}
-			h1, h2, h3, h4, .font-yellix {
-				font-family: 'Yellix', sans-serif;
+			h1, h2, h3, h4 {
+				font-weight: 500;
 				font-feature-settings: "ss01" on;
 			}
 		</style>
 	</head>
-	<body class="selection:bg-black selection:text-white">
+	<body class="selection:bg-[#403F3C] selection:text-[#F8F6F3]">
 		<main class="max-w-[580px] mx-auto px-6 py-20 md:py-32">
-			<header class="mb-20">
-				<a href="/" class="text-[10px] uppercase tracking-[0.2em] text-zinc-400 hover:text-black transition-colors font-medium">
-					The Build / Robot.com
+			<header class="mb-24 flex justify-between items-baseline">
+				<a href="/" class="text-[10px] uppercase tracking-[0.25em] text-[#403F3C]/60 hover:text-[#403F3C] transition-colors font-bold">
+					Robot.com / The Build
 				</a>
+				<div class="flex gap-6 text-[10px] uppercase tracking-[0.2em] text-[#403F3C]/40 font-bold">
+					<a href="#" class="hover:text-[#403F3C]">Memos</a>
+					<a href="#" class="hover:text-[#403F3C]">Labs</a>
+				</div>
 			</header>
 			<slot />
-			<footer class="mt-32 pt-12 border-t border-zinc-100">
-				<div class="text-[10px] uppercase tracking-[0.2em] text-zinc-300">
-					© {new Date().getFullYear()} Robot.com
+			<footer class="mt-40 pt-12 border-t border-[#403F3C]/5">
+				<div class="text-[10px] uppercase tracking-[0.25em] text-[#403F3C]/30 font-bold">
+					© {new Date().getFullYear()} Robot.com Foundation
 				</div>
 			</footer>
 		</main>
