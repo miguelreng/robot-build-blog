@@ -16,7 +16,7 @@ import Layout from '../layouts/Layout.astro';
                 <input type="checkbox" id="remember-me" class="w-3 h-3 accent-[#403F3C]" />
                 <label for="remember-me" class="text-[11px] font-medium text-[#403F3C]/40">Remember me on this device</label>
             </div>
-			<button id="login-btn" class="w-full bg-[#403F3C] text-[#F8F6F3] text-[12px] font-bold uppercase tracking-widest py-4 rounded-sm hover:opacity-90 transition-opacity">Access Console</button>
+			<button id="login-btn" class="w-full bg-[#403F3C] text-[#F8F6F3] text-[12px] font-bold uppercase tracking-widest py-4 rounded-sm hover:opacity-90 transition-opacity font-yellix">Access Console</button>
 		</div>
 	</div>
 
@@ -26,7 +26,7 @@ import Layout from '../layouts/Layout.astro';
                 <h1 class="text-xl font-medium tracking-tighter text-[#403F3C]">Memos Console</h1>
                 <p class="text-[10px] text-[#403F3C]/30 font-bold uppercase tracking-widest mt-1">Status: Authorized</p>
             </div>
-            <button id="logout-btn" class="text-[10px] uppercase font-bold text-[#403F3C]/20 hover:text-[#403F3C] transition-all">Logout</button>
+            <button id="logout-btn" class="text-[10px] uppercase font-bold text-[#403F3C]/20 hover:text-[#403F3C] transition-all font-yellix">Logout</button>
         </header>
 
         <div class="flex flex-col lg:flex-row gap-12 max-w-[1200px] mx-auto px-6">
@@ -35,7 +35,7 @@ import Layout from '../layouts/Layout.astro';
                 <section>
                     <h2 class="text-[10px] uppercase tracking-[0.2em] text-[#403F3C]/30 mb-4 font-bold">Source & Configuration</h2>
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                        <select id="memo-select" class="bg-[#403F3C]/5 border-none rounded-sm px-4 py-3 text-[13px] text-[#403F3C] outline-none font-medium cursor-pointer">
+                        <select id="memo-select" class="bg-[#403F3C]/5 border-none rounded-sm px-4 py-3 text-[13px] text-[#403F3C] outline-none font-medium cursor-pointer font-yellix">
                             <option value="">Select Builders Memo...</option>
                         </select>
                         <input type="password" id="api-key" placeholder="OpenRouter API Key" class="bg-[#403F3C]/5 border-none rounded-sm px-4 py-3 text-[13px] text-[#403F3C] outline-none font-mono" />
@@ -45,10 +45,10 @@ import Layout from '../layouts/Layout.astro';
                 <section>
                     <div class="flex justify-between items-center mb-4">
                         <h2 class="text-[10px] uppercase tracking-[0.2em] text-[#403F3C]/30 font-bold">Draft Content (MDX)</h2>
-                        <button id="ai-btn" class="bg-white border border-[#403F3C]/10 text-[#403F3C] text-[10px] font-bold uppercase px-3 py-1.5 rounded-sm hover:bg-zinc-50 transition-colors">Fine-tune with AI</button>
+                        <button id="ai-btn" class="bg-white border border-[#403F3C]/10 text-[#403F3C] text-[10px] font-bold uppercase px-3 py-1.5 rounded-sm hover:bg-zinc-50 transition-colors font-yellix">Fine-tune with AI</button>
                     </div>
                     <textarea id="editor" class="w-full h-[600px] bg-[#403F3C]/5 border-none rounded-sm p-8 text-[14px] text-[#403F3C]/80 font-medium leading-relaxed outline-none focus:bg-[#403F3C]/8 transition-all resize-none font-mono" placeholder="Select a memo to begin..."></textarea>
-                    <button id="publish-btn" class="w-full mt-6 bg-[#403F3C] text-[#F8F6F3] text-[12px] font-bold uppercase tracking-widest py-4 rounded-sm hover:opacity-90 transition-opacity">Ship to Production</button>
+                    <button id="publish-btn" class="w-full mt-6 bg-[#403F3C] text-[#F8F6F3] text-[12px] font-bold uppercase tracking-widest py-4 rounded-sm hover:opacity-90 transition-opacity font-yellix">Ship to Production</button>
                 </section>
             </div>
 
@@ -92,8 +92,8 @@ import Layout from '../layouts/Layout.astro';
             <h2 id="modal-title" class="text-sm font-bold uppercase tracking-widest text-[#403F3C] mb-6">Component Settings</h2>
             <div id="modal-fields" class="space-y-4 mb-8"></div>
             <div class="flex gap-4">
-                <button id="modal-save" class="flex-1 bg-[#403F3C] text-white text-[10px] font-bold uppercase py-3 rounded-sm">Insert Component</button>
-                <button id="modal-cancel" class="flex-1 border border-[#403F3C]/10 text-[#403F3C]/40 text-[10px] font-bold uppercase py-3 rounded-sm">Cancel</button>
+                <button id="modal-save" class="flex-1 bg-[#403F3C] text-white text-[10px] font-bold uppercase py-3 rounded-sm font-yellix">Insert Component</button>
+                <button id="modal-cancel" class="flex-1 border border-[#403F3C]/10 text-[#403F3C]/40 text-[10px] font-bold uppercase py-3 rounded-sm font-yellix">Cancel</button>
             </div>
         </div>
     </div>
