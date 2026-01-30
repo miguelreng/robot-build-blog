@@ -20,7 +20,7 @@ import Layout from '../layouts/Layout.astro';
 		</div>
 	</div>
 
-	<div id="console-view" class="hidden w-full">
+	<div id="console-view" class="hidden w-full max-w-[580px] mx-auto space-y-16 pt-12 pb-32">
         <header class="flex justify-between items-center mb-12 w-full">
             <div>
                 <h1 class="text-xl font-medium tracking-tighter text-[#403F3C]">memos console</h1>
@@ -29,57 +29,46 @@ import Layout from '../layouts/Layout.astro';
             <button id="logout-btn" class="text-[10px] font-bold text-[#403F3C]/20 hover:text-[#403F3C] transition-all">logout</button>
         </header>
 
-        <div class="flex flex-col lg:flex-row gap-12 w-full">
-            <div class="flex-1 min-w-0 space-y-12">
-                <section>
-                    <h2 class="text-[10px] text-[#403F3C]/30 mb-4 font-bold tracking-[0.1em]">source & configuration</h2>
-                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                        <select id="memo-select" class="w-full bg-[#403F3C]/5 border-none rounded-[100px] px-6 py-4 text-[13px] text-[#403F3C] outline-none font-medium cursor-pointer appearance-none">
-                            <option value="">select builders memo...</option>
-                        </select>
-                        <input type="password" id="api-key-input-box" placeholder="openrouter api key" class="bg-[#403F3C]/5 border-none rounded-[100px] px-6 py-4 text-[13px] text-[#403F3C] outline-none font-mono" />
-                    </div>
-                </section>
+        <!-- 1. Configuration (Vertical) -->
+        <section class="space-y-6">
+            <h2 class="text-[10px] text-[#403F3C]/30 font-bold tracking-[0.1em]">0. configuration</h2>
+            <input type="password" id="api-key-input-box" placeholder="openrouter api key" class="w-full bg-[#403F3C]/5 border-none rounded-[100px] px-6 py-4 text-[13px] text-[#403F3C] outline-none font-mono" />
+            
+            <h2 class="text-[10px] text-[#403F3C]/30 font-bold tracking-[0.1em] pt-4">1. source material</h2>
+            <select id="memo-select" class="w-full bg-[#403F3C]/5 border-none rounded-[100px] px-6 py-4 text-[13px] text-[#403F3C] outline-none font-medium cursor-pointer appearance-none">
+                <option value="">select builders memo...</option>
+            </select>
+        </section>
 
-                <section>
-                    <div class="flex justify-between items-center mb-4">
-                        <h2 class="text-[10px] text-[#403F3C]/30 font-bold tracking-[0.1em]">draft content (mdx)</h2>
-                        <button id="ai-btn" class="bg-white border border-[#403F3C]/10 text-[#403F3C] text-[10px] font-bold px-6 py-2 rounded-[100px] hover:bg-zinc-50 transition-colors">fine-tune with ai</button>
-                    </div>
-                    <textarea id="editor" class="w-full h-[700px] bg-[#403F3C]/5 border-none rounded-[24px] p-10 text-[14px] text-[#403F3C]/80 font-medium leading-relaxed outline-none focus:bg-[#403F3C]/8 transition-all resize-none shadow-inner border border-transparent focus:border-[#403F3C]/5" placeholder="select a memo to begin..."></textarea>
-                    <button id="publish-btn" class="w-full mt-6 bg-[#403F3C] text-[#F8F6F3] text-[12px] font-bold py-5 rounded-[100px] hover:opacity-90 transition-opacity">ship to production</button>
-                </section>
+        <!-- 2. Toolbox (Now before editor) -->
+        <section class="bg-[#403F3C]/[0.02] p-8 rounded-[32px] border border-[#403F3C]/5">
+            <h2 class="text-[10px] text-[#403F3C]/30 mb-6 font-bold tracking-[0.1em]">2. interactive toolkit</h2>
+            <div class="grid grid-cols-1 gap-3" id="toolbox">
+                <div draggable="true" class="component-card group p-5 border border-[#403F3C]/5 rounded-[20px] bg-white hover:border-[#403F3C]/20 cursor-grab active:cursor-grabbing transition-all shadow-sm" data-type="slider">
+                    <div class="text-[11px] font-bold text-[#403F3C]/60 group-hover:text-[#403F3C]">before/after slider</div>
+                </div>
+                <div draggable="true" class="component-card group p-5 border border-[#403F3C]/5 rounded-[20px] bg-white hover:border-[#403F3C]/20 cursor-grab active:cursor-grabbing transition-all shadow-sm" data-type="video">
+                    <div class="text-[11px] font-bold text-[#403F3C]/60 group-hover:text-[#403F3C]">autonomous video</div>
+                </div>
+                <div draggable="true" class="component-card group p-5 border border-[#403F3C]/5 rounded-[20px] bg-white hover:border-[#403F3C]/20 cursor-grab active:cursor-grabbing transition-all shadow-sm" data-type="chart">
+                    <div class="text-[11px] font-bold text-[#403F3C]/60 group-hover:text-[#403F3C]">telemetry chart</div>
+                </div>
             </div>
-
-            <div class="lg:w-[350px] flex-shrink-0 space-y-12">
-                <section>
-                    <h2 class="text-[10px] text-[#403F3C]/30 mb-6 font-bold tracking-[0.1em]">interactive components</h2>
-                    <div class="space-y-4" id="toolbox">
-                        <div draggable="true" class="component-card group p-6 border border-[#403F3C]/5 rounded-[24px] bg-white hover:border-[#403F3C]/20 cursor-grab active:cursor-grabbing transition-all shadow-sm hover:shadow-md" data-type="slider">
-                            <div class="text-[11px] font-bold text-[#403F3C]/60 mb-1 group-hover:text-[#403F3C]">before/after slider</div>
-                            <div class="text-[10px] text-[#403F3C]/30 leading-normal">drag to compare results.</div>
-                        </div>
-                        <div draggable="true" class="component-card group p-6 border border-[#403F3C]/5 rounded-[24px] bg-white hover:border-[#403F3C]/20 cursor-grab active:cursor-grabbing transition-all shadow-sm hover:shadow-md" data-type="video">
-                            <div class="text-[11px] font-bold text-[#403F3C]/60 mb-1 group-hover:text-[#403F3C]">autonomous video</div>
-                            <div class="text-[10px] text-[#403F3C]/30 leading-normal">demo loop video.</div>
-                        </div>
-                        <div draggable="true" class="component-card group p-6 border border-[#403F3C]/5 rounded-[24px] bg-white hover:border-[#403F3C]/20 cursor-grab active:cursor-grabbing transition-all shadow-sm hover:shadow-md" data-type="chart">
-                            <div class="text-[11px] font-bold text-[#403F3C]/60 mb-1 group-hover:text-[#403F3C]">telemetry chart</div>
-                            <div class="text-[10px] text-[#403F3C]/30 leading-normal">interactive visualization.</div>
-                        </div>
-                    </div>
-                </section>
-
-                <section class="bg-[#403F3C]/[0.02] p-8 rounded-[32px] border border-[#403F3C]/5">
-                    <h2 class="text-[10px] text-[#403F3C]/30 mb-4 font-bold tracking-[0.1em]">instructions</h2>
-                    <ul class="text-[11px] text-[#403F3C]/50 space-y-4 leading-relaxed">
-                        <li><span class="font-bold text-[#403F3C]/70 block mb-0.5"># header</span> use for main title.</li>
-                        <li><span class="font-bold text-[#403F3C]/70 block mb-0.5">## section</span> for technical labels.</li>
-                        <li><span class="font-bold text-[#403F3C]/70 block mb-0.5">![standard](url)</span> image tag.</li>
-                    </ul>
-                </section>
+            <div class="mt-6 pt-6 border-t border-[#403F3C]/5">
+                <p class="text-[9px] text-[#403F3C]/30 font-bold mb-2">tip: drag components into the editor below</p>
             </div>
-        </div>
+        </section>
+
+        <!-- 3. Editor (Full width of narrow container) -->
+        <section class="space-y-6">
+            <div class="flex justify-between items-center">
+                <h2 class="text-[10px] text-[#403F3C]/30 font-bold tracking-[0.1em]">3. draft editor (mdx)</h2>
+                <button id="ai-btn" class="bg-white border border-[#403F3C]/10 text-[#403F3C] text-[10px] font-bold px-6 py-2 rounded-[100px] hover:bg-zinc-50 transition-colors">fine-tune with ai</button>
+            </div>
+            <textarea id="editor" class="w-full h-[600px] bg-[#403F3C]/5 border-none rounded-[24px] p-8 text-[14px] text-[#403F3C]/80 font-medium leading-relaxed outline-none focus:bg-[#403F3C]/8 transition-all resize-none shadow-inner border border-transparent focus:border-[#403F3C]/5" placeholder="content will load here..."></textarea>
+            
+            <button id="publish-btn" class="w-full mt-12 bg-[#403F3C] text-[#F8F6F3] text-[12px] font-bold py-5 rounded-[100px] hover:opacity-90 transition-opacity">ship to production</button>
+        </section>
 	</div>
 
     <div id="modal" class="fixed inset-0 bg-[#F8F6F3]/95 backdrop-blur-md z-[200] hidden items-center justify-center p-6">
@@ -174,11 +163,10 @@ import Layout from '../layouts/Layout.astro';
             });
             const data = await res.json();
             if (data.success) alert("article published to github!");
-            else alert("error publishing.");
         });
 
         document.getElementById('modal-cancel')?.addEventListener('click', () => modal!.style.display = 'none');
         document.getElementById('logout-btn')?.addEventListener('click', () => { localStorage.removeItem('builder_status'); window.location.reload(); });
-        togglePass?.addEventListener('click', () => { const isPass = passInput.type === 'password'; passInput.type = isPass ? 'text' : 'password'; togglePass.innerText = isPass ? 'hide' : 'show'; });
+        document.getElementById('toggle-pass')?.addEventListener('click', () => { const pass = document.getElementById('password') as HTMLInputElement; const isPass = pass.type === 'password'; pass.type = isPass ? 'text' : 'password'; togglePass.innerText = isPass ? 'hide' : 'show'; });
 	</script>
 </Layout>
