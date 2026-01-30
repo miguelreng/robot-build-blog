@@ -4,26 +4,26 @@ import Layout from '../layouts/Layout.astro';
 
 <Layout title="memos console">
 	<div class="max-w-[400px] mx-auto min-h-[60vh] flex flex-col justify-center" id="auth-view">
-		<h1 class="text-3xl font-medium tracking-tighter mb-4 text-[#403F3C]">memos console</h1>
-        <p class="text-[14px] text-[#403F3C]/40 mb-16 font-medium tracking-[0.1em]">engineering publishing intelligence.</p>
+		<h1 class="text-3xl font-medium tracking-tighter mb-4 text-[#403F3C]">Memos Console</h1>
+        <p class="text-[14px] text-[#403F3C]/40 mb-16 font-medium tracking-[0.1em]">Engineering Publishing Intelligence.</p>
 		
 		<div class="space-y-8">
             <div class="relative">
-			    <input type="password" id="password" placeholder="builder password" class="w-full bg-[#403F3C]/5 border-none rounded-[100px] px-6 py-4 text-[14px] text-[#403F3C] outline-none font-medium focus:ring-1 focus:ring-[#403F3C]/10 transition-all pr-20" />
+			    <input type="password" id="password" placeholder="builder password" class="w-full bg-white border border-[#403F3C]/10 rounded-[10px] px-6 py-4 text-[14px] text-[#403F3C] outline-none font-medium focus:ring-1 focus:ring-[#403F3C]/10 transition-all pr-20" />
                 <button type="button" id="toggle-pass" class="absolute right-6 top-1/2 -translate-y-1/2 text-[14px] font-bold text-[#403F3C]/20 hover:text-[#403F3C] transition-colors z-10">show</button>
             </div>
             <div class="flex items-center gap-2 px-2">
                 <input type="checkbox" id="remember-me" class="w-4 h-4 accent-[#403F3C]" />
                 <label for="remember-me" class="text-[14px] font-medium text-[#403F3C]/40">remember me on this device</label>
             </div>
-			<button id="login-btn" class="w-full bg-[#403F3C] text-[#F8F6F3] text-[14px] font-bold py-4 rounded-[100px] hover:opacity-90 transition-opacity">access console</button>
+			<button id="login-btn" class="w-full bg-[#403F3C] text-[#F8F6F3] text-[14px] font-bold py-4 rounded-[10px] hover:opacity-90 transition-opacity">access console</button>
 		</div>
 	</div>
 
 	<div id="console-view" class="hidden w-full max-w-[580px] mx-auto space-y-16 pt-12 pb-32">
         <header class="flex justify-between items-center mb-12 w-full border-b border-[#403F3C]/5 pb-12">
             <div>
-                <h1 class="text-xl font-medium tracking-tighter text-[#403F3C]">memos console</h1>
+                <h1 class="text-xl font-medium tracking-tighter text-[#403F3C]">Memos Console</h1>
                 <p class="text-[14px] text-[#403F3C]/30 font-bold mt-1">status: authorized</p>
             </div>
             <button id="logout-btn" class="text-[14px] font-bold text-[#403F3C]/20 hover:text-[#403F3C] transition-all">logout</button>
@@ -32,30 +32,27 @@ import Layout from '../layouts/Layout.astro';
         <!-- 1. Configuration -->
         <section class="space-y-6">
             <h2 class="text-[14px] text-[#403F3C]/30 font-bold tracking-[0.1em]">0. configuration</h2>
-            <input type="password" id="api-key-input-box" placeholder="openrouter api key" class="w-full bg-[#403F3C]/5 border-none rounded-[100px] px-6 py-4 text-[14px] text-[#403F3C] outline-none font-mono" />
+            <input type="password" id="api-key-input-box" placeholder="openrouter api key" class="w-full bg-white border border-[#403F3C]/10 rounded-[10px] px-6 py-4 text-[14px] text-[#403F3C] outline-none font-mono" />
             
             <h2 class="text-[14px] text-[#403F3C]/30 font-bold tracking-[0.1em] pt-4">1. source material</h2>
-            <select id="memo-select" class="w-full bg-[#403F3C]/5 border-none rounded-[100px] px-6 py-4 text-[14px] text-[#403F3C] outline-none font-medium cursor-pointer appearance-none">
+            <select id="memo-select" class="w-full bg-white border border-[#403F3C]/10 rounded-[10px] px-6 py-4 text-[14px] text-[#403F3C] outline-none font-medium cursor-pointer appearance-none">
                 <option value="">select builders memo...</option>
             </select>
         </section>
 
         <!-- 2. Toolbox -->
-        <section class="bg-[#403F3C]/0.02 p-8 rounded-[32px] border border-[#403F3C]/5">
+        <section class="bg-[#403F3C]/[0.02] p-8 rounded-[10px] border border-[#403F3C]/5">
             <h2 class="text-[14px] text-[#403F3C]/30 mb-6 font-bold tracking-[0.1em]">2. interactive toolkit</h2>
             <div class="grid grid-cols-1 gap-4" id="toolbox">
-                <div draggable="true" class="component-card group p-6 border border-[#403F3C]/5 rounded-[24px] bg-white hover:border-[#403F3C]/20 cursor-grab active:cursor-grabbing transition-all shadow-sm" data-type="slider">
+                <div draggable="true" class="component-card group p-6 border border-[#403F3C]/5 rounded-[10px] bg-white hover:border-[#403F3C]/20 cursor-grab active:cursor-grabbing transition-all shadow-sm" data-type="slider">
                     <div class="text-[14px] font-bold text-[#403F3C]/60 group-hover:text-[#403F3C]">before/after slider</div>
                 </div>
-                <div draggable="true" class="component-card group p-6 border border-[#403F3C]/5 rounded-[24px] bg-white hover:border-[#403F3C]/20 cursor-grab active:cursor-grabbing transition-all shadow-sm" data-type="video">
+                <div draggable="true" class="component-card group p-6 border border-[#403F3C]/5 rounded-[10px] bg-white hover:border-[#403F3C]/20 cursor-grab active:cursor-grabbing transition-all shadow-sm" data-type="video">
                     <div class="text-[14px] font-bold text-[#403F3C]/60 group-hover:text-[#403F3C]">autonomous video</div>
                 </div>
-                <div draggable="true" class="component-card group p-6 border border-[#403F3C]/5 rounded-[24px] bg-white hover:border-[#403F3C]/20 cursor-grab active:cursor-grabbing transition-all shadow-sm" data-type="chart">
+                <div draggable="true" class="component-card group p-6 border border-[#403F3C]/5 rounded-[10px] bg-white hover:border-[#403F3C]/20 cursor-grab active:cursor-grabbing transition-all shadow-sm" data-type="chart">
                     <div class="text-[14px] font-bold text-[#403F3C]/60 group-hover:text-[#403F3C]">telemetry chart</div>
                 </div>
-            </div>
-            <div class="mt-6 pt-6 border-t border-[#403F3C]/5">
-                <p class="text-[13px] text-[#403F3C]/30 font-bold">tip: drag components into the editor below</p>
             </div>
         </section>
 
@@ -63,21 +60,21 @@ import Layout from '../layouts/Layout.astro';
         <section class="space-y-6">
             <div class="flex justify-between items-center">
                 <h2 class="text-[14px] text-[#403F3C]/30 font-bold tracking-[0.1em]">3. draft editor (mdx)</h2>
-                <button id="ai-btn" class="bg-white border border-[#403F3C]/10 text-[#403F3C] text-[14px] font-bold px-6 py-2 rounded-[100px] hover:bg-zinc-50 transition-colors">fine-tune with ai</button>
+                <button id="ai-btn" class="bg-white border border-[#403F3C]/10 text-[#403F3C] text-[14px] font-bold px-6 py-2 rounded-[10px] hover:bg-zinc-50 transition-colors">fine-tune with ai</button>
             </div>
-            <textarea id="editor" class="w-full h-[600px] bg-[#403F3C]/5 border-none rounded-[24px] p-8 text-[15px] text-[#403F3C]/80 font-medium leading-relaxed outline-none focus:bg-[#403F3C]/8 transition-all resize-none shadow-inner border border-transparent focus:border-[#403F3C]/5" placeholder="content will load here..."></textarea>
+            <textarea id="editor" class="w-full h-[600px] bg-white border border-[#403F3C]/10 rounded-[10px] p-8 text-[15px] text-[#403F3C]/80 font-medium leading-relaxed outline-none focus:ring-1 focus:ring-[#403F3C]/5 transition-all resize-none shadow-sm" placeholder="content will load here..."></textarea>
             
-            <button id="publish-btn" class="w-full mt-12 bg-[#403F3C] text-[#F8F6F3] text-[14px] font-bold py-6 rounded-[100px] hover:opacity-90 transition-opacity">ship to production</button>
+            <button id="publish-btn" class="w-full mt-12 bg-[#403F3C] text-[#F8F6F3] text-[14px] font-bold py-6 rounded-[10px] hover:opacity-90 transition-opacity">ship to production</button>
         </section>
 	</div>
 
     <div id="modal" class="fixed inset-0 bg-[#F8F6F3]/95 backdrop-blur-md z-[200] hidden items-center justify-center p-6">
-        <div class="bg-white border border-[#403F3C]/10 p-10 rounded-[32px] max-w-[480px] w-full shadow-2xl">
+        <div class="bg-white border border-[#403F3C]/10 p-10 rounded-[10px] max-w-[480px] w-full shadow-2xl">
             <h2 id="modal-title" class="text-[16px] font-bold text-[#403F3C] mb-8">settings</h2>
             <div id="modal-fields" class="space-y-6 mb-10"></div>
             <div class="flex gap-4">
-                <button id="modal-save" class="flex-1 bg-[#403F3C] text-white text-[14px] font-bold py-4 rounded-[100px]">insert</button>
-                <button id="modal-cancel" class="flex-1 border border-[#403F3C]/10 text-[#403F3C]/40 text-[14px] font-bold py-4 rounded-[100px]">cancel</button>
+                <button id="modal-save" class="flex-1 bg-[#403F3C] text-white text-[14px] font-bold py-4 rounded-[10px]">insert</button>
+                <button id="modal-cancel" class="flex-1 border border-[#403F3C]/10 text-[#403F3C]/40 text-[14px] font-bold py-4 rounded-[10px]">cancel</button>
             </div>
         </div>
     </div>
@@ -134,7 +131,7 @@ import Layout from '../layouts/Layout.astro';
         function openModal(type: string) {
             if (!modal || !modalFields || !modalTitle) return;
             modal.style.display = 'flex';
-            const inputClass = "w-full bg-[#403F3C]/5 border-none py-4 px-6 text-[14px] outline-none rounded-[100px] font-medium";
+            const inputClass = "w-full bg-white border border-[#403F3C]/10 py-4 px-6 text-[14px] outline-none rounded-[10px] font-medium";
             if (type === 'slider') {
                 modalTitle.innerText = 'slider settings';
                 modalFields.innerHTML = `<input type="text" placeholder="before image url" class="${inputClass}" id="field-before"><input type="text" placeholder="after image url" class="${inputClass}" id="field-after">`;
@@ -142,7 +139,7 @@ import Layout from '../layouts/Layout.astro';
                 modalTitle.innerText = 'video settings'; modalFields.innerHTML = `<input type="text" placeholder="video url" class="${inputClass}" id="field-video">`;
             } else if (type === 'chart') {
                 modalTitle.innerText = 'chart settings';
-                modalFields.innerHTML = `<select id="chart-type" class="${inputClass} appearance-none"><option value="line">line</option><option value="bar">bar</option></select><input type="text" id="chart-title" placeholder="title" class="${inputClass}"><textarea id="chart-data" class="w-full bg-[#403F3C]/5 border-none p-6 text-[14px] font-mono outline-none h-40 rounded-[24px]" placeholder='[{"name": "A", "val": 10}]'></textarea>`;
+                modalFields.innerHTML = `<select id="chart-type" class="${inputClass} appearance-none"><option value="line">line</option><option value="bar">bar</option></select><input type="text" id="chart-title" placeholder="title" class="${inputClass}"><textarea id="chart-data" class="w-full bg-white border border-[#403F3C]/10 p-6 text-[14px] font-mono outline-none h-40 rounded-[10px]" placeholder='[{"name": "A", "val": 10}]'></textarea>`;
             }
         }
 
@@ -167,6 +164,6 @@ import Layout from '../layouts/Layout.astro';
 
         document.getElementById('modal-cancel')?.addEventListener('click', () => modal!.style.display = 'none');
         document.getElementById('logout-btn')?.addEventListener('click', () => { localStorage.removeItem('builder_status'); window.location.reload(); });
-        togglePass?.addEventListener('click', () => { const pass = document.getElementById('password') as HTMLInputElement; const isPass = pass.type === 'password'; pass.type = isPass ? 'text' : 'password'; togglePass.innerText = isPass ? 'hide' : 'show'; });
+        document.getElementById('toggle-pass')?.addEventListener('click', () => { const pass = document.getElementById('password') as HTMLInputElement; const isPass = pass.type === 'password'; pass.type = isPass ? 'text' : 'password'; togglePass.innerText = isPass ? 'hide' : 'show'; });
 	</script>
 </Layout>
