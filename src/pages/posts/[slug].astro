@@ -1,0 +1,56 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import { getCollection, render } from 'astro:content';
+
+export async function getStaticPaths() {
+  const posts = await getCollection('posts');
+  return posts.map(entry => ({
+    params: { slug: entry.slug }, props: { entry },
+  }));
+}
+
+const { entry } = Astro.props;
+const { Content } = await render(entry);
+const { title, pubDate, author, quarter = "2026-Q1" } = entry.data;
+
+const publishedLabel = pubDate.toLocaleDateString('en-US', { year: 'numeric', month: '2-digit', day: '2-digit' });
+---
+
+<Layout title={title}>
+  <nav class="flex items-center gap-2 mb-12 text-[11px] font-bold uppercase tracking-[0.2em] text-[#403F3C]/30">
+    <a href="/" class="hover:text-[#403F3C] transition-colors">Home</a>
+    <span>/</span>
+    <a href="/" class="hover:text-[#403F3C] transition-colors">Memos</a>
+    <span>/</span>
+    <span class="text-[#403F3C]/10 truncate max-w-[200px]">{title}</span>
+  </nav>
+
+  <div class="grid grid-cols-3 gap-4 mb-20 border-y border-[#403F3C]/5 py-8">
+    <div class="flex flex-col gap-1">
+      <div class="text-[12px] text-[#403F3C]/40 font-medium">Published</div>
+      <div class="text-[14px] font-medium tracking-tight text-[#403F3C]">{publishedLabel}</div>
+    </div>
+    <div class="flex flex-col gap-1">
+      <div class="text-[12px] text-[#403F3C]/40 font-medium">Builder</div>
+      <div class="text-[14px] font-medium tracking-tight text-[#403F3C]">{author}</div>
+    </div>
+    <div class="flex flex-col gap-1">
+      <div class="text-[12px] text-[#403F3C]/40 font-medium">Quarter</div>
+      <div class="text-[14px] font-medium tracking-tight text-[#403F3C]">{quarter}</div>
+    </div>
+  </div>
+
+  <div class="mb-12">
+    <h1 class="text-3xl font-medium tracking-tighter mb-8 leading-[1.1] text-[#403F3C]">
+      {title}
+    </h1>
+  </div>
+
+  <div class="prose prose-zinc prose-lg max-w-none 
+    prose-headings:font-medium prose-headings:tracking-tighter
+    prose-p:text-[#6a6a6a] prose-p:leading-relaxed prose-p:font-medium prose-p:text-[15px]
+    prose-blockquote:border-l prose-blockquote:border-[#403F3C]/10 prose-blockquote:text-[#403F3C]/40
+    prose-img:rounded-sm">
+    <Content />
+  </div>
+</Layout>
