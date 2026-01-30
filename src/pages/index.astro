@@ -5,9 +5,25 @@ import { getCollection } from 'astro:content';
 const posts = await getCollection('posts');
 posts.sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
 
-const builders = ["Lorena Cardona", "Jonathan Deiloff", "David Cardozo", "Kevin Torres"];
-const discussions = ["On-device training latency", "Arlington sidewalk edge cases", "Battery thermal management"];
-const techStack = ["PyTorch", "OpenCV", "ROS2", "UNet", "YOLOv8"];
+const builders = [
+	{ name: "Lorena Cardona", role: "Data Engineer" },
+	{ name: "Jonathan Deiloff", role: "Data Engineer" },
+	{ name: "David Cardozo", role: "Data Advisor" },
+	{ name: "Kevin Torres", role: "Data Analyst" }
+];
+
+const discussions = [
+	{ topic: "On-device training latency", tag: "Performance" },
+	{ topic: "Arlington sidewalk edge cases", tag: "Computer Vision" },
+	{ topic: "Battery thermal management", tag: "Hardware" }
+];
+
+const aiDirectory = [
+	{ tool: "PyTorch", category: "Framework" },
+	{ tool: "OpenCV", category: "Vision" },
+	{ tool: "ROS2", category: "Middleware" },
+	{ tool: "UNet", category: "Model Architectures" }
+];
 ---
 
 <Layout title="Home">
@@ -20,7 +36,6 @@ const techStack = ["PyTorch", "OpenCV", "ROS2", "UNet", "YOLOv8"];
 			<div class="flex flex-col gap-1">
 				<div class="text-[13px] font-bold text-[#403F3C]">Felipe Chávez</div>
 				<div class="text-[11px] uppercase tracking-widest text-[#403F3C]/40 font-bold">CEO at Robot.com</div>
-				{/* Placeholder para la firma */}
 				<div class="h-10 w-32 mt-2 opacity-50 border-b border-[#403F3C]/10 flex items-end pb-1 text-[10px] text-[#403F3C]/20 uppercase tracking-[0.2em]">
 					Waiting for signature...
 				</div>
@@ -30,8 +45,8 @@ const techStack = ["PyTorch", "OpenCV", "ROS2", "UNet", "YOLOv8"];
 		<div class="space-y-16">
 			{/* Memos Section */}
 			<section>
-				<h2 class="text-[12px] text-[#403F3C]/40 mb-6 font-medium">Memos</h2>
-				<ul class="space-y-4">
+				<h2 class="text-[12px] text-[#403F3C]/40 mb-6 font-medium border-b border-[#403F3C]/5 pb-4">Memos</h2>
+				<ul class="space-y-4 pt-4">
 					{posts.map((post) => (
 						<li>
 							<a href={`/posts/${post.slug}`} class="text-[15px] font-medium text-[#403F3C] hover:underline decoration-1 underline-offset-4">
@@ -45,13 +60,14 @@ const techStack = ["PyTorch", "OpenCV", "ROS2", "UNet", "YOLOv8"];
 
 			{/* Builders Section */}
 			<section>
-				<h2 class="text-[12px] text-[#403F3C]/40 mb-6 font-medium">Builders</h2>
-				<ul class="space-y-4">
+				<h2 class="text-[12px] text-[#403F3C]/40 mb-6 font-medium border-b border-[#403F3C]/5 pb-4">Builders</h2>
+				<ul class="space-y-4 pt-4">
 					{builders.map((builder) => (
 						<li>
 							<a href="/builders" class="text-[15px] font-medium text-[#403F3C] hover:underline decoration-1 underline-offset-4">
-								{builder}
+								{builder.name}
 							</a>
+							<span class="text-[13px] text-[#403F3C]/30 ml-3">— {builder.role}</span>
 						</li>
 					))}
 				</ul>
@@ -59,27 +75,29 @@ const techStack = ["PyTorch", "OpenCV", "ROS2", "UNet", "YOLOv8"];
 
 			{/* Discussion Section */}
 			<section>
-				<h2 class="text-[12px] text-[#403F3C]/40 mb-6 font-medium">Discussion</h2>
-				<ul class="space-y-4">
-					{discussions.map((topic) => (
+				<h2 class="text-[12px] text-[#403F3C]/40 mb-6 font-medium border-b border-[#403F3C]/5 pb-4">Discussion</h2>
+				<ul class="space-y-4 pt-4">
+					{discussions.map((item) => (
 						<li>
 							<a href="#" class="text-[15px] font-medium text-[#403F3C] hover:underline decoration-1 underline-offset-4">
-								{topic}
+								{item.topic}
 							</a>
+							<span class="text-[13px] text-[#403F3C]/30 ml-3">— {item.tag}</span>
 						</li>
 					))}
 				</ul>
 			</section>
 
-			{/* Tech Stack Section */}
+			{/* AI Directory Section */}
 			<section>
-				<h2 class="text-[12px] text-[#403F3C]/40 mb-6 font-medium">AI Directory</h2>
-				<ul class="space-y-4">
-					{techStack.map((item) => (
+				<h2 class="text-[12px] text-[#403F3C]/40 mb-6 font-medium border-b border-[#403F3C]/5 pb-4">AI Directory</h2>
+				<ul class="space-y-4 pt-4">
+					{aiDirectory.map((item) => (
 						<li>
 							<span class="text-[15px] font-medium text-[#403F3C] cursor-default text-[#403F3C]/60">
-								{item}
+								{item.tool}
 							</span>
+							<span class="text-[13px] text-[#403F3C]/30 ml-3">— {item.category}</span>
 						</li>
 					))}
 				</ul>
