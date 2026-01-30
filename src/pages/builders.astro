@@ -1,0 +1,52 @@
+---
+import Layout from '../layouts/Layout.astro';
+
+const builders = [
+	{
+		name: "Lorena Cardona",
+		role: "Data Engineer",
+		avatar: "/builders/lorena.png",
+		memosCount: 4
+	},
+	{
+		name: "Jonathan Deiloff",
+		role: "Data Engineer",
+		avatar: "/builders/jonathan.png",
+		memosCount: 8
+	},
+	{
+		name: "David Cardozo",
+		role: "Data Advisor",
+		avatar: "/builders/david.png",
+		memosCount: 4
+	},
+	{
+		name: "Kevin Torres",
+		role: "Data Analyst",
+		avatar: "/builders/kevin.png",
+		memosCount: 3
+	}
+];
+---
+
+<Layout title="Builders">
+	<h1 class="text-4xl font-medium tracking-tighter mb-16 text-[#403F3C]">Builders</h1>
+	
+	<div class="grid grid-cols-2 gap-x-8 gap-y-16">
+		{builders.map((builder) => (
+			<div class="group cursor-pointer">
+				<div class="aspect-square bg-[#403F3C]/5 rounded-sm mb-6 overflow-hidden grayscale group-hover:grayscale-0 transition-all">
+					{/* Placeholder para la foto real */}
+					<div class="w-full h-full flex items-center justify-center text-[10px] text-[#403F3C]/20 uppercase tracking-widest font-bold">
+						{builder.name.split(' ').map(n => n[0]).join('')}
+					</div>
+				</div>
+				<h3 class="text-xs font-bold uppercase tracking-widest text-[#403F3C] mb-1">{builder.name}</h3>
+				<p class="text-[10px] uppercase tracking-widest text-[#403F3C]/40 mb-3">{builder.role}</p>
+				<div class="text-[8px] uppercase tracking-widest font-bold text-[#403F3C]/20 group-hover:text-[#403F3C] transition-colors">
+					{builder.memosCount} Memos
+				</div>
+			</div>
+		))}
+	</div>
+</Layout>

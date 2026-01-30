@@ -10,23 +10,28 @@ if (!entry) {
 
 const { Content } = await render(entry);
 const { title, pubDate, author } = entry.data;
+
+// Parseamos metadata para el nuevo layout
+const quarter = "2026-Q1"; // Esto lo sacaremos del frontmatter en el futuro
 ---
 
-<Layout title={title}>
+<Layout 
+	title={title} 
+	published={pubDate.toLocaleDateString('en-US', { year: 'numeric', month: '2-digit', day: '2-digit' })}
+	builder={author}
+	quarter={quarter}
+>
   <div class="mb-12">
-    <div class="text-[10px] uppercase tracking-[0.2em] text-zinc-400 mb-4">
-      {pubDate.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })} — By {author}
-    </div>
-    <h1 class="text-4xl font-medium tracking-tight mb-8 leading-tight">
+    <h1 class="text-4xl font-medium tracking-tighter mb-8 leading-[1.1] text-[#403F3C]">
       {title}
     </h1>
   </div>
 
   <div class="prose prose-zinc prose-lg max-w-none 
-    prose-headings:font-medium prose-headings:tracking-tight
-    prose-p:text-zinc-600 prose-p:leading-relaxed
-    prose-blockquote:border-l-2 prose-blockquote:border-zinc-200 prose-blockquote:italic
-    prose-img:rounded-xl">
+    prose-headings:font-medium prose-headings:tracking-tighter
+    prose-p:text-[#403F3C]/60 prose-p:leading-relaxed
+    prose-blockquote:border-l prose-blockquote:border-[#403F3C]/10 prose-blockquote:text-[#403F3C]/40
+    prose-img:rounded-sm">
     <Content />
   </div>
 </Layout>
