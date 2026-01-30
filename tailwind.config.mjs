@@ -13,6 +13,7 @@ export default {
             fontSize: '15px',
             lineHeight: '1.6',
             fontFamily: 'Yellix, sans-serif',
+            fontWeight: '400',
             a: {
               color: '#403F3C',
               textDecoration: 'none',
