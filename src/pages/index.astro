@@ -10,7 +10,7 @@ posts.sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
 	<div class="space-y-24">
 		{posts.map((post) => (
 			<article class="group">
-				<div class="text-[10px] uppercase tracking-[0.25em] text-[#403F3C]/40 mb-6 font-bold">
+				<div class="text-[12px] text-[#403F3C]/40 mb-6 font-medium">
 					{post.data.pubDate.toLocaleDateString('en-US', { year: 'numeric', month: '2-digit', day: '2-digit' })}
 				</div>
 				<h2 class="text-3xl font-medium tracking-tighter mb-5 leading-[1.1] text-[#403F3C]">
@@ -18,10 +18,10 @@ posts.sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
 						{post.data.title}
 					</a>
 				</h2>
-				<p class="text-[#403F3C]/60 text-lg leading-relaxed mb-8 font-normal max-w-lg">
+				<p class="text-[#403F3C]/60 text-[15px] leading-relaxed mb-8 font-normal max-w-lg">
 					{post.data.description}
 				</p>
-				<a href={`/posts/${post.slug}`} class="text-[10px] uppercase tracking-[0.25em] font-bold border-b border-[#403F3C]/20 pb-1 hover:border-[#403F3C] transition-colors">
+				<a href={`/posts/${post.slug}`} class="text-[12px] font-bold border-b border-[#403F3C]/20 pb-1 hover:border-[#403F3C] transition-colors">
 					Read Memo
 				</a>
 			</article>
