@@ -10,7 +10,7 @@ export default {
         DEFAULT: {
           css: {
             color: '#403F3C',
-            fontSize: '17px',
+            fontSize: '15px',
             lineHeight: '1.6',
             fontFamily: 'Yellix, sans-serif',
             a: {
@@ -22,9 +22,9 @@ export default {
                 borderBottomColor: '#403F3C',
               },
             },
-            h1: { color: '#403F3C', fontWeight: '500', letterSpacing: '-0.025em' },
-            h2: { color: '#403F3C', fontWeight: '500', letterSpacing: '-0.02em', marginTop: '2.5em' },
-            h3: { color: '#403F3C', fontWeight: '500' },
+            h1: { display: 'none' }, // Ocultamos el H1 dentro del MD para evitar duplicados
+            h2: { color: '#403F3C', fontWeight: '500', letterSpacing: '-0.02em', marginTop: '2.5em', fontSize: '1.25em' },
+            h3: { color: '#403F3C', fontWeight: '500', fontSize: '1.1em' },
             strong: { color: '#403F3C', fontWeight: '600' },
             blockquote: {
               color: '#403F3C',
@@ -39,7 +39,7 @@ export default {
               padding: '3px 6px', 
               borderRadius: '6px', 
               fontWeight: '500',
-              fontSize: '0.9em'
+              fontSize: '13px'
             },
           },
         },
