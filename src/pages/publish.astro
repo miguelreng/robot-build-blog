@@ -1,73 +1,71 @@
 ---
 import Layout from '../layouts/Layout.astro';
 
-// Password hardcoded para simplicidad absoluta
+// Password hardcoded for initial simplicity
 const BUILDER_PASSWORD = "robot-builders-2026";
 ---
 
-<Layout title="Robot Memos Console">
+<Layout title="Memos Console">
 	<div class="max-w-[580px] mx-auto">
-		<h1 class="text-3xl font-medium tracking-tighter mb-4 text-[#403F3C]">Robot Memos Console</h1>
-        <p class="text-[12px] text-[#403F3C]/40 mb-12 font-medium uppercase tracking-widest">Engineering Publishing Tool</p>
+		<h1 class="text-3xl font-medium tracking-tighter mb-4 text-[#403F3C]">Memos Console</h1>
+        <p class="text-[12px] text-[#403F3C]/40 mb-16 font-medium tracking-[0.1em]">Engine for engineering output.</p>
 		
-		<div id="auth-section" class="space-y-6">
-			<p class="text-[14px] text-[#403F3C]/60 mb-4 font-medium">Enter builder password to access.</p>
+		<div id="auth-section" class="space-y-8">
 			<input 
 				type="password" 
 				id="password" 
-				placeholder="••••••••" 
-				class="w-full bg-[#403F3C]/5 border-none rounded-sm px-4 py-3 text-[14px] text-[#403F3C] focus:ring-1 focus:ring-[#403F3C]/20 outline-none font-mono"
+				placeholder="Builder Password" 
+				class="w-full bg-transparent border-b border-[#403F3C]/10 py-3 text-[14px] text-[#403F3C] outline-none font-medium focus:border-[#403F3C]/30 transition-colors"
 			/>
 			<button 
 				id="login-btn"
-				class="w-full bg-[#403F3C] text-[#F8F6F3] text-[12px] font-bold uppercase tracking-widest py-3 rounded-sm hover:opacity-90 transition-opacity"
+				class="text-[11px] font-bold uppercase tracking-[0.2em] text-[#403F3C]/40 hover:text-[#403F3C] transition-colors border-b border-[#403F3C]/10 pb-1"
 			>
-				Access Console
+				Access Console →
 			</button>
 		</div>
 
-		<div id="console-section" class="hidden space-y-16">
-            <!-- API Configuration -->
-            <section class="border-b border-[#403F3C]/5 pb-12">
-				<h2 class="text-[10px] uppercase tracking-[0.2em] text-[#403F3C]/40 mb-6 font-bold">0. Engine Configuration</h2>
-				<div class="space-y-4">
-                    <label class="block text-[12px] font-medium text-[#403F3C]/60 italic mb-2">OpenRouter API Key (Stays in browser memory)</label>
-                    <input 
-                        type="password" 
-                        id="api-key" 
-                        placeholder="sk-or-v1-..." 
-                        class="w-full bg-[#403F3C]/5 border-none rounded-sm px-4 py-3 text-[13px] text-[#403F3C] outline-none font-mono"
-                    />
-                </div>
+		<div id="console-section" class="hidden space-y-24">
+            <!-- 0. Config -->
+            <section>
+				<h2 class="text-[11px] text-[#403F3C]/30 mb-8 font-bold tracking-[0.15em] uppercase">Engine Config</h2>
+				<input 
+					type="password" 
+					id="api-key" 
+					placeholder="OpenRouter API Key" 
+					class="w-full bg-transparent border-b border-[#403F3C]/10 py-3 text-[13px] text-[#403F3C] outline-none font-mono focus:border-[#403F3C]/30 transition-colors"
+				/>
 			</section>
 
-			<section class="border-b border-[#403F3C]/5 pb-12">
-				<h2 class="text-[10px] uppercase tracking-[0.2em] text-[#403F3C]/40 mb-6 font-bold">1. Select Raw Memo</h2>
-				<select id="memo-select" class="w-full bg-[#403F3C]/5 border-none rounded-sm px-4 py-3 text-[14px] text-[#403F3C] outline-none">
-					<option value="">Choose a builder memo...</option>
-                    <option value="2025Q4_W48_KevinTorres-DataAnalyst-Memo.md">Kevin Torres - Data Analyst</option>
-                    <option value="2025Q3_W40_FredyAcuna-DataEngineer-Memo.md">Fredy Acuña - Data Engineer</option>
+			<!-- 1. Selection -->
+			<section>
+				<h2 class="text-[11px] text-[#403F3C]/30 mb-8 font-bold tracking-[0.15em] uppercase">Source Material</h2>
+				<select id="memo-select" class="w-full bg-transparent border-b border-[#403F3C]/10 py-3 text-[14px] text-[#403F3C] outline-none font-medium cursor-pointer focus:border-[#403F3C]/30 transition-colors">
+					<option value="">Select Builders Memo...</option>
+                    <option value="2025Q4_W48_KevinTorres-DataAnalyst-Memo.md">Kevin Torres — Data Analyst</option>
+                    <option value="2025Q3_W40_FredyAcuna-DataEngineer-Memo.md">Fredy Acuña — Data Engineer</option>
 				</select>
 			</section>
 
-			<section class="border-b border-[#403F3C]/5 pb-12">
-				<div class="flex justify-between items-baseline mb-6">
-                    <h2 class="text-[10px] uppercase tracking-[0.2em] text-[#403F3C]/40 font-bold">2. Ai Transformation</h2>
-                    <button id="generate-btn" class="text-[11px] font-bold border-b border-[#403F3C]/20 pb-0.5 hover:border-[#403F3C] transition-colors">
+			<!-- 2. Processing -->
+			<section>
+				<div class="flex justify-between items-baseline mb-8">
+                    <h2 class="text-[11px] text-[#403F3C]/30 font-bold tracking-[0.15em] uppercase">Drafting Intelligence</h2>
+                    <button id="generate-btn" class="text-[11px] font-bold text-[#403F3C]/40 hover:text-[#403F3C] border-b border-[#403F3C]/10 pb-0.5 transition-colors">
                         Generate Draft
                     </button>
                 </div>
 				<textarea 
 					id="draft-area" 
-					class="w-full h-[500px] bg-[#403F3C]/5 border-none rounded-sm px-6 py-6 text-[14px] text-[#403F3C]/80 font-medium leading-relaxed outline-none border border-transparent focus:border-[#403F3C]/10 transition-colors"
-					placeholder="The AI will rewrite the technical memo here. You can then add images, sliders or charts manually."
+					class="w-full h-[600px] bg-[#403F3C]/5 border-none rounded-sm p-8 text-[14px] text-[#403F3C]/80 font-medium leading-relaxed outline-none border border-transparent focus:bg-[#403F3C]/10 transition-all resize-none"
+					placeholder="Raw markdown will be rewritten here..."
 				></textarea>
 			</section>
 
-			<section>
-				<h2 class="text-[10px] uppercase tracking-[0.2em] text-[#403F3C]/40 mb-6 font-bold">3. Final Delivery</h2>
-				<button id="publish-btn" class="w-full bg-[#403F3C] text-[#F8F6F3] text-[12px] font-bold uppercase tracking-widest py-4 rounded-sm hover:opacity-90 transition-opacity">
-					Push to Main Repository
+			<!-- 3. Final Step -->
+			<section class="pb-32">
+				<button id="publish-btn" class="text-[11px] font-bold uppercase tracking-[0.2em] text-[#403F3C]/40 hover:text-[#403F3C] border-b border-[#403F3C]/10 pb-1 transition-colors">
+					Push to Repository →
 				</button>
 			</section>
 		</div>
@@ -80,7 +78,6 @@ const BUILDER_PASSWORD = "robot-builders-2026";
 		const passInput = document.getElementById('password') as HTMLInputElement;
         const apiKeyInput = document.getElementById('api-key') as HTMLInputElement;
 
-        // Load key from storage if exists
         const savedKey = localStorage.getItem('robot_memos_key');
         if (savedKey && apiKeyInput) apiKeyInput.value = savedKey;
 
@@ -89,14 +86,12 @@ const BUILDER_PASSWORD = "robot-builders-2026";
 				authSec?.classList.add('hidden');
 				consoleSec?.classList.remove('hidden');
 			} else {
-				alert("Invalid builder password.");
+				alert("Unauthorized.");
 			}
 		});
 
         apiKeyInput?.addEventListener('change', () => {
             localStorage.setItem('robot_memos_key', apiKeyInput.value);
         });
-
-        // El resto de la lógica de fetch y de llamar a OpenRouter irá aquí
 	</script>
 </Layout>
