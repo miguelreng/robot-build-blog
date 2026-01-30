@@ -42,26 +42,26 @@ const { title, builder, published, quarter } = Astro.props;
 						</span>
 					</a>
 				</div>
-				<nav class="flex gap-6 text-[10px] uppercase tracking-[0.2em] text-[#403F3C]/40 font-bold">
-					<a href="/" class="hover:text-[#403F3C] transition-colors leading-none pt-0.5">Home</a>
-					<a href="/builders" class="hover:text-[#403F3C] transition-colors leading-none pt-0.5">Builders</a>
-					<a href="/discussion" class="hover:text-[#403F3C] transition-colors leading-none pt-0.5">Discussion</a>
-					<a href="/ai-directory" class="hover:text-[#403F3C] transition-colors leading-none pt-0.5">AI Directory</a>
+				<nav class="flex gap-6 text-[11px] text-[#403F3C]/60 font-medium">
+					<a href="/" class="hover:text-[#403F3C] transition-colors leading-none">Home</a>
+					<a href="/builders" class="hover:text-[#403F3C] transition-colors leading-none">Builders</a>
+					<a href="/discussion" class="hover:text-[#403F3C] transition-colors leading-none">Discussion</a>
+					<a href="/ai-directory" class="hover:text-[#403F3C] transition-colors leading-none">AI Directory</a>
 				</nav>
 			</header>
 
 			{published && (
 				<div class="grid grid-cols-3 gap-4 mb-20 border-y border-[#403F3C]/5 py-8">
 					<div class="flex flex-col gap-1">
-						<div class="text-[10px] uppercase tracking-[0.1em] text-[#403F3C]/30 font-bold">Published</div>
+						<div class="text-[10px] text-[#403F3C]/40 font-medium">Published</div>
 						<div class="text-[12px] font-medium tracking-tight text-[#403F3C]">{published}</div>
 					</div>
 					<div class="flex flex-col gap-1">
-						<div class="text-[10px] uppercase tracking-[0.1em] text-[#403F3C]/30 font-bold">Builder</div>
+						<div class="text-[10px] text-[#403F3C]/40 font-medium">Builder</div>
 						<div class="text-[12px] font-medium tracking-tight text-[#403F3C]">{builder}</div>
 					</div>
 					<div class="flex flex-col gap-1">
-						<div class="text-[10px] uppercase tracking-[0.1em] text-[#403F3C]/30 font-bold">Quarter</div>
+						<div class="text-[10px] text-[#403F3C]/40 font-medium">Quarter</div>
 						<div class="text-[12px] font-medium tracking-tight text-[#403F3C]">{quarter}</div>
 					</div>
 				</div>
