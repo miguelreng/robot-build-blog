@@ -8,7 +8,12 @@ const { title } = Astro.props;
 		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 		<meta name="viewport" content="width=device-width" />
 		<meta name="generator" content={Astro.generator} />
-		<title>{title} | THE BUILD</title>
+		<title>{title} | CEO & Builders</title>
+		<meta name="description" content="Engineering memos and technical progress from the builders at Robot.com." />
+		<meta property="og:title" content={`${title} | CEO & Builders`} />
+		<meta property="og:description" content="Raw engineering notes from the path to general-purpose robotics." />
+		<meta property="og:image" content="/logo-robot.svg" />
+		<meta name="twitter:card" content="summary_large_image" />
 		<style is:global>
 			@font-face {
 				font-family: 'Yellix';
@@ -40,7 +45,8 @@ const { title } = Astro.props;
 					</span>
 				</a>
 				<div class="flex gap-6 text-[10px] uppercase tracking-[0.2em] text-[#403F3C]/40 font-bold">
-					<a href="#" class="hover:text-[#403F3C]">Memos</a>
+					<a href="https://www.robot.com/" class="hover:text-[#403F3C]">Explore</a>
+					<a href="https://www.robot.com/careers" class="hover:text-[#403F3C]">Careers</a>
 				</div>
 			</header>
 			<slot />
