@@ -1,45 +1,25 @@
 ---
 import Layout from '../layouts/Layout.astro';
-
-// Password hardcoded for initial simplicity
-const BUILDER_PASSWORD = "robot-builders-2026";
 ---
 
 <Layout title="Memos Console">
 	<div class="max-w-[580px] mx-auto">
 		<h1 class="text-3xl font-medium tracking-tighter mb-4 text-[#403F3C]">Memos Console</h1>
-        <p class="text-[12px] text-[#403F3C]/40 mb-16 font-medium tracking-[0.1em]">Engine for engineering output.</p>
+        <p class="text-[12px] text-[#403F3C]/40 mb-16 font-medium tracking-[0.1em]">Human-in-the-loop engineering output.</p>
 		
 		<div id="auth-section" class="space-y-8">
-			<input 
-				type="password" 
-				id="password" 
-				placeholder="Builder Password" 
-				class="w-full bg-transparent border-b border-[#403F3C]/10 py-3 text-[14px] text-[#403F3C] outline-none font-medium focus:border-[#403F3C]/30 transition-colors"
-			/>
-			<button 
-				id="login-btn"
-				class="text-[11px] font-bold uppercase tracking-[0.2em] text-[#403F3C]/40 hover:text-[#403F3C] transition-colors border-b border-[#403F3C]/10 pb-1"
-			>
-				Access Console →
-			</button>
+			<input type="password" id="password" placeholder="Builder Password" class="w-full bg-transparent border-b border-[#403F3C]/10 py-3 text-[14px] text-[#403F3C] outline-none font-medium focus:border-[#403F3C]/30 transition-colors" />
+			<button id="login-btn" class="text-[11px] font-bold uppercase tracking-[0.2em] text-[#403F3C]/40 hover:text-[#403F3C] border-b border-[#403F3C]/10 pb-1">Access Console →</button>
 		</div>
 
-		<div id="console-section" class="hidden space-y-24">
-            <!-- 0. Config -->
+		<div id="console-section" class="hidden space-y-20">
             <section>
-				<h2 class="text-[11px] text-[#403F3C]/30 mb-8 font-bold tracking-[0.15em] uppercase">Engine Config</h2>
-				<input 
-					type="password" 
-					id="api-key" 
-					placeholder="OpenRouter API Key" 
-					class="w-full bg-transparent border-b border-[#403F3C]/10 py-3 text-[13px] text-[#403F3C] outline-none font-mono focus:border-[#403F3C]/30 transition-colors"
-				/>
+				<h2 class="text-[10px] uppercase tracking-[0.2em] text-[#403F3C]/30 mb-6 font-bold">0. Engine Config</h2>
+				<input type="password" id="api-key" placeholder="OpenRouter API Key" class="w-full bg-transparent border-b border-[#403F3C]/10 py-3 text-[13px] text-[#403F3C] outline-none font-mono focus:border-[#403F3C]/30 transition-colors" />
 			</section>
 
-			<!-- 1. Selection -->
 			<section>
-				<h2 class="text-[11px] text-[#403F3C]/30 mb-8 font-bold tracking-[0.15em] uppercase">Source Material</h2>
+				<h2 class="text-[10px] uppercase tracking-[0.2em] text-[#403F3C]/30 mb-6 font-bold">1. Source Material</h2>
 				<select id="memo-select" class="w-full bg-transparent border-b border-[#403F3C]/10 py-3 text-[14px] text-[#403F3C] outline-none font-medium cursor-pointer focus:border-[#403F3C]/30 transition-colors">
 					<option value="">Select Builders Memo...</option>
                     <option value="2025Q4_W48_KevinTorres-DataAnalyst-Memo.md">Kevin Torres — Data Analyst</option>
@@ -47,26 +27,22 @@ const BUILDER_PASSWORD = "robot-builders-2026";
 				</select>
 			</section>
 
-			<!-- 2. Processing -->
 			<section>
-				<div class="flex justify-between items-baseline mb-8">
-                    <h2 class="text-[11px] text-[#403F3C]/30 font-bold tracking-[0.15em] uppercase">Drafting Intelligence</h2>
-                    <button id="generate-btn" class="text-[11px] font-bold text-[#403F3C]/40 hover:text-[#403F3C] border-b border-[#403F3C]/10 pb-0.5 transition-colors">
-                        Generate Draft
-                    </button>
+				<div class="flex justify-between items-baseline mb-6">
+                    <h2 class="text-[10px] uppercase tracking-[0.2em] text-[#403F3C]/30 font-bold">2. Editor (MDX)</h2>
+                    <button id="ai-btn" class="text-[10px] font-bold text-[#403F3C]/40 hover:text-[#403F3C] border-b border-[#403F3C]/10 pb-0.5 transition-colors">Fine-tune with AI (Hanu)</button>
                 </div>
-				<textarea 
-					id="draft-area" 
-					class="w-full h-[600px] bg-[#403F3C]/5 border-none rounded-sm p-8 text-[14px] text-[#403F3C]/80 font-medium leading-relaxed outline-none border border-transparent focus:bg-[#403F3C]/10 transition-all resize-none"
-					placeholder="Raw markdown will be rewritten here..."
-				></textarea>
+				<textarea id="editor" class="w-full h-[600px] bg-[#403F3C]/5 border-none rounded-sm p-8 text-[14px] text-[#403F3C]/80 font-medium leading-relaxed outline-none focus:bg-[#403F3C]/10 transition-all resize-none font-mono" placeholder="Original content will load here..."></textarea>
+                
+                <div class="mt-4 p-4 border border-[#403F3C]/5 rounded-sm">
+                    <p class="text-[10px] uppercase tracking-widest text-[#403F3C]/30 font-bold mb-3">Interactive Components Cheat-sheet</p>
+                    <code class="text-[10px] text-[#403F3C]/50 block mb-2">&lt;BeforeAfterSlider client:load beforeImage="..." afterImage="..." /&gt;</code>
+                    <code class="text-[10px] text-[#403F3C]/50 block">&lt;img src="..." /&gt; or ![Label](/path)</code>
+                </div>
 			</section>
 
-			<!-- 3. Final Step -->
 			<section class="pb-32">
-				<button id="publish-btn" class="text-[11px] font-bold uppercase tracking-[0.2em] text-[#403F3C]/40 hover:text-[#403F3C] border-b border-[#403F3C]/10 pb-1 transition-colors">
-					Push to Repository →
-				</button>
+				<button id="publish-btn" class="text-[11px] font-bold uppercase tracking-[0.2em] text-[#403F3C]/40 hover:text-[#403F3C] border-b border-[#403F3C]/10 pb-1 transition-colors">Ship to Production →</button>
 			</section>
 		</div>
 	</div>
@@ -76,10 +52,8 @@ const BUILDER_PASSWORD = "robot-builders-2026";
 		const authSec = document.getElementById('auth-section');
 		const consoleSec = document.getElementById('console-section');
 		const passInput = document.getElementById('password') as HTMLInputElement;
-        const apiKeyInput = document.getElementById('api-key') as HTMLInputElement;
-
-        const savedKey = localStorage.getItem('robot_memos_key');
-        if (savedKey && apiKeyInput) apiKeyInput.value = savedKey;
+        const memoSelect = document.getElementById('memo-select') as HTMLSelectElement;
+        const editor = document.getElementById('editor') as HTMLTextAreaElement;
 
 		loginBtn?.addEventListener('click', () => {
 			if (passInput.value === "robot-builders-2026") {
@@ -90,8 +64,13 @@ const BUILDER_PASSWORD = "robot-builders-2026";
 			}
 		});
 
-        apiKeyInput?.addEventListener('change', () => {
-            localStorage.setItem('robot_memos_key', apiKeyInput.value);
+        // Simulación de carga de contenido original
+        memoSelect?.addEventListener('change', () => {
+            const fileName = memoSelect.value;
+            if (fileName) {
+                editor.value = `# Loading raw data from ${fileName}...\n\nAs a builder at Robot.com, I spent this week working on...`;
+                // Aquí iría el fetch real al API que ya creamos
+            }
         });
 	</script>
 </Layout>
