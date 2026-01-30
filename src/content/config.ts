@@ -7,6 +7,9 @@ const posts = defineCollection({
     pubDate: z.coerce.date(),
     author: z.string(),
     description: z.string(),
+    quarter: z.string().optional().default("2026-Q1"),
+    coverImage: z.string().optional(),
+    builderImage: z.string().optional(),
   }),
 });
 
