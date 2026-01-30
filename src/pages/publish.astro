@@ -1,0 +1,72 @@
+---
+import Layout from '../layouts/Layout.astro';
+
+// Password hardcoded para simplicidad absoluta
+const BUILDER_PASSWORD = "robot-builders-2026";
+---
+
+<Layout title="Builder Console">
+	<div class="max-w-[580px] mx-auto">
+		<h1 class="text-3xl font-medium tracking-tighter mb-12 text-[#403F3C]">Builder Console</h1>
+		
+		<div id="auth-section" class="space-y-6">
+			<p class="text-[14px] text-[#403F3C]/60 mb-4 font-medium">Enter builder password to access the publishing tools.</p>
+			<input 
+				type="password" 
+				id="password" 
+				placeholder="••••••••" 
+				class="w-full bg-[#403F3C]/5 border-none rounded-sm px-4 py-3 text-[14px] text-[#403F3C] focus:ring-1 focus:ring-[#403F3C]/20 outline-none"
+			/>
+			<button 
+				id="login-btn"
+				class="w-full bg-[#403F3C] text-[#F8F6F3] text-[12px] font-bold uppercase tracking-widest py-3 rounded-sm hover:opacity-90 transition-opacity"
+			>
+				Access Console
+			</button>
+		</div>
+
+		<div id="console-section" class="hidden space-y-12">
+			<div class="border-b border-[#403F3C]/5 pb-12">
+				<h2 class="text-[12px] text-[#403F3C]/40 mb-6 font-medium">Step 1: Select Memo</h2>
+				<select id="memo-select" class="w-full bg-[#403F3C]/5 border-none rounded-sm px-4 py-3 text-[14px] text-[#403F3C] outline-none">
+					<option value="">Loading memos...</option>
+				</select>
+			</div>
+
+			<div class="border-b border-[#403F3C]/5 pb-12">
+				<h2 class="text-[12px] text-[#403F3C]/40 mb-6 font-medium">Step 2: Generate Draft</h2>
+				<button id="generate-btn" class="text-[12px] font-bold border-b border-[#403F3C]/20 pb-1 hover:border-[#403F3C] transition-colors">
+					Ask Hanu to Draft
+				</button>
+				<textarea 
+					id="draft-area" 
+					class="w-full mt-8 h-[400px] bg-[#403F3C]/5 border-none rounded-sm px-4 py-3 text-[13px] text-[#403F3C]/80 font-medium leading-relaxed outline-none"
+					placeholder="The draft will appear here..."
+				></textarea>
+			</div>
+
+			<div>
+				<h2 class="text-[12px] text-[#403F3C]/40 mb-6 font-medium">Step 3: Ship it</h2>
+				<button id="publish-btn" class="w-full bg-[#403F3C] text-[#F8F6F3] text-[12px] font-bold uppercase tracking-widest py-3 rounded-sm hover:opacity-90 transition-opacity">
+					Push to Production
+				</button>
+			</div>
+		</div>
+	</div>
+
+	<script>
+		const loginBtn = document.getElementById('login-btn');
+		const authSec = document.getElementById('auth-section');
+		const consoleSec = document.getElementById('console-section');
+		const passInput = document.getElementById('password') as HTMLInputElement;
+
+		loginBtn?.addEventListener('click', () => {
+			if (passInput.value === "robot-builders-2026") {
+				authSec?.classList.add('hidden');
+				consoleSec?.classList.remove('hidden');
+			} else {
+				alert("Invalid builder password.");
+			}
+		});
+	</script>
+</Layout>
