@@ -29,7 +29,7 @@ const isPublish = Astro.url.pathname === '/publish';
 				padding: 0;
                 font-size: 15px;
 			}
-			/* GLOBAL TEXT NORMALIZE - NO MORE LOWERCASE OVERRIDES */
+			/* CLEAN GLOBAL RESET */
 			* {
 				text-transform: none !important;
                 font-family: 'Yellix', sans-serif !important;
@@ -42,11 +42,11 @@ const isPublish = Astro.url.pathname === '/publish';
 	</head>
 	<body class="selection:bg-[#403F3C] selection:text-[#F8F6F3]">
 		<main class="w-full flex flex-col items-center py-20 md:py-32">
-			<!-- Header Alignment Fix -->
+			<!-- Header -->
 			<div class={`${isPublish ? 'w-full max-w-[1240px]' : 'w-full max-w-[580px]'} px-6`}>
 				<header class="mb-24 flex flex-col gap-8 w-full border-b border-[#403F3C]/5 pb-12">
 					<div class="flex justify-between items-center w-full">
-						<a href="/" class="flex items-center gap-3">
+						<a href="/" class="flex items-center gap-3 text-[#403F3C]">
 							<img src="/logo-robot.svg" alt="Robot.com" class="h-5 w-auto" />
 							<span class="text-[15px] text-[#403F3C]/40 font-bold border-l border-[#403F3C]/10 pl-3">
 								CEO & Builders
@@ -55,12 +55,12 @@ const isPublish = Astro.url.pathname === '/publish';
 					</div>
 					<nav class="flex justify-between items-center w-full">
                         <div class="flex gap-8 text-[15px] text-[#403F3C]/60 font-medium">
-                            <a href="/" class="hover:text-[#403F3C] transition-colors">home</a>
-                            <a href="/builders" class="hover:text-[#403F3C] transition-colors">builders</a>
+                            <a href="/" class="hover:text-[#403F3C] transition-colors">Home</a>
+                            <a href="/builders" class="hover:text-[#403F3C] transition-colors">Builders</a>
                         </div>
                         <div class="flex items-center gap-6 border-l border-[#403F3C]/10 pl-6">
-                            <a href="/publish" id="nav-publish" class="text-[15px] font-bold text-[#403F3C]/30 hover:text-[#403F3C] transition-all">publish</a>
-                            <button id="nav-logout" class="hidden text-[14px] font-bold text-[#403F3C]/20 hover:text-[#403F3C] transition-all">logout</button>
+                            <a href="/publish" id="nav-publish" class="text-[15px] font-bold text-[#403F3C]/30 hover:text-[#403F3C] transition-all">Publish</a>
+                            <button id="nav-logout" class="hidden text-[14px] font-bold text-[#403F3C]/20 hover:text-[#403F3C] transition-all">Logout</button>
                         </div>
 					</nav>
 				</header>
@@ -68,17 +68,17 @@ const isPublish = Astro.url.pathname === '/publish';
 
 			<div class={`${isPublish ? 'w-full max-w-[1240px]' : 'w-full max-w-[580px]'} px-6 flex flex-col items-center`}>
                 {published && (
-                    <div class="grid grid-cols-3 gap-8 mb-20 border-y border-[#403F3C]/5 py-10 w-full">
-                        <div class="flex flex-col gap-1">
-                            <div class="text-[14px] text-[#403F3C]/40 font-medium italic">published</div>
+                    <div class="grid grid-cols-3 gap-8 mb-20 border-y border-[#403F3C]/5 py-10 w-full font-yellix">
+                        <div class="flex flex-col gap-2">
+                            <div class="text-[14px] text-[#403F3C]/40 font-medium italic">Published</div>
                             <div class="text-[16px] font-medium tracking-tight text-[#403F3C]">{published}</div>
                         </div>
-                        <div class="flex flex-col gap-1">
-                            <div class="text-[14px] text-[#403F3C]/40 font-medium italic">builder</div>
+                        <div class="flex flex-col gap-2">
+                            <div class="text-[14px] text-[#403F3C]/40 font-medium italic">Builder</div>
                             <div class="text-[16px] font-medium tracking-tight text-[#403F3C]">{builder}</div>
                         </div>
-                        <div class="flex flex-col gap-1">
-                            <div class="text-[14px] text-[#403F3C]/40 font-medium italic">quarter</div>
+                        <div class="flex flex-col gap-2">
+                            <div class="text-[14px] text-[#403F3C]/40 font-medium italic">Quarter</div>
                             <div class="text-[16px] font-medium tracking-tight text-[#403F3C]">{quarter}</div>
                         </div>
                     </div>
@@ -91,7 +91,7 @@ const isPublish = Astro.url.pathname === '/publish';
                 <footer class="mt-40 pt-16 border-t border-[#403F3C]/5 flex flex-col gap-10 w-full">
                     <img src="/logo-robot.svg" alt="Robot.com" class="h-4 w-auto opacity-20" />
                     <div class="text-[14px] text-[#403F3C]/30 font-bold">
-                        © {new Date().getFullYear()} robot.com foundation
+                        © {new Date().getFullYear()} Robot.com Foundation
                     </div>
                 </footer>
 			</div>
