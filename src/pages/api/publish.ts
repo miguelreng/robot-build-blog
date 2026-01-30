@@ -3,18 +3,13 @@ import path from 'path';
 
 export async function GET() {
   try {
-    const possiblePaths = [
-      path.resolve('external-memos/Data/Builders'),
-      path.resolve(process.cwd(), 'external-memos/Data/Builders'),
-      path.join(process.cwd(), 'robot-blog/external-memos/Data/Builders')
-    ];
-
-    let memosPath = "";
-    for (const p of possiblePaths) {
-      if (fs.existsSync(p)) { memosPath = p; break; }
+    // Vercel deployment path resolution
+    const memosPath = path.join(process.cwd(), 'external-memos', 'Data', 'Builders');
+    
+    if (!fs.existsSync(memosPath)) {
+      return new Response(JSON.stringify({ error: 'Memos path not found', debug: memosPath }), { status: 404 });
     }
-
-    if (!memosPath) return new Response(JSON.stringify({ error: 'Memos path not found' }), { status: 404 });
+    
     const files = fs.readdirSync(memosPath).filter(f => f.endsWith('.md'));
     return new Response(JSON.stringify(files));
   } catch (e: any) {
@@ -24,15 +19,8 @@ export async function GET() {
 
 export async function POST({ request }) {
   try {
-    const { fileName, content, action, title, authorOverride } = await request.json();
-    const possiblePaths = [
-      path.resolve('external-memos/Data/Builders'),
-      path.resolve(process.cwd(), 'external-memos/Data/Builders')
-    ];
-    let memosPath = "";
-    for (const p of possiblePaths) {
-      if (fs.existsSync(p)) { memosPath = p; break; }
-    }
+    const { fileName, content, action, title } = await request.json();
+    const memosPath = path.join(process.cwd(), 'external-memos', 'Data', 'Builders');
 
     if (action === 'load') {
       const filePath = path.join(memosPath, fileName || "");
@@ -43,7 +31,7 @@ export async function POST({ request }) {
 
     if (action === 'publish') {
       const nameMatch = fileName.match(/_([A-Z][a-z]+)([A-Z][a-z]+)-/);
-      const builderName = nameMatch ? `${nameMatch[1]} ${nameMatch[2]}` : authorOverride || "Robot Builder";
+      const builderName = nameMatch ? `${nameMatch[1]} ${nameMatch[2]}` : "Robot Builder";
       const builderAvatar = `/builders/${builderName.toLowerCase().replace(' ', '-')}.png`;
       const slug = title.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '');
       
@@ -60,28 +48,26 @@ import TelemetryChart from '../../components/TelemetryChart';
 
 ${content}`;
 
+      // GitHub Token from Environment for production
       const GITHUB_TOKEN = process.env.GITHUB_TOKEN;
       const REPO = "miguelreng/robot-build-blog";
-      const FILE_PATH = `src/content/posts/${slug}.mdx`;
-
-      const ghResponse = await fetch(`https://api.github.com/repos/${REPO}/contents/${FILE_PATH}`, {
+      
+      const ghResponse = await fetch(`https://api.github.com/repos/${REPO}/contents/src/content/posts/${slug}.mdx`, {
         method: 'PUT',
         headers: {
           'Authorization': `Bearer ${GITHUB_TOKEN}`,
           'Content-Type': 'application/json',
         },
         body: JSON.stringify({
-          message: `Content: Publish via Robot Memos Console`,
-          content: btoa(unescape(encodeURIComponent(fullMDX))),
+          message: `Content: ${title} via Console`,
+          content: Buffer.from(fullMDX).toString('base64'),
           branch: "main"
         })
       });
 
       if (ghResponse.ok) return new Response(JSON.stringify({ success: true, slug }));
-      else return new Response(JSON.stringify({ error: 'GitHub Push Failed' }), { status: 500 });
+      return new Response(JSON.stringify({ error: 'GitHub Push Failed' }), { status: 500 });
     }
-
-    return new Response(JSON.stringify({ error: 'Invalid action' }), { status: 400 });
   } catch (e: any) {
     return new Response(JSON.stringify({ error: e.message }), { status: 500 });
   }
