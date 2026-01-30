@@ -9,8 +9,8 @@ const isPublish = Astro.url.pathname === '/publish';
 		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 		<meta name="viewport" content="width=device-width" />
 		<meta name="generator" content={Astro.generator} />
-		<title>{title} | ceo & builders</title>
-		<meta name="description" content="engineering memos and technical progress from the builders at robot.com." />
+		<title>{title} | CEO & Builders</title>
+		<meta name="description" content="Engineering memos and technical progress from the builders at Robot.com." />
 		<style is:global>
 			@font-face {
 				font-family: 'Yellix';
@@ -27,21 +27,18 @@ const isPublish = Astro.url.pathname === '/publish';
 				font-feature-settings: "ss01" on;
 				margin: 0;
 				padding: 0;
-                font-size: 15px; /* Base size */
+                font-size: 15px;
 			}
 			h1, h2, h3, h4, input, select, textarea, button, a, span, p, div {
 				font-weight: 500;
 				font-feature-settings: "ss01" on;
 				font-family: 'Yellix', sans-serif !important;
-				text-transform: none !important;
-                font-size: 15px; /* Force minimum 15px almost everywhere */
+                text-transform: none !important; /* Prevents FORCED uppercase, but lets normal text be normal */
 			}
-            .text-tiny { font-size: 14px !important; } /* Absolute minimum for utility labels */
             
             h1 { font-size: 32px !important; }
             h2 { font-size: 24px !important; }
             
-            /* Clean focus */
             outline: none !important;
 		</style>
 	</head>
@@ -52,20 +49,20 @@ const isPublish = Astro.url.pathname === '/publish';
 				<header class="mb-24 flex flex-col gap-8 w-full border-b border-[#403F3C]/5 pb-12">
 					<div class="flex justify-between items-center w-full">
 						<a href="/" class="flex items-center gap-3">
-							<img src="/logo-robot.svg" alt="robot.com" class="h-6 w-auto" />
+							<img src="/logo-robot.svg" alt="Robot.com" class="h-5 w-auto" />
 							<span class="text-[15px] text-[#403F3C]/40 font-bold border-l border-[#403F3C]/10 pl-3">
-								ceo & builders
+								CEO & Builders
 							</span>
 						</a>
 					</div>
 					<nav class="flex justify-between items-center w-full">
-                        <div class="flex gap-8 text-[15px] text-[#403F3C]/60 font-medium">
+                        <div class="flex gap-8 text-[15px] text-[#403F3C]/60 font-medium lowercase">
                             <a href="/" class="hover:text-[#403F3C] transition-colors">home</a>
                             <a href="/builders" class="hover:text-[#403F3C] transition-colors">builders</a>
                         </div>
                         <div class="flex items-center gap-6 border-l border-[#403F3C]/10 pl-6">
-                            <a href="/publish" id="nav-publish" class="text-[15px] font-bold text-[#403F3C]/30 hover:text-[#403F3C] transition-all">publish</a>
-                            <button id="nav-logout" class="hidden text-[14px] font-bold text-[#403F3C]/20 hover:text-[#403F3C] transition-all">logout</button>
+                            <a href="/publish" id="nav-publish" class="text-[15px] font-bold text-[#403F3C]/30 hover:text-[#403F3C] transition-all lowercase">publish</a>
+                            <button id="nav-logout" class="hidden text-[14px] font-bold text-[#403F3C]/20 hover:text-[#403F3C] transition-all lowercase">logout</button>
                         </div>
 					</nav>
 				</header>
@@ -73,7 +70,7 @@ const isPublish = Astro.url.pathname === '/publish';
 
 			<div class={`${isPublish ? 'w-full max-w-[1240px]' : 'w-full max-w-[580px]'} px-6 flex flex-col items-center`}>
                 {published && (
-                    <div class="grid grid-cols-3 gap-8 mb-20 border-y border-[#403F3C]/5 py-10 w-full">
+                    <div class="grid grid-cols-3 gap-8 mb-20 border-y border-[#403F3C]/5 py-10 w-full font-yellix">
                         <div class="flex flex-col gap-2">
                             <div class="text-[14px] text-[#403F3C]/40 font-medium">published</div>
                             <div class="text-[16px] font-medium tracking-tight text-[#403F3C]">{published}</div>
@@ -94,8 +91,8 @@ const isPublish = Astro.url.pathname === '/publish';
 				</div>
                 
                 <footer class="mt-40 pt-16 border-t border-[#403F3C]/5 flex flex-col gap-10 w-full">
-                    <img src="/logo-robot.svg" alt="robot.com" class="h-4 w-auto opacity-20" />
-                    <div class="text-[14px] text-[#403F3C]/30 font-bold">
+                    <img src="/logo-robot.svg" alt="Robot.com" class="h-4 w-auto opacity-20" />
+                    <div class="text-[14px] text-[#403F3C]/30 font-bold lowercase">
                         © {new Date().getFullYear()} robot.com foundation
                     </div>
                 </footer>

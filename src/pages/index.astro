@@ -6,46 +6,46 @@ const posts = await getCollection('posts');
 posts.sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
 
 const builders = [
-	{ name: "lorena cardona", role: "data engineer" },
-	{ name: "jonathan deiloff", role: "data engineer" },
-	{ name: "david cardozo", role: "data advisor" },
-	{ name: "kevin torres", role: "data analyst" }
+	{ name: "Lorena Cardona", role: "Data Engineer" },
+	{ name: "Jonathan Deiloff", role: "Data Engineer" },
+	{ name: "David Cardozo", role: "Data Advisor" },
+	{ name: "Kevin Torres", role: "Data Analyst" }
 ];
 
 const discussions = [
-	{ topic: "on-device training latency", tag: "performance" },
-	{ topic: "arlington sidewalk edge cases", tag: "computer vision" },
-	{ topic: "battery thermal management", tag: "hardware" }
+	{ topic: "On-device training latency", tag: "Performance" },
+	{ topic: "Arlington sidewalk edge cases", tag: "Computer Vision" },
+	{ topic: "Battery thermal management", tag: "Hardware" }
 ];
 
 const aiDirectory = [
-	{ tool: "pytorch", category: "framework" },
-	{ tool: "opencv", category: "vision" },
-	{ tool: "ros2", category: "middleware" },
-	{ tool: "unet", category: "model architectures" }
+	{ tool: "PyTorch", category: "Framework" },
+	{ tool: "OpenCV", category: "Vision" },
+	{ tool: "ROS2", category: "Middleware" },
+	{ tool: "UNet", category: "Model Architectures" }
 ];
 ---
 
-<Layout title="home">
+<Layout title="Home">
 	<div class="space-y-24">
-		{/* ceo note */}
+		{/* CEO Note */}
 		<section class="mb-24">
 			<div class="text-[#403F3C]/60 text-[18px] leading-relaxed italic mb-10 font-medium max-w-lg">
-				"building general-purpose robots requires more than just code; it requires a commitment to raw, fast, and transparent iteration. this blog is our window into that process."
+				"Building general-purpose robots requires more than just code; it requires a commitment to raw, fast, and transparent iteration. This blog is our window into that process."
 			</div>
 			<div class="flex flex-col gap-2">
-				<div class="text-[16px] font-bold text-[#403F3C]">felipe cháves</div>
-				<div class="text-[14px] text-[#403F3C]/40 font-bold">ceo at robot.com</div>
+				<div class="text-[16px] font-bold text-[#403F3C]">Felipe Chávez</div>
+				<div class="text-[14px] text-[#403F3C]/40 font-bold">CEO at Robot.com</div>
 				<div class="h-12 w-40 mt-4 opacity-50 border-b border-[#403F3C]/10 flex items-end pb-2 text-[12px] text-[#403F3C]/20 uppercase tracking-[0.2em]">
-					waiting for signature...
+					Waiting for signature...
 				</div>
 			</div>
 		</section>
 
 		<div class="space-y-20">
-			{/* memos section */}
+			{/* Memos Section */}
 			<section>
-				<h2 class="text-[14px] text-[#403F3C]/40 mb-6 font-medium border-b border-[#403F3C]/5 pb-6">memos</h2>
+				<h2 class="text-[14px] text-[#403F3C]/40 mb-6 font-medium border-b border-[#403F3C]/5 pb-6">Memos</h2>
 				<ul class="space-y-6 pt-4">
 					{posts.map((post) => (
 						<li class="w-full">
@@ -59,9 +59,9 @@ const aiDirectory = [
 				</ul>
 			</section>
 
-			{/* builders section */}
+			{/* Builders Section */}
 			<section>
-				<h2 class="text-[14px] text-[#403F3C]/40 mb-6 font-medium border-b border-[#403F3C]/5 pb-6">builders</h2>
+				<h2 class="text-[14px] text-[#403F3C]/40 mb-6 font-medium border-b border-[#403F3C]/5 pb-6">Builders</h2>
 				<ul class="space-y-6 pt-4">
 					{builders.map((builder) => (
 						<li class="w-full">
@@ -75,9 +75,9 @@ const aiDirectory = [
 				</ul>
 			</section>
 
-			{/* discussion section */}
+			{/* Discussion Section */}
 			<section>
-				<h2 class="text-[14px] text-[#403F3C]/40 mb-6 font-medium border-b border-[#403F3C]/5 pb-6">discussion</h2>
+				<h2 class="text-[14px] text-[#403F3C]/40 mb-6 font-medium border-b border-[#403F3C]/5 pb-6">Discussion</h2>
 				<ul class="space-y-6 pt-4">
 					{discussions.map((item) => (
 						<li class="w-full">
@@ -91,9 +91,9 @@ const aiDirectory = [
 				</ul>
 			</section>
 
-			{/* ai directory section */}
+			{/* AI Directory Section */}
 			<section>
-				<h2 class="text-[14px] text-[#403F3C]/40 mb-6 font-medium border-b border-[#403F3C]/5 pb-6">ai directory</h2>
+				<h2 class="text-[14px] text-[#403F3C]/40 mb-6 font-medium border-b border-[#403F3C]/5 pb-6">AI Directory</h2>
 				<ul class="space-y-6 pt-4">
 					{aiDirectory.map((item) => (
 						<li class="flex items-baseline justify-between w-full group cursor-pointer">
