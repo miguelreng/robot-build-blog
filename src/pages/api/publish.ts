@@ -3,30 +3,26 @@ import path from 'path';
 
 export async function GET() {
   try {
-    const memosPath = path.resolve('external-memos/Data/Builders');
-    if (!fs.existsSync(memosPath)) {
-      return new Response(JSON.stringify({ error: 'Memos directory not found' }), { status: 404 });
+    // Intentamos varias rutas comunes para encontrar la carpeta en Vercel vs Local
+    const possiblePaths = [
+      path.resolve('external-memos/Data/Builders'),
+      path.resolve(process.cwd(), 'external-memos/Data/Builders'),
+      path.join(process.cwd(), 'robot-blog/external-memos/Data/Builders')
+    ];
+
+    let memosPath = "";
+    for (const p of possiblePaths) {
+      if (fs.existsSync(p)) {
+        memosPath = p;
+        break;
+      }
+    }
+
+    if (!memosPath) {
+      return new Response(JSON.stringify({ error: 'Memos path not found', debug: process.cwd() }), { status: 404 });
     }
     
-    // Lista recursiva para encontrar todos los .md dentro de la carpeta Builders
-    const getFiles = (dir) => {
-      let results = [];
-      const list = fs.readdirSync(dir);
-      list.forEach(file => {
-        file = path.resolve(dir, file);
-        const stat = fs.statSync(file);
-        if (stat && stat.isDirectory()) {
-          results = results.concat(getFiles(file));
-        } else if (file.endsWith('.md')) {
-          results.push(file);
-        }
-      });
-      return results;
-    };
-
-    const absoluteFiles = getFiles(memosPath);
-    const files = absoluteFiles.map(f => path.relative(memosPath, f));
-    
+    const files = fs.readdirSync(memosPath).filter(f => f.endsWith('.md'));
     return new Response(JSON.stringify(files));
   } catch (e: any) {
     return new Response(JSON.stringify({ error: e.message }), { status: 500 });
@@ -36,7 +32,19 @@ export async function GET() {
 export async function POST({ request }) {
   try {
     const { fileName, content, action, title, author } = await request.json();
-    const memosPath = path.resolve('external-memos/Data/Builders');
+    
+    // Misma lógica de búsqueda de ruta para el POST
+    const possiblePaths = [
+      path.resolve('external-memos/Data/Builders'),
+      path.resolve(process.cwd(), 'external-memos/Data/Builders')
+    ];
+    let memosPath = "";
+    for (const p of possiblePaths) {
+      if (fs.existsSync(p)) {
+        memosPath = p;
+        break;
+      }
+    }
 
     if (action === 'load') {
       const filePath = path.join(memosPath, fileName);
@@ -46,16 +54,14 @@ export async function POST({ request }) {
     }
 
     if (action === 'publish') {
-      // Sistema de slug simple basado en el título
       const slug = title.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '');
-      const outputPath = path.resolve(`src/content/posts/${slug}.mdx`);
+      const outputPath = path.resolve(process.cwd(), `src/content/posts/${slug}.mdx`);
       
-      // Creamos el frontmatter profesional
       const fullContent = `---
 title: "${title}"
 pubDate: ${new Date().toISOString().split('T')[0]}
 author: "${author}"
-description: "${title} engineering update from the Robot.com builders."
+description: "${title} engineering update."
 quarter: "2026-Q1"
 ---
 ${content}`;
