@@ -1,0 +1,30 @@
+---
+title: "Arlington Sidewalk Analysis: CV Improvements"
+pubDate: 2026-01-20
+author: "Lorena Cardona"
+description: "Increasing reliability of image quality validation and defect detection in sidewalk images."
+coverImage: "https://images.unsplash.com/photo-1546776310-eef45dd6d63c?auto=format&fit=crop&q=80&w=300"
+---
+import BeforeAfterSlider from '../../components/BeforeAfterSlider';
+
+# Computer Vision Improvements for Sidewalk Analysis
+
+At Robot.com, we are continuously refining how our systems perceive the world. Our latest iteration focuses on the sidewalk analysis pipeline in Arlington, specifically addressing image quality and defect segmentations.
+
+## Smart Quality Checks
+
+Before we even attempt to detect defects, we now apply OpenCV-based quality filters. By analyzing blur, texture, and edge density, the system automatically rejects captures where the sidewalk isn't clearly visible. This dramatically reduces noise in our dataset.
+
+<BeforeAfterSlider 
+  client:load
+  beforeLabel="Raw Feed"
+  afterLabel="Vision Filter"
+  beforeImage="https://images.unsplash.com/photo-1485827404703-89b55fcc595e?auto=format&fit=crop&q=80&w=1000" 
+  afterImage="https://images.unsplash.com/photo-1546776310-eef45dd6d63c?auto=format&fit=crop&q=80&w=1000"
+/>
+
+## Deep Learning for Defect Detection
+
+We’ve integrated UNet and YOLO-based segmentation models to detect gaps and surface anomalies. These aren't just raw outputs; they are combined with contextual rules to distinguish between actual defects and patterns caused by shadows or crosswalk paint.
+
+The results are stored in BigQuery, enabling our team to conduct large-scale comparisons between AI predictions and manual annotations to drive continuous model refinement.
