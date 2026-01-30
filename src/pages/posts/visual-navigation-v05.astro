@@ -21,6 +21,14 @@ const quarter = "2026-Q1"; // Esto lo sacaremos del frontmatter en el futuro
 	builder={author}
 	quarter={quarter}
 >
+  <nav class="flex items-center gap-2 mb-12 text-[11px] font-bold uppercase tracking-[0.2em] text-[#403F3C]/30">
+    <a href="/" class="hover:text-[#403F3C] transition-colors">Home</a>
+    <span>/</span>
+    <a href="/" class="hover:text-[#403F3C] transition-colors">Memos</a>
+    <span>/</span>
+    <span class="text-[#403F3C]/10 truncate max-w-[200px]">{title}</span>
+  </nav>
+
   <div class="mb-12">
     <h1 class="text-3xl font-medium tracking-tighter mb-8 leading-[1.1] text-[#403F3C]">
       {title}
