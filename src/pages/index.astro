@@ -6,147 +6,104 @@ const posts = await getCollection('posts');
 posts.sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
 
 const builders = [
-	{ name: "Lorena Cardona", role: "Data Engineer", image: "https://i.pravatar.cc/150?u=lorena" },
-	{ name: "Jonathan Deiloff", role: "Data Engineer", image: "https://i.pravatar.cc/150?u=jonathan" },
-	{ name: "David Cardozo", role: "Data Advisor", image: "https://i.pravatar.cc/150?u=david" },
-	{ name: "Kevin Torres", role: "Data Analyst", image: "https://i.pravatar.cc/150?u=kevin" }
+	{ name: "lorena cardona", role: "data engineer" },
+	{ name: "jonathan deiloff", role: "data engineer" },
+	{ name: "david cardozo", role: "data advisor" },
+	{ name: "kevin torres", role: "data analyst" }
 ];
 
 const discussions = [
-	{ topic: "On-device training latency", tag: "Performance" },
-	{ topic: "Arlington sidewalk edge cases", tag: "Computer Vision" },
-	{ topic: "Battery thermal management", tag: "Hardware" }
+	{ topic: "on-device training latency", tag: "performance" },
+	{ topic: "arlington sidewalk edge cases", tag: "computer vision" },
+	{ topic: "battery thermal management", tag: "hardware" }
 ];
 
 const aiDirectory = [
-	{ tool: "PyTorch", category: "Framework" },
-	{ tool: "OpenCV", category: "Vision" },
-	{ tool: "ROS2", category: "Middleware" },
-	{ tool: "UNet", category: "Model Architectures" }
+	{ tool: "pytorch", category: "framework" },
+	{ tool: "opencv", category: "vision" },
+	{ tool: "ros2", category: "middleware" },
+	{ tool: "unet", category: "model architectures" }
 ];
 ---
 
-<Layout title="Home">
+<Layout title="home">
 	<div class="space-y-24">
-		{/* CEO Note - BACK IN HOME */}
+		{/* ceo note */}
 		<section class="mb-24">
-			<div class="text-[#403F3C]/60 text-[15px] leading-relaxed italic mb-8 font-medium max-w-lg">
-				"Building general-purpose robots requires more than just code; it requires a commitment to raw, fast, and transparent iteration. This blog is our window into that process."
+			<div class="text-[#403F3C]/60 text-[18px] leading-relaxed italic mb-10 font-medium max-w-lg">
+				"building general-purpose robots requires more than just code; it requires a commitment to raw, fast, and transparent iteration. this blog is our window into that process."
 			</div>
-			<div class="flex flex-col gap-1">
-				<div class="text-[13px] font-bold text-[#403F3C]">Felipe Chávez</div>
-				<div class="text-[11px] uppercase tracking-widest text-[#403F3C]/40 font-bold">CEO at Robot.com</div>
-				<div class="h-10 w-32 mt-2 opacity-50 border-b border-[#403F3C]/10 flex items-end pb-1 text-[10px] text-[#403F3C]/20 uppercase tracking-[0.2em]">
-					Waiting for signature...
+			<div class="flex flex-col gap-2">
+				<div class="text-[16px] font-bold text-[#403F3C]">felipe cháves</div>
+				<div class="text-[14px] text-[#403F3C]/40 font-bold">ceo at robot.com</div>
+				<div class="h-12 w-40 mt-4 opacity-50 border-b border-[#403F3C]/10 flex items-end pb-2 text-[12px] text-[#403F3C]/20 uppercase tracking-[0.2em]">
+					waiting for signature...
 				</div>
 			</div>
 		</section>
 
-		<div class="space-y-16">
-			{/* Memos Section */}
+		<div class="space-y-20">
+			{/* memos section */}
 			<section>
-				<h2 class="text-[12px] text-[#403F3C]/40 mb-6 font-medium border-b border-[#403F3C]/5 pb-4">Memos</h2>
-				<ul class="space-y-4 pt-4">
+				<h2 class="text-[14px] text-[#403F3C]/40 mb-6 font-medium border-b border-[#403F3C]/5 pb-6">memos</h2>
+				<ul class="space-y-6 pt-4">
 					{posts.map((post) => (
 						<li class="w-full">
-							<a 
-								href={`/posts/${post.slug}`} 
-								class="flex items-baseline w-full text-[15px] font-medium text-[#403F3C] group memo-link"
-								data-preview={post.data.coverImage || "https://images.unsplash.com/photo-1485827404703-89b55fcc595e?auto=format&fit=crop&q=80&w=300"}
-							>
-								<span class="group-hover:underline decoration-1 underline-offset-4">{post.data.title}</span>
-								<div class="flex-grow mx-2 border-b border-[#a2a19e]/30"></div>
-								<span class="text-[13px] text-[#403F3C] font-medium whitespace-nowrap">{post.data.pubDate.toLocaleDateString('en-US', { month: '2-digit', day: '2-digit' })}</span>
+							<a href={`/posts/${post.slug}`} class="flex items-baseline justify-between w-full group">
+								<span class="text-[16px] font-medium text-[#403F3C] group-hover:underline decoration-1 underline-offset-4">{post.data.title}</span>
+								<div class="flex-grow mx-4 border-b border-[#a2a19e]/30"></div>
+								<span class="text-[14px] text-[#403F3C] font-medium whitespace-nowrap">{post.data.pubDate.toLocaleDateString('en-US', { month: '2-digit', day: '2-digit' })}</span>
 							</a>
 						</li>
 					))}
 				</ul>
 			</section>
 
-			{/* Builders Section */}
+			{/* builders section */}
 			<section>
-				<h2 class="text-[12px] text-[#403F3C]/40 mb-6 font-medium border-b border-[#403F3C]/5 pb-4">Builders</h2>
-				<ul class="space-y-4 pt-4">
+				<h2 class="text-[14px] text-[#403F3C]/40 mb-6 font-medium border-b border-[#403F3C]/5 pb-6">builders</h2>
+				<ul class="space-y-6 pt-4">
 					{builders.map((builder) => (
 						<li class="w-full">
-							<a 
-								href="/builders" 
-								class="flex items-baseline w-full text-[15px] font-medium text-[#403F3C] group builder-link"
-								data-image={builder.image}
-							>
-								<span class="group-hover:underline decoration-1 underline-offset-4">{builder.name}</span>
-								<div class="flex-grow mx-2 border-b border-[#a2a19e]/30"></div>
-								<span class="text-[13px] text-[#403F3C] font-medium whitespace-nowrap">{builder.role}</span>
+							<a href="/builders" class="flex items-baseline justify-between w-full group">
+								<span class="text-[16px] font-medium text-[#403F3C] group-hover:underline decoration-1 underline-offset-4">{builder.name}</span>
+								<div class="flex-grow mx-4 border-b border-[#a2a19e]/30"></div>
+								<span class="text-[14px] text-[#403F3C] font-medium whitespace-nowrap">{builder.role}</span>
 							</a>
 						</li>
 					))}
 				</ul>
 			</section>
 
-			{/* Discussion Section */}
+			{/* discussion section */}
 			<section>
-				<h2 class="text-[12px] text-[#403F3C]/40 mb-6 font-medium border-b border-[#403F3C]/5 pb-4">Discussion</h2>
-				<ul class="space-y-4 pt-4">
+				<h2 class="text-[14px] text-[#403F3C]/40 mb-6 font-medium border-b border-[#403F3C]/5 pb-6">discussion</h2>
+				<ul class="space-y-6 pt-4">
 					{discussions.map((item) => (
 						<li class="w-full">
-							<a href="#" class="flex items-baseline w-full text-[15px] font-medium text-[#403F3C] group">
-								<span class="group-hover:underline decoration-1 underline-offset-4">{item.topic}</span>
-								<div class="flex-grow mx-2 border-b border-[#a2a19e]/30"></div>
-								<span class="text-[13px] text-[#403F3C] font-medium whitespace-nowrap">{item.tag}</span>
+							<a href="#" class="flex items-baseline justify-between w-full group">
+								<span class="text-[16px] font-medium text-[#403F3C] group-hover:underline decoration-1 underline-offset-4">{item.topic}</span>
+								<div class="flex-grow mx-4 border-b border-[#a2a19e]/30"></div>
+								<span class="text-[14px] text-[#403F3C] font-medium whitespace-nowrap">{item.tag}</span>
 							</a>
 						</li>
 					))}
 				</ul>
 			</section>
 
-			{/* AI Directory Section */}
+			{/* ai directory section */}
 			<section>
-				<h2 class="text-[12px] text-[#403F3C]/40 mb-6 font-medium border-b border-[#403F3C]/5 pb-4">AI Directory</h2>
-				<ul class="space-y-4 pt-4">
+				<h2 class="text-[14px] text-[#403F3C]/40 mb-6 font-medium border-b border-[#403F3C]/5 pb-6">ai directory</h2>
+				<ul class="space-y-6 pt-4">
 					{aiDirectory.map((item) => (
-						<li class="flex items-baseline w-full text-[15px] font-medium text-[#403F3C] group cursor-pointer">
-							<span class="group-hover:underline decoration-1 underline-offset-4 text-[#403F3C] opacity-60 group-hover:opacity-100 transition-opacity">{item.tool}</span>
-							<div class="flex-grow mx-2 border-b border-[#a2a19e]/30"></div>
-							<span class="text-[13px] text-[#403F3C] font-medium whitespace-nowrap">{item.category}</span>
+						<li class="flex items-baseline justify-between w-full group cursor-pointer">
+							<span class="text-[16px] font-medium text-[#403F3C] opacity-60 group-hover:opacity-100 group-hover:underline decoration-1 underline-offset-4 transition-all">{item.tool}</span>
+							<div class="flex-grow mx-4 border-b border-[#a2a19e]/30"></div>
+							<span class="text-[14px] text-[#403F3C] font-medium whitespace-nowrap">{item.category}</span>
 						</li>
 					))}
 				</ul>
 			</section>
 		</div>
 	</div>
-
-	{/* Cursor Preview Element */}
-	<div id="hover-preview" class="fixed pointer-events-none z-[100] opacity-0 transition-opacity duration-200">
-		<div class="w-[100px] h-[100px] overflow-hidden rounded-sm border border-[#403F3C]/10 shadow-2xl bg-white text-0">
-			<img id="preview-img" src="" class="w-full h-full object-cover" />
-		</div>
-	</div>
-
-	<script>
-		const preview = document.getElementById('hover-preview');
-		const previewImg = document.getElementById('preview-img') as HTMLImageElement;
-		const links = document.querySelectorAll('.builder-link, .memo-link');
-
-		links.forEach(link => {
-			link.addEventListener('mouseenter', (e) => {
-				const target = e.currentTarget as HTMLElement;
-				const imgUrl = target.dataset.image || target.dataset.preview;
-				if (imgUrl && preview && previewImg) {
-					previewImg.src = imgUrl;
-					preview.style.opacity = '1';
-				}
-			});
-
-			link.addEventListener('mouseleave', () => {
-				if (preview) preview.style.opacity = '0';
-			});
-
-			link.addEventListener('mousemove', (e: any) => {
-				if (preview) {
-					preview.style.left = `${e.clientX + 15}px`;
-					preview.style.top = `${e.clientY + 15}px`;
-				}
-			});
-		});
-	</script>
 </Layout>
