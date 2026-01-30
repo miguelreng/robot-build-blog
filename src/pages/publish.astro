@@ -15,7 +15,8 @@ import Layout from '../layouts/Layout.astro';
 		<div id="console-section" class="hidden space-y-20">
             <section>
 				<h2 class="text-[10px] uppercase tracking-[0.2em] text-[#403F3C]/30 mb-6 font-bold">0. Engine Config</h2>
-				<input type="password" id="api-key" placeholder="OpenRouter API Key" class="w-full bg-transparent border-b border-[#403F3C]/10 py-3 text-[13px] text-[#403F3C] outline-none font-mono focus:border-[#403F3C]/30 transition-colors" />
+				<input type="password" id="api-key" placeholder="Paste OpenRouter API Key" class="w-full bg-transparent border-b border-[#403F3C]/10 py-3 text-[13px] text-[#403F3C] outline-none font-mono focus:border-[#403F3C]/30 transition-colors" />
+                <p class="text-[10px] text-[#403F3C]/30 mt-2 italic">Stored locally in your browser only.</p>
 			</section>
 
 			<section>
@@ -55,13 +56,8 @@ import Layout from '../layouts/Layout.astro';
         const aiBtn = document.getElementById('ai-btn') as HTMLButtonElement;
         const apiKeyInput = document.getElementById('api-key') as HTMLInputElement;
 
-        // NEW KEY PERSISTENCE (CLIENT SIDE ONLY)
-        const MASTER_KEY = "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";
-        
-        const savedKey = localStorage.getItem('robot_memos_key');
-        if (apiKeyInput) {
-            apiKeyInput.value = savedKey || MASTER_KEY;
-        }
+        // SECURE PERSISTENCE
+        apiKeyInput.value = localStorage.getItem('robot_memos_key') || "";
 
 		loginBtn?.addEventListener('click', () => {
 			if (passInput.value === "robot-builders-2026") {
@@ -73,7 +69,7 @@ import Layout from '../layouts/Layout.astro';
 			}
 		});
 
-        apiKeyInput?.addEventListener('change', () => {
+        apiKeyInput?.addEventListener('input', () => {
             localStorage.setItem('robot_memos_key', apiKeyInput.value);
         });
 
@@ -100,7 +96,7 @@ import Layout from '../layouts/Layout.astro';
             if (data.content) {
                 editor.value = data.content;
             } else {
-                editor.value = "Error loading content: " + (data.error || "Unknown error");
+                editor.value = "Error loading content";
             }
         });
 
@@ -124,22 +120,22 @@ import Layout from '../layouts/Layout.astro';
                         "messages": [
                             {
                                 "role": "system",
-                                "content": "You are Robot Memos, an AI that transforms raw internal engineering notes into professional, minimal, and engaging blog posts for Robot.com. Improve flow, but maintain technical rigor. Output MDX."
+                                "content": "Professional technical blog transformer. Output MDX only."
                             },
                             {
                                 "role": "user",
-                                "content": `Rewrite this memo into a pro blog post:\n\n${originalText}`
+                                "content": originalText
                             }
                         ]
                     })
                 });
                 
                 const data = await response.json();
-                if (data.choices && data.choices[0].message.content) {
+                if (data.choices) {
                     editor.value = data.choices[0].message.content;
                 }
             } catch (e) {
-                alert("AI transformation failed.");
+                alert("AI failed.");
             } finally {
                 aiBtn.disabled = false;
                 aiBtn.innerText = "Fine-tune with Hanu AI";
