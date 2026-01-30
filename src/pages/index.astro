@@ -49,9 +49,10 @@ const aiDirectory = [
 				<ul class="space-y-4 pt-4">
 					{posts.map((post) => (
 						<li class="w-full">
-							<a href={`/posts/${post.slug}`} class="flex justify-between items-baseline group w-full text-[15px] font-medium text-[#403F3C] hover:underline decoration-1 underline-offset-4">
-								<span class="truncate">{post.data.title}</span>
-								<span class="text-[13px] text-[#403F3C]/30 ml-4 font-medium whitespace-nowrap">{post.data.pubDate.toLocaleDateString('en-US', { month: '2-digit', day: '2-digit' })}</span>
+							<a href={`/posts/${post.slug}`} class="flex items-baseline w-full text-[15px] font-medium text-[#403F3C] group">
+								<span>{post.data.title}</span>
+								<div class="flex-grow mx-4 border-b border-[#403F3C]/5 border-dotted group-hover:border-[#403F3C]/20 transition-colors"></div>
+								<span class="text-[13px] text-[#403F3C]/30 font-medium whitespace-nowrap">{post.data.pubDate.toLocaleDateString('en-US', { month: '2-digit', day: '2-digit' })}</span>
 							</a>
 						</li>
 					))}
@@ -64,9 +65,10 @@ const aiDirectory = [
 				<ul class="space-y-4 pt-4">
 					{builders.map((builder) => (
 						<li class="w-full">
-							<a href="/builders" class="flex justify-between items-baseline group w-full text-[15px] font-medium text-[#403F3C] hover:underline decoration-1 underline-offset-4">
-								<span class="truncate">{builder.name}</span>
-								<span class="text-[13px] text-[#403F3C]/30 ml-4 font-medium whitespace-nowrap">{builder.role}</span>
+							<a href="/builders" class="flex items-baseline w-full text-[15px] font-medium text-[#403F3C] group">
+								<span>{builder.name}</span>
+								<div class="flex-grow mx-4 border-b border-[#403F3C]/5 border-dotted group-hover:border-[#403F3C]/20 transition-colors"></div>
+								<span class="text-[13px] text-[#403F3C]/30 font-medium whitespace-nowrap">{builder.role}</span>
 							</a>
 						</li>
 					))}
@@ -79,9 +81,10 @@ const aiDirectory = [
 				<ul class="space-y-4 pt-4">
 					{discussions.map((item) => (
 						<li class="w-full">
-							<a href="#" class="flex justify-between items-baseline group w-full text-[15px] font-medium text-[#403F3C] hover:underline decoration-1 underline-offset-4">
-								<span class="truncate">{item.topic}</span>
-								<span class="text-[13px] text-[#403F3C]/30 ml-4 font-medium whitespace-nowrap">{item.tag}</span>
+							<a href="#" class="flex items-baseline w-full text-[15px] font-medium text-[#403F3C] group">
+								<span>{item.topic}</span>
+								<div class="flex-grow mx-4 border-b border-[#403F3C]/5 border-dotted group-hover:border-[#403F3C]/20 transition-colors"></div>
+								<span class="text-[13px] text-[#403F3C]/30 font-medium whitespace-nowrap">{item.tag}</span>
 							</a>
 						</li>
 					))}
@@ -93,9 +96,10 @@ const aiDirectory = [
 				<h2 class="text-[12px] text-[#403F3C]/40 mb-6 font-medium border-b border-[#403F3C]/5 pb-4">AI Directory</h2>
 				<ul class="space-y-4 pt-4">
 					{aiDirectory.map((item) => (
-						<li class="flex justify-between items-baseline w-full text-[15px] font-medium text-[#403F3C]">
-							<span class="truncate text-[#403F3C]/60">{item.tool}</span>
-							<span class="text-[13px] text-[#403F3C]/30 ml-4 font-medium whitespace-nowrap">{item.category}</span>
+						<li class="flex items-baseline w-full text-[15px] font-medium text-[#403F3C]">
+							<span class="text-[#403F3C]/60">{item.tool}</span>
+							<div class="flex-grow mx-4 border-b border-[#403F3C]/5 border-dotted"></div>
+							<span class="text-[13px] text-[#403F3C]/30 font-medium whitespace-nowrap">{item.category}</span>
 						</li>
 					))}
 				</ul>
