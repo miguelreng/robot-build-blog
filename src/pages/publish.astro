@@ -164,12 +164,28 @@ import Layout from '../layouts/Layout.astro';
             } else if (type === 'video') {
                 modalTitle.innerText = 'Video Settings';
                 modalFields.innerHTML = `<input type="text" placeholder="Video URL (.mp4)" class="w-full bg-[#403F3C]/5 border-none p-3 text-[12px] outline-none" id="field-video">`;
+            } else if (type === 'chart') {
+                modalTitle.innerText = 'Chart Configuration';
+                modalFields.innerHTML = `
+                    <select id="chart-type" class="w-full bg-[#403F3C]/5 border-none p-3 text-[12px] outline-none mb-4">
+                        <option value="line">Line Chart (Trend)</option>
+                        <option value="bar">Bar Chart (Comparison)</option>
+                        <option value="pie">Pie Chart (Distribution)</option>
+                    </select>
+                    <input type="text" id="chart-title" placeholder="Chart Title" class="w-full bg-[#403F3C]/5 border-none p-3 text-[12px] outline-none mb-4">
+                    <div class="grid grid-cols-2 gap-4 mb-4">
+                        <input type="text" id="field-xaxis" placeholder="X-Axis Key (e.g. name)" class="bg-[#403F3C]/5 border-none p-3 text-[12px] outline-none">
+                        <input type="text" id="field-yaxis" placeholder="Y-Axis Key (e.g. value)" class="bg-[#403F3C]/5 border-none p-3 text-[12px] outline-none">
+                    </div>
+                    <p class="text-[10px] text-[#403F3C]/40 mb-2 font-mono">Data (JSON Format):</p>
+                    <textarea id="chart-data" class="w-full bg-[#403F3C]/5 border-none p-3 text-[11px] font-mono outline-none h-32" placeholder='[{"name": "A", "value": 10}, {"name": "B", "value": 20}]'></textarea>
+                `;
+                // Populate example
+                (document.getElementById('chart-data') as HTMLTextAreaElement).value = '[{"name": "Jan", "value": 40}, {"name": "Feb", "value": 60}, {"name": "Mar", "value": 85}]';
+                (document.getElementById('field-xaxis') as HTMLInputElement).value = 'name';
+                (document.getElementById('field-yaxis') as HTMLInputElement).value = 'value';
             }
         }
-
-        document.getElementById('modal-cancel')?.addEventListener('click', () => {
-            if (modal) modal.style.display = 'none';
-        });
 
         document.getElementById('modal-save')?.addEventListener('click', () => {
             let tag = '';
@@ -180,6 +196,13 @@ import Layout from '../layouts/Layout.astro';
             } else if (activeComponent === 'video') {
                 const v = (document.getElementById('field-video') as HTMLInputElement).value;
                 tag = `\n<video src="${v}" autoplay muted loop class="rounded-sm w-full" />\n`;
+            } else if (activeComponent === 'chart') {
+                const type = (document.getElementById('chart-type') as HTMLSelectElement).value;
+                const title = (document.getElementById('chart-title') as HTMLInputElement).value;
+                const x = (document.getElementById('field-xaxis') as HTMLInputElement).value;
+                const y = (document.getElementById('field-yaxis') as HTMLInputElement).value;
+                const data = (document.getElementById('chart-data') as HTMLTextAreaElement).value;
+                tag = `\n<TelemetryChart client:load type="${type}" title="${title}" xAxis="${x}" yAxis="${y}" data={${data}} />\n`;
             }
 
             editor.value += tag;
