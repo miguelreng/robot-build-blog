@@ -14,14 +14,14 @@ const techStack = ["PyTorch", "OpenCV", "ROS2", "UNet", "YOLOv8"];
 	<div class="space-y-16">
 		{/* Memos Section */}
 		<section>
-			<h2 class="text-[10px] uppercase tracking-[0.2em] text-[#403F3C]/40 mb-6 font-bold">Memos</h2>
-			<ul class="space-y-3">
+			<h2 class="text-[12px] text-[#403F3C]/40 mb-6 font-medium">Memos</h2>
+			<ul class="space-y-4">
 				{posts.map((post) => (
 					<li>
 						<a href={`/posts/${post.slug}`} class="text-[15px] font-medium text-[#403F3C] hover:underline decoration-1 underline-offset-4">
 							{post.data.title}
 						</a>
-						<span class="text-[12px] text-[#403F3C]/40 ml-2">— {post.data.pubDate.toLocaleDateString('en-US', { month: '2-digit', day: '2-digit' })}</span>
+						<span class="text-[13px] text-[#403F3C]/30 ml-3">— {post.data.pubDate.toLocaleDateString('en-US', { month: '2-digit', day: '2-digit' })}</span>
 					</li>
 				))}
 			</ul>
@@ -29,8 +29,8 @@ const techStack = ["PyTorch", "OpenCV", "ROS2", "UNet", "YOLOv8"];
 
 		{/* Builders Section */}
 		<section>
-			<h2 class="text-[10px] uppercase tracking-[0.2em] text-[#403F3C]/40 mb-6 font-bold">Builders</h2>
-			<ul class="space-y-3">
+			<h2 class="text-[12px] text-[#403F3C]/40 mb-6 font-medium">Builders</h2>
+			<ul class="space-y-4">
 				{builders.map((builder) => (
 					<li>
 						<a href="/builders" class="text-[15px] font-medium text-[#403F3C] hover:underline decoration-1 underline-offset-4">
@@ -43,8 +43,8 @@ const techStack = ["PyTorch", "OpenCV", "ROS2", "UNet", "YOLOv8"];
 
 		{/* Discussion Section */}
 		<section>
-			<h2 class="text-[10px] uppercase tracking-[0.2em] text-[#403F3C]/40 mb-6 font-bold">Discussion</h2>
-			<ul class="space-y-3">
+			<h2 class="text-[12px] text-[#403F3C]/40 mb-6 font-medium">Discussion</h2>
+			<ul class="space-y-4">
 				{discussions.map((topic) => (
 					<li>
 						<a href="#" class="text-[15px] font-medium text-[#403F3C] hover:underline decoration-1 underline-offset-4">
@@ -55,13 +55,13 @@ const techStack = ["PyTorch", "OpenCV", "ROS2", "UNet", "YOLOv8"];
 			</ul>
 		</section>
 
-		{/* Product/Tech Section */}
+		{/* Tech Stack Section */}
 		<section>
-			<h2 class="text-[10px] uppercase tracking-[0.2em] text-[#403F3C]/40 mb-6 font-bold">Tech Stack</h2>
-			<ul class="space-y-3">
+			<h2 class="text-[12px] text-[#403F3C]/40 mb-6 font-medium">AI Directory</h2>
+			<ul class="space-y-4">
 				{techStack.map((item) => (
 					<li>
-						<span class="text-[15px] font-medium text-[#403F3C] hover:underline decoration-1 underline-offset-4 cursor-default">
+						<span class="text-[15px] font-medium text-[#403F3C] cursor-default">
 							{item}
 						</span>
 					</li>
