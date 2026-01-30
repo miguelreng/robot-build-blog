@@ -6,7 +6,7 @@ const posts = await getCollection('posts');
 posts.sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
 ---
 
-<Layout title="The Build">
+<Layout title="CEO & Builders">
 	<div class="space-y-24">
 		{posts.map((post) => (
 			<article class="group">
@@ -22,7 +22,7 @@ posts.sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
 					{post.data.description}
 				</p>
 				<a href={`/posts/${post.slug}`} class="text-[10px] uppercase tracking-[0.25em] font-bold border-b border-[#403F3C]/20 pb-1 hover:border-[#403F3C] transition-colors">
-					Explore Memo
+					Read Memo
 				</a>
 			</article>
 		))}
