@@ -36,8 +36,8 @@ const { title, builder, published, quarter } = Astro.props;
 			<header class="mb-24 flex flex-col gap-8">
 				<div class="flex justify-between items-center">
 					<a href="/" class="flex items-center gap-3">
-						<img src="/logo-robot.svg" alt="Robot.com" class="h-3 w-auto" />
-						<span class="text-[10px] uppercase tracking-[0.25em] text-[#403F3C]/40 font-bold border-l border-[#403F3C]/10 pl-3">
+						<img src="/logo-robot.svg" alt="Robot.com" class="h-4 w-auto" />
+						<span class="text-[12px] uppercase tracking-[0.25em] text-[#403F3C]/40 font-bold border-l border-[#403F3C]/10 pl-3">
 							CEO & Builders
 						</span>
 					</a>
@@ -69,7 +69,8 @@ const { title, builder, published, quarter } = Astro.props;
 
 			<slot />
 			
-			<footer class="mt-40 pt-12 border-t border-[#403F3C]/5">
+			<footer class="mt-40 pt-12 border-t border-[#403F3C]/5 flex flex-col gap-8">
+				<img src="/logo-robot.svg" alt="Robot.com" class="h-3 w-auto opacity-20" />
 				<div class="text-[10px] uppercase tracking-[0.25em] text-[#403F3C]/30 font-bold">
 					© {new Date().getFullYear()} Robot.com Foundation
 				</div>
