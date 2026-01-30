@@ -9,11 +9,11 @@ export default {
       typography: {
         DEFAULT: {
           css: {
-            color: '#403F3C',
-            fontSize: '15px',
+            color: '#6a6a6a',
+            fontSize: 'max(15px, 0.95em)',
             lineHeight: '1.6',
             fontFamily: 'Yellix, sans-serif',
-            fontWeight: '400',
+            fontWeight: '500',
             a: {
               color: '#403F3C',
               textDecoration: 'none',
