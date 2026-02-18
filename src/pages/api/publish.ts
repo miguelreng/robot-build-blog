@@ -2,7 +2,7 @@
 export const prerender = false;
 
 
-const GITHUB_TOKEN = import.meta.env.GITHUB_TOKEN;
+const GITHUB_TOKEN = import.meta.env.GITHUB_TOKEN || process.env.GITHUB_TOKEN;
 const SOURCE_REPO = "felipekiwi90/KiwibotMemo";
 const PUBLISH_REPO = "miguelreng/robot-build-blog";
 const SOURCE_PATH = "Data/Builders";
@@ -17,9 +17,10 @@ export async function GET() {
       headers: { 'Authorization': `Bearer ${GITHUB_TOKEN}` }
     });
 
-    if (!response.ok) return new Response(JSON.stringify({ error: 'GitHub API failed' }), { status: response.status });
+    if (!response.ok) return new Response(JSON.stringify({ error: 'GitHub API failed', status: response.status }), { status: response.status });
 
     const data = await response.json();
+    if (!Array.isArray(data)) return new Response(JSON.stringify({ error: 'Invalid data from GitHub' }), { status: 500 });
     const files = data.filter((f: any) => f.name.endsWith('.md')).map((f: any) => f.name);
 
     return new Response(JSON.stringify(files));
@@ -28,7 +29,7 @@ export async function GET() {
   }
 }
 
-export async function POST({ request }) {
+export async function POST({ request }: { request: Request }) {
   try {
     const body = await request.json();
     const { fileName, content, action, title, department, targetFile } = body;
