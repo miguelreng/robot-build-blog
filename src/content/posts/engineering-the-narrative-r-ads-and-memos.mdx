@@ -113,6 +113,52 @@ By strictly enforcing the brand-black (`#262626`) and zero letter-spacing (`trac
 ## SEO & Technical Indexing
 The next phase for Robot Memos is optimizing the search indexing for technical keywords like "autonomy logs" and "DOOH metrics" to ensure our engineering wins are discoverable by the broader robotics community.
 
+# Interactive Component Showcase
+
+To illustrate the capabilities of the new system, below are live demonstrations of the components developed for the SaaS transition.
+
+## 1. Visual Comparison (Before/After)
+We use the `BeforeAfterSlider` to demonstrate the impact of our hardware and software iterations. 
+
+<BeforeAfterSlider 
+  client:load 
+  beforeImage="/images/hero.png" 
+  afterImage="/images/hero.png" 
+/>
+
+## 2. Technical Callouts
+We've standardized our engineering alerts using a custom `CalloutBox` system.
+
+<CalloutBox client:load type="insight" title="Performance Optimization">
+By leveraging Astro's partial hydration, we only ship the JavaScript necessary for interactive components like the Telemetry Chart above, keeping our baseline TBT (Total Blocking Time) near zero.
+</CalloutBox>
+
+## 3. Real-Time Telemetry
+The heart of our memos is the `TelemetryChart`, which allows builders to showcase actual fleet performance.
+
+<TelemetryChart 
+  client:load 
+  type="bar" 
+  title="Weekly Fleet Precision" 
+  xAxis="day" 
+  yAxis="precision"
+  data={[
+    {"day": "Mon", "precision": 94},
+    {"day": "Tue", "precision": 96},
+    {"day": "Wed", "precision": 92},
+    {"day": "Thu", "precision": 98},
+    {"day": "Fri", "precision": 95}
+  ]} 
+/>
+
+---
+
 ## tech-surf: 
 [Insert Video of the new Memos Console workflow here]
 [Insert Screen Recording of the R-ads interactive hover effects here]
+
+---
+
+**View this memo live:** [robot-build-blog.vercel.app/posts/engineering-the-narrative-r-ads-and-memos](https://robot-build-blog.vercel.app/posts/engineering-the-narrative-r-ads-and-memos)
+
+**View the R-ads project:** [www.robot.com/r-ads-miguel](https://www.robot.com/r-ads-miguel)
