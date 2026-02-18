@@ -17,6 +17,7 @@
     "datocms-structured-text-to-html-string": "^5.1.7",
     "framer-motion": "^12.33.0",
     "react-dom": "^19.2.4",
+    "react-is": "^19.2.4",
     "recharts": "^3.7.0"
   },
   "devDependencies": {
