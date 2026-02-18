@@ -36,9 +36,9 @@
             "description": "User experience and industrial design."
         },
         {
-            "id": "founders",
-            "name": "Founders",
-            "description": "Leadership and strategic direction."
+            "id": "founders-office",
+            "name": "Founders Office",
+            "description": "Leadership support and strategic direction."
         }
     ],
     "members": [
@@ -82,21 +82,21 @@
             "name": "Miguel Rengifo",
             "role": "Design Engineer",
             "github": "miguelreng",
-            "teamId": "founders"
+            "teamId": "founders-office"
         },
         {
             "id": "sergiopachon",
             "name": "Sergio Pachón Reyes",
             "role": "President",
             "github": "sergiopchon",
-            "teamId": "founders"
+            "teamId": "founders-office"
         },
         {
             "id": "felipe",
             "name": "Felipe Chávez",
             "role": "CEO",
             "github": "fchavez",
-            "teamId": "founders"
+            "teamId": "founders-office"
         }
     ]
 }
