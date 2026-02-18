@@ -1,0 +1,28 @@
+---
+const { metrics } = Astro.props;
+
+const defaultMetrics = [
+  { number: "1", title: "Scale", description: "Deploy fleets in minutes, not months." },
+  { number: "2", title: "Precision", description: "Sub-centimeter accuracy for docking and delivery." },
+  { number: "3", title: "Live", description: "Real-time monitoring and teleoperation from anywhere." },
+  { number: "4", title: "Global", description: "Operating in 30+ countries across 4 continents." }
+];
+
+const displayMetrics = metrics || defaultMetrics;
+---
+
+<section class="py-20 bg-white">
+  <div class="container mx-auto px-6">
+    <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-1">
+      {displayMetrics.map((item: any) => (
+        <div class="border-t border-brand-black/5 pt-8 hover:border-brand-black/20 transition-colors">
+          <div class="text-[4rem] !font-bold text-brand-black/10 mb-4 leading-none font-mono">{item.number}</div>
+          <h3 class="text-[13px] !font-bold mb-4">{item.title}</h3>
+          <p class="text-[11px] text-brand-black/50 !font-semibold leading-relaxed">
+            {item.description}
+          </p>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>

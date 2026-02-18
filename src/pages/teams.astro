@@ -1,0 +1,244 @@
+---
+import Layout from '../layouts/Layout.astro';
+---
+
+<Layout title="Teams Management">
+    <!-- AUTH VIEW -->
+	<div class="max-w-[400px] mx-auto min-h-[50vh] flex flex-col justify-center" id="auth-view">
+		<h1 class="text-3xl font-semibold mb-4 text-brand-gray-90">Teams Console</h1>
+        <p class="text-[14px] text-brand-gray-90/40 mb-12 font-semibold">Organize the builders of the future.</p>
+		
+		<div class="space-y-6">
+            <div class="relative">
+			    <input type="password" id="password" placeholder="Builder Password" class="w-full bg-white border border-brand-gray-90/10 rounded-[10px] px-5 py-3.5 text-[14px] text-brand-gray-90 outline-none focus:ring-1 focus:ring-brand-gray-90/10 transition-all pr-20" />
+                <button type="button" id="toggle-pass" class="absolute right-5 top-1/2 -translate-y-1/2 text-[13px] font-semibold text-brand-gray-90/20 hover:text-brand-gray-90 transition-colors z-10">Show</button>
+            </div>
+			<button id="login-btn" class="w-full bg-brand-gray-90 text-brand-gray-10 text-[14px] font-semibold py-3.5 rounded-[10px] hover:opacity-90 transition-opacity">Access Console</button>
+		</div>
+	</div>
+
+    <!-- MAIN TEAMS VIEW -->
+	<div id="console-view" class="hidden w-full max-w-6xl mx-auto pt-0 pb-32 px-6">
+        <header class="flex justify-between items-baseline w-full border-b border-brand-gray-90/5 pb-6 mb-10">
+            <div class="flex items-baseline gap-4">
+                <h1 class="text-3xl font-semibold text-brand-gray-90">Manage Teams</h1>
+                <p class="text-sm text-brand-gray-90/30 font-semibold">Status: Authorized</p>
+            </div>
+            <div class="flex gap-6 items-center">
+                <a href="/publish" class="text-sm font-semibold text-brand-gray-90/40 hover:text-brand-gray-90 transition-colors">Memos Console</a>
+                <button id="save-data-btn" class="bg-brand-gray-90 text-brand-gray-10 px-6 py-2 rounded-full text-sm font-semibold hover:opacity-90 transition-opacity">Save Changes</button>
+            </div>
+        </header>
+
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
+            <!-- TEAMS COLUMN -->
+            <section class="space-y-6">
+                <div class="flex justify-between items-center">
+                    <h2 class="text-xl font-semibold text-brand-gray-90">Teams</h2>
+                    <button id="add-team-btn" class="text-xs font-bold text-brand-gray-90/40 hover:text-brand-gray-90 transition-colors">+ Add Team</button>
+                </div>
+                <div id="teams-list" class="space-y-4">
+                    <!-- Teams will be injected here -->
+                </div>
+            </section>
+
+            <!-- MEMBERS COLUMN -->
+            <section class="space-y-6">
+                 <div class="flex justify-between items-center">
+                    <h2 class="text-xl font-semibold text-brand-gray-90">Members</h2>
+                    <button id="add-member-btn" class="text-xs font-bold text-brand-gray-90/40 hover:text-brand-gray-90 transition-colors">+ Add Member</button>
+                </div>
+                <div id="members-list" class="space-y-4">
+                    <!-- Members will be injected here -->
+                </div>
+            </section>
+        </div>
+	</div>
+
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <script>
+        let teams = [];
+        let members = [];
+
+        const authView = document.getElementById('auth-view');
+        const consoleView = document.getElementById('console-view');
+        const loginBtn = document.getElementById('login-btn');
+        const passwordInput = document.getElementById('password') as HTMLInputElement;
+        const togglePass = document.getElementById('toggle-pass');
+        const saveDataBtn = document.getElementById('save-data-btn');
+        const addTeamBtn = document.getElementById('add-team-btn');
+        const addMemberBtn = document.getElementById('add-member-btn');
+        const teamsList = document.getElementById('teams-list');
+        const membersList = document.getElementById('members-list');
+
+        // Auth Logic
+        if (localStorage.getItem('builder_status') === 'authorized') {
+            authView?.classList.add('hidden');
+            consoleView?.classList.remove('hidden');
+            fetchData();
+        }
+
+        loginBtn?.addEventListener('click', async () => {
+            const password = passwordInput.value;
+            const res = await fetch('/api/auth', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ password })
+            });
+            const data = await res.json();
+            if (data.success) {
+                localStorage.setItem('builder_status', 'authorized');
+                window.location.reload();
+            } else {
+                alert("Unauthorized.");
+            }
+        });
+
+        togglePass?.addEventListener('click', () => {
+            const isPass = passwordInput.type === 'password';
+            passwordInput.type = isPass ? 'text' : 'password';
+            togglePass.innerText = isPass ? 'Hide' : 'Show';
+        });
+
+        // Data Management
+        async function fetchData() {
+            try {
+                const res = await fetch('/api/teams');
+                const data = await res.json();
+                teams = data.teams || [];
+                members = data.members || [];
+                render();
+            } catch (e) {
+                console.error("Failed to fetch data:", e);
+            }
+        }
+
+        function render() {
+            renderTeams();
+            renderMembers();
+            // @ts-ignore
+            if (typeof lucide !== 'undefined') lucide.createIcons();
+        }
+
+        function renderTeams() {
+            if (!teamsList) return;
+            teamsList.innerHTML = teams.map((team, index) => `
+                <div class="bg-white border border-brand-gray-90/5 rounded-2xl p-6 shadow-sm group hover:border-brand-gray-90/10 transition-all">
+                    <div class="flex justify-between items-start mb-4">
+                        <input type="text" value="${team.name}" class="text-lg font-semibold bg-transparent outline-none border-b border-transparent focus:border-brand-gray-90/10 w-full" onchange="window.updateTeam(${index}, 'name', this.value)" />
+                        <button onclick="window.deleteTeam(${index})" class="text-brand-gray-90/20 hover:text-red-500 transition-colors ml-2">
+                             <i data-lucide="trash-2" class="w-4 h-4"></i>
+                        </button>
+                    </div>
+                    <textarea class="text-sm text-brand-gray-90/60 bg-transparent outline-none border-b border-transparent focus:border-brand-gray-90/10 w-full h-12 resize-none font-medium leading-relaxed" placeholder="Team description..." onchange="window.updateTeam(${index}, 'description', this.value)">${team.description || ''}</textarea>
+                    <div class="mt-4 pt-4 border-t border-brand-gray-90/5">
+                        <span class="text-[10px] font-bold text-brand-gray-90/30">ID: ${team.id}</span>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        function renderMembers() {
+            if (!membersList) return;
+            membersList.innerHTML = members.map((member, index) => `
+                <div class="bg-white border border-brand-gray-90/5 rounded-2xl p-6 shadow-sm group hover:border-brand-gray-90/10 transition-all">
+                    <div class="grid grid-cols-2 gap-4 mb-4">
+                        <div>
+                            <label class="text-[10px] font-bold text-brand-gray-90/30 mb-1 block">Name</label>
+                            <input type="text" value="${member.name}" class="text-sm font-semibold bg-transparent outline-none border-b border-transparent focus:border-brand-gray-90/10 w-full" onchange="window.updateMember(${index}, 'name', this.value)" />
+                        </div>
+                        <div>
+                            <label class="text-[10px] font-bold text-brand-gray-90/30 mb-1 block">Role</label>
+                            <input type="text" value="${member.role}" class="text-sm font-semibold bg-transparent outline-none border-b border-transparent focus:border-brand-gray-90/10 w-full" onchange="window.updateMember(${index}, 'role', this.value)" />
+                        </div>
+                    </div>
+                    <div class="grid grid-cols-2 gap-4">
+                        <div>
+                            <label class="text-[10px] font-bold text-brand-gray-90/30 mb-1 block">GitHub</label>
+                            <input type="text" value="${member.github}" class="text-sm font-semibold bg-transparent outline-none border-b border-transparent focus:border-brand-gray-90/10 w-full" onchange="window.updateMember(${index}, 'github', this.value)" />
+                        </div>
+                        <div>
+                            <label class="text-[10px] font-bold text-brand-gray-90/30 mb-1 block">Team</label>
+                            <select class="text-sm font-semibold bg-transparent outline-none border-b border-transparent focus:border-brand-gray-90/10 w-full cursor-pointer" onchange="window.updateMember(${index}, 'teamId', this.value)">
+                                <option value="">No Team</option>
+                                ${teams.map(t => `<option value="${t.id}" ${member.teamId === t.id ? 'selected' : ''}>${t.name}</option>`).join('')}
+                            </select>
+                        </div>
+                    </div>
+                    <div class="mt-6 flex justify-between items-center pt-4 border-t border-brand-gray-90/5">
+                        <span class="text-[10px] font-bold text-brand-gray-90/30">ID: ${member.id}</span>
+                        <button onclick="window.deleteMember(${index})" class="text-brand-gray-90/20 hover:text-red-500 transition-colors">
+                             <i data-lucide="trash-2" class="w-4 h-4"></i>
+                        </button>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        // Global Handlers
+        (window as any).updateTeam = (index, key, value) => {
+            teams[index][key] = value;
+            if (key === 'name' && !teams[index].id) {
+                teams[index].id = value.toLowerCase().replace(/[^a-z0-9]+/g, '-');
+                render();
+            }
+        };
+
+        (window as any).deleteTeam = (index) => {
+            if (confirm("Delete this team?")) {
+                teams.splice(index, 1);
+                render();
+            }
+        };
+
+        (window as any).updateMember = (index, key, value) => {
+            members[index][key] = value;
+            if (key === 'name' && !members[index].id) {
+                members[index].id = value.toLowerCase().replace(/[^a-z0-9]+/g, '');
+                render();
+            }
+        };
+
+        (window as any).deleteMember = (index) => {
+            if (confirm("Delete this member?")) {
+                members.splice(index, 1);
+                render();
+            }
+        };
+
+        addTeamBtn?.addEventListener('click', () => {
+            teams.push({ id: '', name: 'New Team', description: '' });
+            render();
+        });
+
+        addMemberBtn?.addEventListener('click', () => {
+            members.push({ id: '', name: 'New Member', role: 'Engineer', github: '', teamId: '' });
+            render();
+        });
+
+        saveDataBtn?.addEventListener('click', async () => {
+            saveDataBtn.innerText = "Saving...";
+            saveDataBtn.classList.add('opacity-50', 'pointer-events-none');
+            try {
+                const res = await fetch('/api/teams', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ action: 'save-all', payload: { teams, members } })
+                });
+                if (res.ok) {
+                    alert("Changes saved successfully.");
+                } else {
+                    alert("Failed to save changes.");
+                }
+            } catch (e) {
+                console.error(e);
+                alert("Error saving data.");
+            } finally {
+                saveDataBtn.innerText = "Save Changes";
+                saveDataBtn.classList.remove('opacity-50', 'pointer-events-none');
+                render();
+            }
+        });
+
+    </script>
+</Layout>

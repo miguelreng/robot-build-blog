@@ -1,0 +1,34 @@
+---
+const { quote, author, role, company, backgroundImage } = Astro.props;
+---
+
+<section class="relative w-full min-h-[60vh] flex items-center justify-center py-32 overflow-hidden">
+  <div class="absolute inset-0">
+    <img 
+      src={backgroundImage || "/testimonial-bg.png"} 
+      alt="Testimonial background" 
+      class="w-full h-full object-cover blur-sm scale-110 brightness-50"
+    />
+    <div class="absolute inset-0 bg-brand-black/40"></div>
+  </div>
+  
+  <div class="container mx-auto px-6 relative z-10 text-white">
+    <div class="max-w-4xl">
+      <div class="flex items-center gap-4 mb-12">
+        <div class="h-[1px] w-12 bg-white/40"></div>
+        <span class="text-xs font-semibold text-white/60">Testimonial</span>
+      </div>
+      
+      <blockquote class="text-3xl md:text-5xl font-display font-bold leading-tight mb-16">
+        “{quote || "DIRECTV is always seeking creative and innovative ways to show our sports partnership with existing and potential new customers in the places where they live and work.”"}
+      </blockquote>
+      
+      <div class="flex flex-col gap-1">
+        <cite class="not-italic text-2xl font-display font-bold">{author || "Dario Mardi"}</cite>
+        <span class="text-white/40 font-semibold">
+          {role || "Vice President Marketing"} at {company || "DIRECTV"}
+        </span>
+      </div>
+    </div>
+  </div>
+</section>

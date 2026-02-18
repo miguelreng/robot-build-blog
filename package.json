@@ -9,8 +9,12 @@
     "astro": "astro"
   },
   "dependencies": {
+    "@astrojs/node": "^9.5.2",
     "@astrojs/tailwind": "^5.1.5",
+    "@datocms/cda-client": "^0.2.10",
     "astro": "^5.17.1",
+    "datocms-structured-text-to-html-string": "^5.1.7",
+    "framer-motion": "^12.33.0",
     "react-dom": "^19.2.4",
     "recharts": "^3.7.0"
   },
@@ -19,6 +23,7 @@
     "@astrojs/react": "^4.4.2",
     "@tailwindcss/typography": "^0.5.19",
     "@tailwindcss/vite": "^4.1.18",
+    "@types/node": "^25.2.3",
     "@types/react": "^19.2.10",
     "@types/react-dom": "^19.2.3",
     "lucide-react": "^0.563.0",

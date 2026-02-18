@@ -8,6 +8,7 @@ const posts = defineCollection({
     author: z.string(),
     description: z.string(),
     quarter: z.string().optional().default("2026-Q1"),
+    department: z.enum(["Service desk", "IT & Software", "Autonomy", "Data", "Hardware & Manufacturing", "Avanced Robotics", "Product Design", "Founders"]).optional(),
     coverImage: z.string().optional(),
     builderImage: z.string().optional(),
   }),

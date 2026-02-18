@@ -1,0 +1,24 @@
+---
+const { title, description } = Astro.props;
+---
+
+<section class="bg-[#F0ED4E] py-40">
+  <div class="container mx-auto px-6 text-center md:text-left">
+    <div class="max-w-5xl">
+      <h2 class="text-6xl md:text-9xl font-display font-bold leading-[0.85] mb-12">
+        {title || "Operate robots, mobile fleets, and DOOH through a single system"}
+      </h2>
+      <p class="text-xl md:text-2xl font-semibold text-brand-black/40 mb-16 max-w-2xl">
+        {description || "Join the robotics revolution and transform your operations with the most advanced autonomous fleet platform."}
+      </p>
+      <div class="flex flex-col md:flex-row gap-6">
+        <button class="bg-brand-black text-white px-10 py-5 rounded-full text-xl font-semibold hover:bg-brand-black/80 transition-all active:scale-95 shadow-xl">
+          Start building
+        </button>
+        <button class="bg-transparent border-2 border-brand-black/10 px-10 py-5 rounded-full text-xl font-semibold hover:border-brand-black/30 transition-all">
+          Contact sales
+        </button>
+      </div>
+    </div>
+  </div>
+</section>

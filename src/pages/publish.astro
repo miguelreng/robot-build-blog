@@ -1,104 +1,324 @@
 ---
 import Layout from '../layouts/Layout.astro';
+import data from '../data/teams.json';
+const { teams } = data;
 ---
 
-<Layout title="memos console">
+<Layout title="Memos Console">
     <!-- AUTH VIEW -->
 	<div class="max-w-[400px] mx-auto min-h-[50vh] flex flex-col justify-center" id="auth-view">
-		<h1 class="text-3xl font-medium tracking-tighter mb-4 text-[#403F3C]">memos console</h1>
-        <p class="text-[14px] text-[#403F3C]/40 mb-12 font-medium">engineering publishing intelligence.</p>
+		<h1 class="text-3xl font-semibold mb-4 text-brand-gray-90">Memos Console</h1>
+        <p class="text-[14px] text-brand-gray-90/40 mb-12 font-semibold">Engineering publishing intelligence.</p>
 		
 		<div class="space-y-6">
             <div class="relative">
-			    <input type="password" id="password" placeholder="builder password" class="w-full bg-white border border-[#403F3C]/10 rounded-[10px] px-5 py-3.5 text-[14px] text-[#403F3C] outline-none focus:ring-1 focus:ring-[#403F3C]/10 transition-all pr-20" />
-                <button type="button" id="toggle-pass" class="absolute right-5 top-1/2 -translate-y-1/2 text-[13px] font-bold text-[#403F3C]/20 hover:text-[#403F3C] transition-colors z-10">show</button>
+			    <input type="password" id="password" placeholder="Builder Password" class="w-full bg-white border border-brand-gray-90/10 rounded-[10px] px-5 py-3.5 text-[14px] text-brand-gray-90 outline-none focus:ring-1 focus:ring-brand-gray-90/10 transition-all pr-20" />
+                <button type="button" id="toggle-pass" class="absolute right-5 top-1/2 -translate-y-1/2 text-[13px] font-semibold text-brand-gray-90/20 hover:text-brand-gray-90 transition-colors z-10">Show</button>
             </div>
             <div class="flex items-center gap-2 px-1">
-                <input type="checkbox" id="remember-me" class="w-4 h-4 accent-[#403F3C]" />
-                <label for="remember-me" class="text-[13px] font-medium text-[#403F3C]/40">remember device</label>
+                <input type="checkbox" id="remember-me" class="w-4 h-4 accent-brand-gray-90" />
+                <label for="remember-me" class="text-[13px] font-semibold text-brand-gray-90/40">Remember Device</label>
             </div>
-			<button id="login-btn" class="w-full bg-[#403F3C] text-[#F8F6F3] text-[14px] font-bold py-3.5 rounded-[10px] hover:opacity-90 transition-opacity">access console</button>
+			<button id="login-btn" class="w-full bg-brand-gray-90 text-brand-gray-10 text-[14px] font-semibold py-3.5 rounded-[10px] hover:opacity-90 transition-opacity">Access Console</button>
 		</div>
 	</div>
 
-    <!-- MAIN CONSOLE VIEW (COMPACT) -->
-	<div id="console-view" class="hidden w-full max-w-[580px] mx-auto space-y-10 pt-4 pb-32">
-        <header class="flex justify-between items-baseline w-full border-b border-[#403F3C]/5 pb-6">
+    <!-- MAIN CONSOLE VIEW (GRID LAYOUT) -->
+	<div id="console-view" class="hidden w-full mx-auto pt-0 pb-32">
+        <header class="flex justify-between items-baseline w-full border-b border-brand-gray-90/5 pb-6 mb-10">
             <div class="flex items-baseline gap-4">
-                <h1 class="text-lg font-medium tracking-tighter text-[#403F3C]">console</h1>
-                <p class="text-[12px] text-[#403F3C]/30 font-bold">status: authorized</p>
+                <h1 class="text-3xl font-semibold text-brand-gray-90">Console</h1>
+                <p class="text-sm text-brand-gray-90/30 font-semibold">Status: Authorized</p>
             </div>
-            <button id="logout-btn" class="text-[13px] text-[#403F3C]/40 hover:text-red-400 transition-colors">logout</button>
+            <div class="flex gap-6">
+                <a href="/teams" class="text-sm font-semibold text-brand-gray-90/40 hover:text-brand-gray-90 transition-colors">Manage Teams</a>
+            </div>
         </header>
 
-        <!-- Step 1 & 0 Mini Config -->
-        <div class="grid grid-cols-1 gap-4">
-            <div class="flex flex-col gap-2">
-			    <label class="text-[12px] text-[#403F3C]/30 font-bold ml-1">0. credentials</label>
-                <input type="password" id="api-key-input-box" placeholder="openrouter api key" class="w-full bg-white border border-[#403F3C]/10 rounded-[10px] px-5 py-3 text-[14px] outline-none font-mono" />
-            </div>
+        <div class="grid grid-cols-1 lg:grid-cols-4 gap-12">
             
-            <div class="flex flex-col gap-2">
-                <label class="text-[12px] text-[#403F3C]/30 font-bold ml-1">1. source memo</label>
-                <select id="memo-select" class="w-full bg-white border border-[#403F3C]/10 rounded-[10px] px-5 py-3 text-[14px] outline-none font-medium cursor-pointer appearance-none">
-                    <option value="">select builder memo...</option>
-                </select>
+            <!-- LEFT COLUMN: EDITOR (Span 3) -->
+            <div class="lg:col-span-3 space-y-6">
+                <!-- Title Input -->
+                <input type="text" id="memo-title" placeholder="Memo Title..." class="w-full bg-transparent text-4xl font-semibold text-brand-gray-90 placeholder-brand-gray-90/20 outline-none border-b border-transparent focus:border-brand-gray-90/10 pb-2 transition-all" />
+
+                <!-- Editor -->
+                <div class="relative group">
+                    <textarea id="editor" class="w-full h-[700px] bg-white border border-brand-gray-90/10 rounded-[15px] p-8 text-base text-brand-gray-90/80 font-semibold leading-relaxed outline-none focus:ring-1 focus:ring-brand-gray-90/5 transition-all resize-none shadow-sm font-mono" placeholder="Write your engineering update here..."></textarea>
+                </div>
+
+
+            </div>
+            <!-- RIGHT COLUMN: SIDEBAR (Span 1) -->
+            <div class="flex flex-col gap-8 h-fit sticky top-10">
+                
+                <!-- 3. Deployment -->
+                <div class="space-y-3 pb-6 border-b border-brand-gray-90/5">
+                    <label class="text-xs text-brand-gray-90/30 font-bold">Deploy</label>
+                    <button id="publish-btn" class="w-full bg-brand-gray-90 text-brand-gray-10 text-[14px] font-semibold py-4 rounded-[10px] hover:opacity-90 transition-opacity shadow-lg">Ship to Production</button>
+                </div>
+
+                <!-- 1. Context -->
+                <div class="space-y-3">
+                    <label class="text-xs text-brand-gray-90/30 font-bold">1. Context</label>
+                    <div class="flex flex-col gap-3">
+                        <select id="memo-select" class="w-full bg-white border border-brand-gray-90/10 rounded-[10px] px-4 py-3 text-sm outline-none font-semibold cursor-pointer appearance-none">
+                            <option value="">Fetch from Memos...</option>
+                        </select>
+                        <div class="relative">
+                            <select id="published-select" class="w-full bg-white border border-brand-gray-90/10 rounded-[10px] px-4 py-3 text-sm outline-none font-semibold cursor-pointer appearance-none pr-10">
+                                <option value="">Edit Published Article...</option>
+                            </select>
+                            <div class="absolute right-3 top-1/2 -translate-y-1/2 pointer-events-none text-brand-gray-90/20">
+                                <i data-lucide="chevron-down" class="w-4 h-4"></i>
+                            </div>
+                        </div>
+                        <select id="dept-select" class="w-full bg-white border border-brand-gray-90/10 rounded-[10px] px-4 py-3 text-sm outline-none font-semibold cursor-pointer appearance-none">
+                            <option value="">Select Department...</option>
+                            {teams.map(team => (
+                                <option value={team.name}>{team.name}</option>
+                            ))}
+                        </select>
+                        <div class="relative group">
+                            <input type="text" id="cover-image-url" placeholder="Cover Image URL..." class="w-full bg-white border border-brand-gray-90/10 rounded-[10px] px-4 py-3 text-sm outline-none font-semibold placeholder-brand-gray-90/20 transition-all focus:ring-1 focus:ring-brand-gray-90/5 pr-10" />
+                            <div class="absolute right-3 top-1/2 -translate-y-1/2">
+                                <label for="cover-upload" class="cursor-pointer text-brand-gray-90/20 hover:text-brand-gray-90 transition-colors">
+                                    <i data-lucide="upload" class="w-4 h-4"></i>
+                                </label>
+                                <input type="file" id="cover-upload" class="hidden" accept="image/*" />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 2. Toolkit -->
+                <div class="space-y-3">
+                    <label class="text-xs text-brand-gray-90/30 font-bold">2. Toolkit</label>
+                    <div class="grid grid-cols-2 gap-3" id="toolbox">
+                        <div draggable="true" class="component-card group p-4 border border-brand-gray-90/5 rounded-[12px] bg-white hover:border-brand-gray-90/20 cursor-grab active:cursor-grabbing transition-all shadow-sm flex flex-col items-center justify-center gap-2 h-20 hover:scale-[1.02] active:scale-[0.98]" data-type="slider">
+                            <i data-lucide="image" class="w-5 h-5 text-brand-gray-90/40 group-hover:text-brand-gray-90 transition-colors"></i>
+                            <div class="text-[10px] font-semibold text-brand-gray-90/60 group-hover:text-brand-gray-90">Slider</div>
+                        </div>
+                        <div draggable="true" class="component-card group p-4 border border-brand-gray-90/5 rounded-[12px] bg-white hover:border-brand-gray-90/20 cursor-grab active:cursor-grabbing transition-all shadow-sm flex flex-col items-center justify-center gap-2 h-20 hover:scale-[1.02] active:scale-[0.98]" data-type="videoplayer">
+                            <i data-lucide="video" class="w-5 h-5 text-brand-gray-90/40 group-hover:text-brand-gray-90 transition-colors"></i>
+                            <div class="text-[10px] font-semibold text-brand-gray-90/60 group-hover:text-brand-gray-90">Video</div>
+                        </div>
+                        <div draggable="true" class="component-card group p-4 border border-brand-gray-90/5 rounded-[12px] bg-white hover:border-brand-gray-90/20 cursor-grab active:cursor-grabbing transition-all shadow-sm flex flex-col items-center justify-center gap-2 h-20 hover:scale-[1.02] active:scale-[0.98]" data-type="chart">
+                            <i data-lucide="bar-chart-3" class="w-5 h-5 text-brand-gray-90/40 group-hover:text-brand-gray-90 transition-colors"></i>
+                            <div class="text-[10px] font-semibold text-brand-gray-90/60 group-hover:text-brand-gray-90">Chart</div>
+                        </div>
+                        <div draggable="true" class="component-card group p-4 border border-brand-gray-90/5 rounded-[12px] bg-white hover:border-brand-gray-90/20 cursor-grab active:cursor-grabbing transition-all shadow-sm flex flex-col items-center justify-center gap-2 h-20 hover:scale-[1.02] active:scale-[0.98]" data-type="gallery">
+                            <i data-lucide="layout-grid" class="w-5 h-5 text-brand-gray-90/40 group-hover:text-brand-gray-90 transition-colors"></i>
+                            <div class="text-[10px] font-semibold text-brand-gray-90/60 group-hover:text-brand-gray-90">Gallery</div>
+                        </div>
+                        <div draggable="true" class="component-card group p-4 border border-brand-gray-90/5 rounded-[12px] bg-white hover:border-brand-gray-90/20 cursor-grab active:cursor-grabbing transition-all shadow-sm flex flex-col items-center justify-center gap-2 h-20 hover:scale-[1.02] active:scale-[0.98]" data-type="metric">
+                            <i data-lucide="trending-up" class="w-5 h-5 text-brand-gray-90/40 group-hover:text-brand-gray-90 transition-colors"></i>
+                            <div class="text-[10px] font-semibold text-brand-gray-90/60 group-hover:text-brand-gray-90">Metric</div>
+                        </div>
+                        <div draggable="true" class="component-card group p-4 border border-brand-gray-90/5 rounded-[12px] bg-white hover:border-brand-gray-90/20 cursor-grab active:cursor-grabbing transition-all shadow-sm flex flex-col items-center justify-center gap-2 h-20 hover:scale-[1.02] active:scale-[0.98]" data-type="callout">
+                            <i data-lucide="info" class="w-5 h-5 text-brand-gray-90/40 group-hover:text-brand-gray-90 transition-colors"></i>
+                            <div class="text-[10px] font-semibold text-brand-gray-90/60 group-hover:text-brand-gray-90">Callout</div>
+                        </div>
+                        <div draggable="true" class="component-card group p-4 border border-brand-gray-90/5 rounded-[12px] bg-white hover:border-brand-gray-90/20 cursor-grab active:cursor-grabbing transition-all shadow-sm flex flex-col items-center justify-center gap-2 h-20 col-span-2 hover:scale-[1.01] active:scale-[0.99]" data-type="tabs">
+                            <i data-lucide="folder" class="w-5 h-5 text-brand-gray-90/40 group-hover:text-brand-gray-90 transition-colors"></i>
+                            <div class="text-[10px] font-semibold text-brand-gray-90/60 group-hover:text-brand-gray-90">Tabs</div>
+                        </div>
+                    </div>
+                </div>
+
+
             </div>
         </div>
-
-        <!-- Toolkit (Compact Grid) -->
-        <section class="bg-[#403F3C]/[0.02] p-6 rounded-[15px] border border-[#403F3C]/5">
-            <div class="flex justify-between items-center mb-4">
-                <h2 class="text-[12px] text-[#403F3C]/30 font-bold">2. interactive tools</h2>
-                <p class="text-[11px] text-[#403F3C]/20">drag to editor</p>
-            </div>
-            <div class="grid grid-cols-3 gap-3" id="toolbox">
-                <div draggable="true" class="component-card group p-3 border border-[#403F3C]/5 rounded-[10px] bg-white hover:border-[#403F3C]/20 cursor-grab active:cursor-grabbing transition-all shadow-sm text-center" data-type="slider">
-                    <div class="text-[13px] font-medium text-[#403F3C]/60 group-hover:text-[#403F3C]">slider</div>
-                </div>
-                <div draggable="true" class="component-card group p-3 border border-[#403F3C]/5 rounded-[10px] bg-white hover:border-[#403F3C]/20 cursor-grab active:cursor-grabbing transition-all shadow-sm text-center" data-type="video">
-                    <div class="text-[13px] font-medium text-[#403F3C]/60 group-hover:text-[#403F3C]">video</div>
-                </div>
-                <div draggable="true" class="component-card group p-3 border border-[#403F3C]/5 rounded-[10px] bg-white hover:border-[#403F3C]/20 cursor-grab active:cursor-grabbing transition-all shadow-sm text-center" data-type="chart">
-                    <div class="text-[13px] font-medium text-[#403F3C]/60 group-hover:text-[#403F3C]">chart</div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Editor Area -->
-        <section class="space-y-4">
-            <div class="flex justify-between items-center mb-1">
-                <h2 class="text-[12px] text-[#403F3C]/30 font-bold">3. editor</h2>
-                <button id="ai-btn" class="bg-white border border-[#403F3C]/10 text-[#403F3C] text-[12px] font-bold px-4 py-1.5 rounded-[10px] hover:bg-zinc-50 transition-colors">tune with ai</button>
-            </div>
-            <textarea id="editor" class="w-full h-[500px] bg-white border border-[#403F3C]/10 rounded-[12px] p-6 text-[14px] text-[#403F3C]/80 font-medium leading-relaxed outline-none focus:ring-1 focus:ring-[#403F3C]/5 transition-all resize-none shadow-sm font-mono" placeholder="loading..."></textarea>
-            
-            <button id="publish-btn" class="w-full mt-6 bg-[#403F3C] text-[#F8F6F3] text-[14px] font-bold py-4 rounded-[10px] hover:opacity-90 transition-opacity shadow-lg">ship to production</button>
-        </section>
 	</div>
 
-    <!-- Modal (Compact) -->
-    <div id="modal" class="fixed inset-0 bg-[#F8F6F3]/95 backdrop-blur-md z-[200] hidden items-center justify-center p-6">
-        <div class="bg-white border border-[#403F3C]/10 p-8 rounded-[15px] max-w-[400px] w-full shadow-2xl">
-            <h2 id="modal-title" class="text-[14px] font-bold text-[#403F3C] mb-6">settings</h2>
-            <div id="modal-fields" class="space-y-4 mb-8"></div>
-            <div class="flex gap-3">
-                <button id="modal-save" class="flex-1 bg-[#403F3C] text-white text-[13px] font-bold py-3 rounded-[10px]">insert</button>
-                <button id="modal-cancel" class="flex-1 border border-[#403F3C]/10 text-[#403F3C]/40 text-[13px] font-bold py-3 rounded-[10px]">cancel</button>
-            </div>
+    <!-- DRAWER (Floating Side Panel) -->
+    <div id="drawer-overlay" class="fixed inset-0 bg-brand-gray-90/5 backdrop-blur-sm z-[200] opacity-0 pointer-events-none transition-opacity duration-300"></div>
+    
+    <div id="drawer" class="fixed top-4 bottom-4 right-4 w-[420px] bg-white/90 backdrop-blur-xl border border-brand-gray-90/5 rounded-[24px] shadow-2xl z-[201] translate-x-[120%] transition-transform duration-500 cubic-bezier(0.16, 1, 0.3, 1) flex flex-col p-6 overflow-hidden">
+        
+        <div class="flex justify-between items-center mb-6">
+            <h2 id="drawer-title" class="text-2xl font-semibold text-brand-gray-90">Configure Component</h2>
+            <button id="drawer-close" class="p-2 -mr-2 text-brand-gray-90/30 hover:text-brand-gray-90 transition-colors rounded-full hover:bg-brand-gray-90/5">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" class="stroke-current stroke-[2.5]" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg>
+            </button>
+        </div>
+
+        <div id="drawer-content" class="flex-1 overflow-y-auto space-y-6">
+            <!-- Dynamic Fields injected here -->
+        </div>
+
+        <div class="pt-6 mt-4 border-t border-brand-gray-90/5">
+            <button id="drawer-save" class="w-full bg-brand-gray-90 text-brand-gray-10 text-[15px] font-semibold py-4 rounded-[16px] transition-all shadow-lg shadow-brand-gray-90/10">Insert Component</button>
         </div>
     </div>
 
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/easymde/dist/easymde.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/easymde/dist/easymde.min.js"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <style is:global>
+        .EasyMDEContainer { background: white; border-radius: 12px; overflow: hidden; border: 1px solid rgba(64, 63, 60, 0.1); }
+        .editor-toolbar { border: none !important; border-bottom: 1px solid rgba(64, 63, 60, 0.05) !important; background: #fafafa !important; padding: 12px 18px !important; display: flex !important; align-items: center !important; gap: 4px !important; }
+        .editor-toolbar button { border-radius: 8px !important; color: theme('colors.brand.gray.90') !important; opacity: 0.5; transition: all 0.2s ease; border: 1px solid transparent !important; margin: 0 !important; width: 32px !important; height: 32px !important; display: flex !important; align-items: center !important; justify-content: center !important; white-space: nowrap; }
+        .editor-toolbar button.tune-ai-btn { width: auto !important; padding: 0 12px !important; gap: 6px; font-size: 11px; font-weight: 500; }
+        .editor-toolbar button:hover { background: rgba(64, 63, 60, 0.05) !important; opacity: 1; border-color: rgba(64, 63, 60, 0.05) !important; }
+        .editor-toolbar button.active { background: theme('colors.brand.gray.90') !important; color: theme('colors.brand.gray.10') !important; opacity: 1; }
+        .editor-toolbar button i { display: none !important; }
+        .editor-toolbar button svg { width: 16px !important; height: 16px !important; stroke-width: 2.5px; }
+        .editor-toolbar .separator { border-left: 1px solid rgba(64, 63, 60, 0.1) !important; height: 18px !important; background: none !important; margin: 0 8px !important; }
+        .CodeMirror { border: none !important; border-bottom-left-radius: 12px; border-bottom-right-radius: 12px; height: 700px !important; font-family: 'Geist Mono', monospace !important; font-size: 15px !important; padding: 24px !important; line-height: 1.7 !important; color: theme('colors.brand.gray.90') !important; }
+        .editor-preview { background: white !important; padding: 32px !important; }
+    </style>
+
 	<script>
+        
+        // Declare EasyMDE on window for TS if needed, or just use 'any'
+        declare const EasyMDE: any;
+
 		const editor = document.getElementById('editor') as HTMLTextAreaElement;
         const memoSelect = document.getElementById('memo-select') as HTMLSelectElement;
-        const modal = document.getElementById('modal');
-        const modalFields = document.getElementById('modal-fields');
-        const modalTitle = document.getElementById('modal-title');
-        const aiBtn = document.getElementById('ai-btn') as HTMLButtonElement;
-        const apiKeyInput = document.getElementById('api-key-input-box') as HTMLInputElement;
+        const publishedSelect = document.getElementById('published-select') as HTMLSelectElement;
+        const deptSelect = document.getElementById('dept-select') as HTMLSelectElement;
+        const titleInput = document.getElementById('memo-title') as HTMLInputElement;
+        const coverInput = document.getElementById('cover-image-url') as HTMLInputElement;
+        const coverUpload = document.getElementById('cover-upload') as HTMLInputElement;
+
+        let isEditingPublished = false;
+        let currentSlug = '';
+        let originalAuthor = '';
+        let originalBuilderImage = '';
+        
+        coverUpload?.addEventListener('change', (e: any) => {
+            const file = e.target.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = (re) => {
+                    if (coverInput) coverInput.value = re.target?.result as string;
+                };
+                reader.readAsDataURL(file);
+            }
+        });
+        
+        // Initialize EasyMDE with retry or load check
+        let easyMDE: any;
+        
+        function initIcons() {
+            if (typeof lucide !== 'undefined') {
+                // Map FA classes to Lucide icons
+                const mapping = {
+                    'fa-bold': 'bold',
+                    'fa-italic': 'italic',
+                    'fa-header': 'heading',
+                    'fa-quote-left': 'quote',
+                    'fa-code': 'code',
+                    'fa-list-ul': 'list',
+                    'fa-list-ol': 'list-ordered',
+                    'fa-link': 'link',
+                    'fa-picture-o': 'image',
+                    'fa-sparkles': 'sparkles',
+                    'fa-loader-2': 'loader-2',
+                    'fa-eye': 'eye',
+                    'fa-columns': 'columns-2',
+                    'fa-arrows-alt': 'maximize-2'
+                };
+
+                document.querySelectorAll('.editor-toolbar button i').forEach(icon => {
+                    for (const [fa, lucideName] of Object.entries(mapping)) {
+                        if (icon.classList.contains(fa)) {
+                            icon.setAttribute('data-lucide', lucideName);
+                            break;
+                        }
+                    }
+                });
+
+                // @ts-ignore
+                lucide.createIcons();
+
+                // Add label to Tune with AI button if missing
+                const tuneBtn = document.querySelector('.tune-ai-btn');
+                if (tuneBtn && !tuneBtn.querySelector('.btn-label')) {
+                    const span = document.createElement('span');
+                    span.className = 'btn-label';
+                    span.innerText = 'Tune with AI';
+                    tuneBtn.appendChild(span);
+                }
+            }
+        }
+
+        function initEditor() {
+            if (typeof EasyMDE !== 'undefined' && !easyMDE) {
+                easyMDE = new EasyMDE({
+                    element: editor,
+                    spellChecker: false,
+                    autosave: { enabled: false },
+                    toolbar: [
+                        { name: "bold", action: EasyMDE.toggleBold, className: "fa fa-bold", title: "Bold" },
+                        { name: "italic", action: EasyMDE.toggleItalic, className: "fa fa-italic", title: "Italic" },
+                        { name: "heading", action: EasyMDE.toggleHeadingSmaller, className: "fa fa-header", title: "Heading" },
+                        "|",
+                        { name: "quote", action: EasyMDE.toggleBlockquote, className: "fa fa-quote-left", title: "Quote" },
+                        { name: "code", action: EasyMDE.toggleCodeBlock, className: "fa fa-code", title: "Code" },
+                        { name: "unordered-list", action: EasyMDE.toggleUnorderedList, className: "fa fa-list-ul", title: "Generic List" },
+                        { name: "ordered-list", action: EasyMDE.toggleOrderedList, className: "fa fa-list-ol", title: "Numbered List" },
+                        "|",
+                        { name: "link", action: EasyMDE.drawLink, className: "fa fa-link", title: "Create Link" },
+                        { name: "image", action: EasyMDE.drawImage, className: "fa fa-picture-o", title: "Insert Image" },
+                        "|",
+                        { 
+                            name: "tune-ai", 
+                            action: () => tuneWithAI(), 
+                            className: "fa fa-sparkles tune-ai-btn", 
+                            title: "Tune with AI" 
+                        },
+                        "|",
+                        { name: "preview", action: EasyMDE.togglePreview, className: "fa fa-eye no-disable", title: "Toggle Preview" },
+                        { name: "side-by-side", action: EasyMDE.toggleSideBySide, className: "fa fa-columns no-disable no-mobile", title: "Side by Side" },
+                        { name: "fullscreen", action: EasyMDE.toggleFullScreen, className: "fa fa-arrows-alt no-disable no-mobile", title: "Fullscreen" },
+                    ],
+                    status: ["autosave", "lines", "words"],
+                    minHeight: "700px",
+                    placeholder: "Write your engineering update here..."
+                });
+
+                // Initialize Lucide icons for toolbar
+                setTimeout(initIcons, 100);
+
+                // Attach Drag Drop handlers to CodeMirror instance
+                easyMDE.codemirror.on('drop', (cm: any, e: any) => {
+                    e.preventDefault();
+                    // Get drop coordinates
+                    const coords = cm.coordsChar({ left: e.clientX, top: e.clientY });
+                    cm.setCursor(coords);
+                    openDrawer(activeComponent);
+                });
+                easyMDE.codemirror.on('dragover', (cm: any, e: any) => {
+                    e.preventDefault(); 
+                });
+            }
+        }
+
+        // Try init immediately, then on load if not ready
+        initEditor();
+        window.addEventListener('load', () => {
+            initEditor();
+            initIcons();
+        });
+        // Also a timeout just in case for CDN lag
+        setTimeout(() => {
+            initEditor();
+            initIcons();
+        }, 1000);
+
+        // Drawer Elements
+        const drawer = document.getElementById('drawer');
+        const drawerOverlay = document.getElementById('drawer-overlay');
+        const drawerContent = document.getElementById('drawer-content');
+        const drawerTitle = document.getElementById('drawer-title');
+        const drawerSave = document.getElementById('drawer-save');
+        const drawerClose = document.getElementById('drawer-close');
+
         const loginBtn = document.getElementById('login-btn');
-        const logoutBtn = document.getElementById('logout-btn');
+
         const passInput = document.getElementById('password') as HTMLInputElement;
         const togglePass = document.getElementById('toggle-pass');
         let activeComponent = '';
@@ -107,73 +327,426 @@ import Layout from '../layouts/Layout.astro';
             document.getElementById('auth-view')?.classList.add('hidden');
             document.getElementById('console-view')?.classList.remove('hidden');
             loadMemos();
+            loadPublished();
+            
+            // Check for edit query param
+            const urlParams = new URLSearchParams(window.location.search);
+            const editSlug = urlParams.get('edit');
+            if (editSlug) {
+                setTimeout(() => loadSinglePublished(editSlug), 500);
+            }
+        }
+
+        async function loadPublished() {
+            try {
+                const res = await fetch('/api/publish', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ action: 'get-published-list' })
+                });
+                const files = await res.json();
+                if (res.ok && Array.isArray(files)) {
+                    publishedSelect.innerHTML = '<option value="">Edit Published Article...</option>' + 
+                    files.map(f => `<option value="${f}">${f.replace('.mdx', '')}</option>`).join('');
+                }
+            } catch (e) { console.error("Failed to load published:", e); }
+        }
+
+        async function loadSinglePublished(slug: string) {
+            if (easyMDE) easyMDE.value("Loading...");
+            const fileName = slug.endsWith('.mdx') ? slug : `${slug}.mdx`;
+            const res = await fetch('/api/publish', { 
+                method: 'POST', 
+                headers: { 'Content-Type': 'application/json' }, 
+                body: JSON.stringify({ action: 'load-published', fileName })
+            });
+            const data = await res.json();
+            if (data.content) {
+                if (easyMDE) easyMDE.value(data.content);
+                titleInput.value = data.title || '';
+                deptSelect.value = data.department || '';
+                coverInput.value = data.coverImage || '';
+                isEditingPublished = true;
+                currentSlug = slug.replace('.mdx', '');
+                originalAuthor = data.author;
+                originalBuilderImage = data.builderImage;
+                
+                const publishBtn = document.getElementById('publish-btn');
+                if (publishBtn) publishBtn.innerHTML = "Update Article";
+            }
         }
 
         async function loadMemos() {
-            const res = await fetch('/api/publish');
-            const files = await res.json();
-            if (Array.isArray(files)) {
-                memoSelect.innerHTML = '<option value="">select builder memo...</option>' + 
-                files.map(f => `<option value="${f}">${f}</option>`).join('');
+            try {
+                const res = await fetch('/api/publish');
+                const files = await res.json();
+                if (res.ok && Array.isArray(files)) {
+                    memoSelect.innerHTML = '<option value="">Select Builder Memo...</option>' + 
+                    files.map(f => `<option value="${f}">${f}</option>`).join('');
+                } else {
+                    console.error("Failed to load memos:", files.error || files);
+                    alert("Failed to load memos: " + (files.error || "Unknown error"));
+                }
+            } catch (e) {
+                console.error("Network/Parsing error:", e);
+                alert("Error loading memos. Check console.");
             }
         }
 
-        loginBtn?.addEventListener('click', () => {
-			if (passInput.value === "robot-builders-2026") {
+        loginBtn?.addEventListener('click', async () => {
+            const password = passInput.value;
+            const res = await fetch('/api/auth', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ password })
+            });
+            const data = await res.json();
+			if (data.success) {
                 localStorage.setItem('builder_status', 'authorized'); window.location.reload();
-			} else { alert("unauthorized."); }
+			} else { alert("Unauthorized."); }
 		});
+        
 
-        apiKeyInput.value = localStorage.getItem('robot_memos_key') || "";
-        apiKeyInput.addEventListener('input', () => { localStorage.setItem('robot_memos_key', apiKeyInput.value); });
 
         memoSelect?.addEventListener('change', async () => {
             const fileName = memoSelect.value; if (!fileName) return;
-            editor.value = "fetching...";
+            isEditingPublished = false;
+            currentSlug = '';
+            const publishBtn = document.getElementById('publish-btn');
+            if (publishBtn) publishBtn.innerHTML = "Ship to Production";
+
+            if (easyMDE) easyMDE.value("Fetching...");
+            else editor.value = "Fetching...";
+            
             const res = await fetch('/api/publish', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ action: 'load', fileName })});
-            const data = await res.json(); if (data.content) editor.value = data.content;
+            const data = await res.json(); 
+            if (data.content) {
+                if (easyMDE) easyMDE.value(data.content);
+                else editor.value = data.content;
+            }
         });
 
-        document.querySelectorAll('.component-card').forEach(card => { card.addEventListener('dragstart', (e: any) => { activeComponent = e.currentTarget.dataset.type || ''; }); });
-        editor.addEventListener('dragover', (e) => e.preventDefault());
-        editor.addEventListener('drop', (e) => { e.preventDefault(); openModal(activeComponent); });
+        publishedSelect?.addEventListener('change', () => {
+            const val = publishedSelect.value;
+            if (val) loadSinglePublished(val);
+        });
 
-        function openModal(type: string) {
-            if (!modal || !modalFields || !modalTitle) return;
-            modal.style.display = 'flex';
-            const inputClass = "w-full bg-white border border-[#403F3C]/10 py-3 px-5 text-[14px] outline-none rounded-[10px] font-medium";
+        document.querySelectorAll('.component-card').forEach(card => { 
+            card.addEventListener('dragstart', (e: any) => { activeComponent = e.currentTarget.dataset.type || ''; }); 
+            card.addEventListener('click', (e: any) => {
+                activeComponent = e.currentTarget.dataset.type || '';
+                openDrawer(activeComponent);
+            });
+        });
+        
+        // Drag Drop for EasyMDE (CodeMirror)
+        if (easyMDE) {
+            easyMDE.codemirror.on('drop', (cm: any, e: any) => {
+                e.preventDefault();
+                openDrawer(activeComponent);
+            });
+            easyMDE.codemirror.on('dragover', (cm: any, e: any) => {
+                e.preventDefault(); 
+            });
+        }
+        
+        // Fallback for raw textarea if JS fails or loading delays
+        editor.addEventListener('dragover', (e) => e.preventDefault());
+        editor.addEventListener('drop', (e) => { 
+            e.preventDefault(); 
+            openDrawer(activeComponent); 
+        });
+
+        function openDrawer(type: string) {
+            if (!drawer || !drawerContent || !drawerTitle) return;
+            
+            // Show Drawer
+            drawerOverlay?.classList.remove('opacity-0', 'pointer-events-none');
+            drawer.classList.remove('translate-x-[120%]');
+            
+            const inputClass = "w-full bg-[#f4f4f5] border-transparent focus:bg-white border focus:border-brand-gray-90/10 py-4 px-5 text-[15px] outline-none rounded-[14px] font-medium transition-all text-brand-gray-90 placeholder-brand-gray-90/30";
+            const labelClass = "text-xs font-bold text-brand-gray-90/40 ml-1 mb-2 block";
+
             if (type === 'slider') {
-                modalTitle.innerText = 'Slider';
-                modalFields.innerHTML = `<input type="text" placeholder="Before Image URL" class="${inputClass}" id="field-before"><input type="text" placeholder="After Image URL" class="${inputClass}" id="field-after">`;
-            } else if (type === 'video') {
-                modalTitle.innerText = 'Video'; modalFields.innerHTML = `<input type="text" placeholder="Video URL" class="${inputClass}" id="field-video">`;
+                drawerTitle.innerText = 'Configure Slider';
+                drawerContent.innerHTML = `
+                    <div><label class="${labelClass}">Before Image URL</label><input type="text" placeholder="https://..." class="${inputClass}" id="field-before"></div>
+                    <div><label class="${labelClass}">After Image URL</label><input type="text" placeholder="https://..." class="${inputClass}" id="field-after"></div>
+                `;
+            } else if (type === 'videoplayer') {
+                drawerTitle.innerText = 'Configure Video Player'; 
+                drawerContent.innerHTML = `
+                    <div><label class="${labelClass}">Video Source URL</label><input type="text" placeholder="https://..." class="${inputClass}" id="field-video-src"></div>
+                    <div><label class="${labelClass}">Poster Image (Optional)</label><input type="text" placeholder="https://..." class="${inputClass}" id="field-video-poster"></div>
+                    <div><label class="${labelClass}">Caption (Optional)</label><input type="text" placeholder="Video description..." class="${inputClass}" id="field-video-caption"></div>
+                    <div class="flex gap-3">
+                        <label class="flex items-center gap-2 text-sm"><input type="checkbox" id="field-video-autoplay" class="accent-brand-gray-90"> Autoplay</label>
+                        <label class="flex items-center gap-2 text-sm"><input type="checkbox" id="field-video-loop" checked class="accent-brand-gray-90"> Loop</label>
+                    </div>
+                `;
             } else if (type === 'chart') {
-                modalTitle.innerText = 'Chart';
-                modalFields.innerHTML = `<select id="chart-type" class="${inputClass}"><option value="line">Line</option><option value="bar">Bar</option></select><input type="text" id="chart-title" placeholder="Title" class="${inputClass}"><textarea id="chart-data" class="w-full bg-white border border-[#403F3C]/10 p-5 text-[13px] font-mono outline-none h-32 rounded-[10px]" placeholder='[{"name": "A", "val": 10}]'></textarea>`;
+                drawerTitle.innerText = 'Configure Chart';
+                drawerContent.innerHTML = `
+                    <div class="space-y-4">
+                        <label class="${labelClass}">Chart Type</label>
+                        <div class="grid grid-cols-2 gap-3" id="chart-type-selector">
+                            <button type="button" class="chart-type-btn p-4 border border-brand-gray-90/5 rounded-[16px] bg-[#f4f4f5] flex flex-col items-center gap-2 transition-all hover:bg-white hover:border-brand-gray-90/10 active:scale-95" data-type="line">
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" class="stroke-brand-gray-90/40" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3v18h18"/><path d="m19 9-5 5-4-4-3 3"/></svg>
+                                <span class="text-[10px] font-bold text-brand-gray-90/40">Line</span>
+                            </button>
+                            <button type="button" class="chart-type-btn p-4 border border-brand-gray-90/5 rounded-[16px] bg-[#f4f4f5] flex flex-col items-center gap-2 transition-all hover:bg-white hover:border-brand-gray-90/10 active:scale-95" data-type="area">
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" class="stroke-brand-gray-90/40" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3v18h18"/><path d="M7 12c-1.1 0-2 .9-2 2v7h4v-7c0-1.1-.9-2-2-2z"/><path d="m19 9-5 5-4-4-3 3"/><path d="m3 21 4-9 5 5 5-5 4 4" opacity="0.2"/></svg>
+                                <span class="text-[10px] font-bold text-brand-gray-90/40">Area</span>
+                            </button>
+                            <button type="button" class="chart-type-btn p-4 border border-brand-gray-90/5 rounded-[16px] bg-[#f4f4f5] flex flex-col items-center gap-2 transition-all hover:bg-white hover:border-brand-gray-90/10 active:scale-95" data-type="bar">
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" class="stroke-brand-gray-90/40" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20V10"/><path d="M18 20V4"/><path d="M6 20v-4"/><path d="M3 20h18"/></svg>
+                                <span class="text-[10px] font-bold text-brand-gray-90/40">Bar</span>
+                            </button>
+                            <button type="button" class="chart-type-btn p-4 border border-brand-gray-90/5 rounded-[16px] bg-[#f4f4f5] flex flex-col items-center gap-2 transition-all hover:bg-white hover:border-brand-gray-90/10 active:scale-95" data-type="pie">
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" class="stroke-brand-gray-90/40" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21.21 15.89A10 10 0 1 1 8 2.83"/><path d="M22 12A10 10 0 0 0 12 2v10z"/></svg>
+                                <span class="text-[10px] font-bold text-brand-gray-90/40">Pie</span>
+                            </button>
+                        </div>
+                        <input type="hidden" id="chart-type" value="line">
+                    </div>
+                    <div><label class="${labelClass}">Chart Title</label><input type="text" id="chart-title" placeholder="e.g. Battery Performance" class="${inputClass}"></div>
+                    <div><label class="${labelClass}">Data JSON</label><textarea id="chart-data" class="${inputClass} h-40 font-mono text-sm leading-relaxed" placeholder='[{"name": "A", "val": 10}, {"name": "B", "val": 20}]'></textarea></div>
+                    <div class="grid grid-cols-2 gap-3">
+                        <div><label class="${labelClass}">X-Axis Key</label><input type="text" id="chart-x" placeholder="name" value="name" class="${inputClass}"></div>
+                        <div><label class="${labelClass}">Y-Axis Key</label><input type="text" id="chart-y" placeholder="val" value="val" class="${inputClass}"></div>
+                    </div>
+                    <p class="text-[10px] text-brand-gray-90/30 font-bold mt-2 px-1">Tip: Pie charts use "val" for values and "name" for labels.</p>
+                `;
+
+                // Add selection logic
+                setTimeout(() => {
+                    const btns = document.querySelectorAll('.chart-type-btn');
+                    const input = document.getElementById('chart-type') as HTMLInputElement;
+                    btns.forEach(btn => {
+                        btn.addEventListener('click', () => {
+                            btns.forEach(b => {
+                                b.classList.remove('bg-white', 'border-brand-gray-90/20', 'ring-2', 'ring-brand-gray-90/5');
+                                b.querySelector('svg')?.classList.replace('stroke-brand-gray-90', 'stroke-brand-gray-90/40');
+                                b.querySelector('span')?.classList.replace('text-brand-gray-90', 'text-brand-gray-90/40');
+                            });
+                            btn.classList.add('bg-white', 'border-brand-gray-90/20', 'ring-2', 'ring-brand-gray-90/5');
+                            btn.querySelector('svg')?.classList.replace('stroke-brand-gray-90/40', 'stroke-brand-gray-90');
+                            btn.querySelector('span')?.classList.replace('text-brand-gray-90/40', 'text-brand-gray-90');
+                            input.value = (btn as any).dataset.type;
+                        });
+                    });
+                    // Select default
+                    (btns[0] as any).click();
+                }, 0);
+            } else if (type === 'gallery') {
+                drawerTitle.innerText = 'Configure Image Gallery';
+                drawerContent.innerHTML = `
+                    <div><label class="${labelClass}">Images JSON Array</label><textarea id="gallery-images" class="${inputClass} h-48 font-mono text-sm leading-relaxed" placeholder='[{"src": "https://...", "caption": "...", "alt": "..."}]'></textarea></div>
+                    <div><label class="${labelClass}">Columns</label><select id="gallery-columns" class="${inputClass} appearance-none"><option value="2">2 Columns</option><option value="3" selected>3 Columns</option><option value="4">4 Columns</option></select></div>
+                `;
+            } else if (type === 'metric') {
+                drawerTitle.innerText = 'Configure Metric Card';
+                drawerContent.innerHTML = `
+                    <div><label class="${labelClass}">Value</label><input type="text" id="metric-value" placeholder="e.g. 98.5%" class="${inputClass}"></div>
+                    <div><label class="${labelClass}">Label</label><input type="text" id="metric-label" placeholder="e.g. Success Rate" class="${inputClass}"></div>
+                    <div><label class="${labelClass}">Description (Optional)</label><input type="text" id="metric-desc" placeholder="Additional context..." class="${inputClass}"></div>
+                    <div><label class="${labelClass}">Trend</label><select id="metric-trend" class="${inputClass} appearance-none"><option value="">None</option><option value="up">Up ↑</option><option value="down">Down ↓</option><option value="neutral">Neutral →</option></select></div>
+                    <div><label class="${labelClass}">Trend Value (Optional)</label><input type="text" id="metric-trend-val" placeholder="e.g. +12%" class="${inputClass}"></div>
+                `;
+            } else if (type === 'callout') {
+                drawerTitle.innerText = 'Configure Callout Box';
+                drawerContent.innerHTML = `
+                    <div><label class="${labelClass}">Type</label><select id="callout-type" class="${inputClass} appearance-none"><option value="info">Info</option><option value="warning">Warning</option><option value="success">Success</option><option value="insight">Insight</option></select></div>
+                    <div><label class="${labelClass}">Title (Optional)</label><input type="text" id="callout-title" placeholder="e.g. Key Takeaway" class="${inputClass}"></div>
+                    <div><label class="${labelClass}">Content</label><textarea id="callout-content" class="${inputClass} h-32" placeholder="Your message here..."></textarea></div>
+                `;
+            } else if (type === 'tabs') {
+                drawerTitle.innerText = 'Configure Tabs';
+                drawerContent.innerHTML = `
+                    <div><label class="${labelClass}">Tabs JSON Array</label><textarea id="tabs-data" class="${inputClass} h-48 font-mono text-sm leading-relaxed" placeholder='[{"id": "tab1", "label": "Overview", "content": "..."}]'></textarea></div>
+                    <p class="text-xs text-brand-gray-90/40 mt-2">Note: Content can be markdown or HTML</p>
+                `;
+            }
+
+            // Common Legend field for all interactive components
+            const legendDiv = document.createElement('div');
+            legendDiv.className = "pt-4 border-t border-brand-gray-90/5 mt-4";
+            legendDiv.innerHTML = `
+                <label class="${labelClass}">Reference Legend</label>
+                <input type="text" id="field-legend" placeholder="e.g. Interactive: Drag to compare" class="${inputClass}">
+            `;
+            drawerContent.appendChild(legendDiv);
+        }
+
+        function closeDrawer() {
+            drawer?.classList.add('translate-x-[120%]');
+            drawerOverlay?.classList.add('opacity-0', 'pointer-events-none');
+        }
+
+        drawerClose?.addEventListener('click', closeDrawer);
+        drawerOverlay?.addEventListener('click', closeDrawer);
+
+        drawerSave?.addEventListener('click', () => {
+            const legend = (document.getElementById('field-legend') as HTMLInputElement)?.value;
+            const legendAttr = legend ? ` legend="${legend}"` : '';
+
+            if (activeComponent === 'slider') {
+                tag = `\n<BeforeAfterSlider client:load beforeImage="${(document.getElementById('field-before') as any).value}" afterImage="${(document.getElementById('field-after') as any).value}"${legendAttr} />\n`;
+            } else if (activeComponent === 'videoplayer') {
+                const src = (document.getElementById('field-video-src') as any).value;
+                const poster = (document.getElementById('field-video-poster') as any).value;
+                const caption = (document.getElementById('field-video-caption') as any).value;
+                const autoplay = (document.getElementById('field-video-autoplay') as any).checked;
+                const loop = (document.getElementById('field-video-loop') as any).checked;
+                tag = `\n<VideoPlayer client:load src="${src}"${poster ? ` poster="${poster}"` : ''}${caption ? ` caption="${caption}"` : ''}${autoplay ? ' autoplay={true}' : ''}${loop ? ' loop={true}' : ''}${legendAttr} muted={true} />\n`;
+            } else if (activeComponent === 'chart') {
+                const chartType = (document.getElementById('chart-type') as any).value;
+                const chartTitle = (document.getElementById('chart-title') as any).value;
+                const chartData = (document.getElementById('chart-data') as any).value;
+                const chartX = (document.getElementById('chart-x') as any).value;
+                const chartY = (document.getElementById('chart-y') as any).value;
+                tag = `\n<TelemetryChart client:load type="${chartType}" title="${chartTitle}" xAxis="${chartX}" yAxis="${chartY}" data={${chartData}}${legendAttr} />\n`;
+            } else if (activeComponent === 'gallery') {
+                const images = (document.getElementById('gallery-images') as any).value;
+                const columns = (document.getElementById('gallery-columns') as any).value;
+                tag = `\n<ImageGallery client:load images={${images}} columns={${columns}}${legendAttr} />\n`;
+            } else if (activeComponent === 'metric') {
+                const value = (document.getElementById('metric-value') as any).value;
+                const label = (document.getElementById('metric-label') as any).value;
+                const desc = (document.getElementById('metric-desc') as any).value;
+                const trend = (document.getElementById('metric-trend') as any).value;
+                const trendVal = (document.getElementById('metric-trend-val') as any).value;
+                tag = `\n<MetricCard client:load value="${value}" label="${label}"${desc ? ` description="${desc}"` : ''}${trend ? ` trend="${trend}"` : ''}${trendVal ? ` trendValue="${trendVal}"` : ''}${legendAttr} />\n`;
+            } else if (activeComponent === 'callout') {
+                const type = (document.getElementById('callout-type') as any).value;
+                const title = (document.getElementById('callout-title') as any).value;
+                const content = (document.getElementById('callout-content') as any).value;
+                tag = `\n<CalloutBox client:load type="${type}"${title ? ` title="${title}"` : ''}>\n  ${content}\n</CalloutBox>\n`;
+            } else if (activeComponent === 'tabs') {
+                const tabsData = (document.getElementById('tabs-data') as any).value;
+                tag = `\n<TabsComponent client:load tabs={${tabsData}}${legendAttr} />\n`;
+            }
+            
+            // Insert into EasyMDE if active
+            if (easyMDE) {
+                const cm = easyMDE.codemirror;
+                const doc = cm.getDoc();
+                const cursor = doc.getCursor();
+                doc.replaceRange(tag, cursor);
+                closeDrawer();
+                return;
+            }
+
+            // Fallback for raw textarea
+            const start = editor.selectionStart;
+            const end = editor.selectionEnd;
+            const text = editor.value;
+            const before = text.substring(0, start);
+            const after = text.substring(end, text.length);
+            editor.value = before + tag + after;
+            
+            const newCursorPos = start + tag.length;
+            editor.selectionStart = newCursorPos;
+            editor.selectionEnd = newCursorPos;
+            editor.focus();
+
+            closeDrawer();
+        });
+
+        async function tuneWithAI() {
+            const currentContent = easyMDE ? easyMDE.value() : editor.value;
+            if (!currentContent.trim()) { alert("Please write some content first."); return; }
+
+            const aiBtn = document.querySelector('.tune-ai-btn');
+            if (!aiBtn) return;
+
+            const originalHTML = aiBtn.innerHTML;
+            aiBtn.innerHTML = `<i data-lucide="loader-2" class="w-4 h-4 animate-spin"></i> <span class="btn-label">Tuning...</span>`;
+            // @ts-ignore
+            if (typeof lucide !== 'undefined') lucide.createIcons();
+            aiBtn.classList.add('pointer-events-none', 'opacity-50');
+
+            try {
+                const res = await fetch('/api/ai', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ prompt: "Tune this text", content: currentContent })
+                });
+                const data = await res.json();
+                
+                if (data.error) {
+                    alert("AI Error: " + data.error);
+                } else if (data.content) {
+                    if (easyMDE) easyMDE.value(data.content);
+                    else editor.value = data.content;
+                }
+            } catch (e) {
+                console.error(e);
+                alert("Failed to connect to AI.");
+            } finally {
+                aiBtn.innerHTML = originalHTML;
+                // @ts-ignore
+                if (typeof lucide !== 'undefined') lucide.createIcons();
+                aiBtn.classList.remove('pointer-events-none', 'opacity-50');
             }
         }
 
-        document.getElementById('modal-save')?.addEventListener('click', () => {
-            let tag = '';
-            if (activeComponent === 'slider') tag = `\n<BeforeAfterSlider client:load beforeImage="${(document.getElementById('field-before') as any).value}" afterImage="${(document.getElementById('field-after') as any).value}" />\n`;
-            else if (activeComponent === 'video') tag = `\n<video src="${(document.getElementById('field-video') as any).value}" autoplay muted loop class="rounded-sm w-full" />\n`;
-            else if (activeComponent === 'chart') tag = `\n<TelemetryChart client:load type="${(document.getElementById('chart-type') as any).value}" title="${(document.getElementById('chart-title') as any).value}" data={${(document.getElementById('chart-data') as any).value}} />\n`;
-            editor.value += tag; modal!.style.display = 'none';
-        });
+        // Removed old aiBtn click listener as it's now handled by the toolbar and tuneWithAI function
 
         document.getElementById('publish-btn')?.addEventListener('click', async () => {
-            const title = prompt("title?"); if (!title) return;
-            const res = await fetch('/api/publish', {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ action: 'publish', title, fileName: memoSelect.value, content: editor.value })
-            });
-            const data = await res.json();
-            if (data.success) alert("shipped!");
+            const title = titleInput.value;
+            if (!title) { alert("Please set a title for this memo."); return; }
+
+            const department = deptSelect.value;
+            if (!department) { alert("Please select a department."); return; }
+            
+            const publishBtn = document.getElementById('publish-btn') as HTMLButtonElement;
+            const originalText = publishBtn.innerHTML;
+            publishBtn.innerHTML = "🚀 Publishing...";
+            publishBtn.disabled = true;
+            
+            try {
+                const res = await fetch('/api/publish', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ 
+                        action: 'publish', 
+                        title, 
+                        department, 
+                        coverImage: coverInput.value,
+                        fileName: memoSelect.value, 
+                        content: easyMDE ? easyMDE.value() : editor.value,
+                        isEdit: isEditingPublished,
+                        slug: isEditingPublished ? currentSlug : undefined,
+                        author: originalAuthor,
+                        builderImage: originalBuilderImage
+                    })
+                });
+                const data = await res.json();
+                
+                if (data.success && data.slug) {
+                    // Clear any saved draft
+                    localStorage.removeItem('smde_robot_memo_draft');
+                    // Redirect to the new article
+                    window.location.href = `/posts/${data.slug}`;
+                } else if (data.success) {
+                    alert("Shipped!");
+                    publishBtn.innerHTML = originalText;
+                    publishBtn.disabled = false;
+                } else {
+                    alert("Failed to publish: " + (data.error || "Unknown error"));
+                    publishBtn.innerHTML = originalText;
+                    publishBtn.disabled = false;
+                }
+            } catch (e) {
+                console.error(e);
+                alert("Failed to publish article.");
+                publishBtn.innerHTML = originalText;
+                publishBtn.disabled = false;
+            }
         });
 
-        document.getElementById('modal-cancel')?.addEventListener('click', () => modal!.style.display = 'none');
-        document.getElementById('logout-btn')?.addEventListener('click', () => { localStorage.removeItem('builder_status'); window.location.reload(); });
-        togglePass?.addEventListener('click', () => { const pass = document.getElementById('password') as HTMLInputElement; const isPass = pass.type === 'password'; pass.type = isPass ? 'text' : 'password'; togglePass.innerText = isPass ? 'hide' : 'show'; });
+
+        togglePass?.addEventListener('click', () => { const pass = document.getElementById('password') as HTMLInputElement; const isPass = pass.type === 'password'; pass.type = isPass ? 'text' : 'password'; togglePass.innerText = isPass ? 'Hide' : 'Show'; });
 	</script>
 </Layout>

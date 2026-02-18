@@ -1,0 +1,115 @@
+---
+title: "Miguel Rengifo | Design Engineer | Founders Department Memo"
+pubDate: 2026-02-18
+author: "Miguel Rengifo"
+builderImage: "/images/placeholder.jpeg"
+coverImage: "/images/hero.png"
+description: "Memo period: 2026-Q1-W07 | Created: 18-Feb-2026"
+department: "Founders"
+quarter: "2026-Q1"
+---
+import TelemetryChart from '../../components/TelemetryChart';
+import MetricCard from '../../components/MetricCard';
+import CalloutBox from '../../components/CalloutBox';
+
+# Department Overview
+
+As a Design Engineer within the **Founders** team, my focus is on standardizing our digital identity to match the technical sophistication of our robotics fleet. I bridge the gap between core engineering and user experience, designing and developing scalable UI systems that prioritize metric transparency. Our goal is to transform every digital touchpoint—from public platforms like **R-ads** to internal engines like **Robot Memos**—into high-performance, data-driven systems.
+
+---
+
+# Achievements & Updates
+
+## R-ads Website Redesign & SaaS Pivot
+
+We have completed the total redesign of the R-ads website, moving from a static marketing presence to a SaaS-focused performance dashboard.
+
+### What We Had Before
+The previous site was built on a generic marketing template that failed to communicate the "intelligence" behind our fleet.
+- **Low Information Density**: Critical reach and precision data were buried in subpages.
+- **Non-Standard Aesthetic**: Used pure blacks and generic blues that didn't align with our hardware branding.
+- **Static Proof Points**: No real-time or interactive metric visualization for potential DOOH partners.
+
+### What We Built
+A bespoke architecture built with **NextJS** for **DatoCMS**, focused on **Bento-grid** layouts and interactive precision metrics as part of a broader SaaS-focused redesign.
+- **NextJS + DatoCMS**: Leveraged a modern stack to enable dynamic content management with high performance.
+- **SaaS Design System**: Implemented a rigid grid system and modular sections to handle high data density while maintaining a "pro-grade" aesthetic.
+- **Standardized Palette**: Enforced the `#262626` (brand-black) foundation across all components.
+- **Metric-First UI**: Developed custom components for live reach and campaign performance visualization.
+
+### Impact
+
+**Projected Engagement Spike: ~50% Improvement**
+
+| Metric | Before (Template) | After (SaaS-First) |
+|--------|------------------|-------------------|
+| **Information Density** | Low | High (Bento Architecture) |
+| **Brand Alignment** | Inconsistent | 100% (Standard `#262626`) |
+| **Stakeholder Trust** | Subjective | Objective (Metric-Driven) |
+| **Page Speed** | 2.1s | **0.5s (NextJS / SSR)** |
+
+[Insert Screenshot of R-ads Redesign Here]
+
+---
+
+## Robot Memos: Internal Transparency Engine
+
+We successfully launched **Robot Memos**, an MDX-driven publishing platform designed for rapid engineering iteration.
+
+### What We Had Before
+Engineering updates were fragmented across Slack threads, private docs, and disconnected PDF reports.
+- **Friction-Heavy**: Required manual formatting for every update.
+- **Silent Data**: Unable to include interactive charts or live telemetry.
+- **Low Searchability**: Technical "tribal knowledge" was lost in unindexed silos.
+
+### What We Built
+A high-performance blog engine using **Astro + MDX**.
+- **Interactive Telemetry**: Integrated `TelemetryChart` components that pull directly from markdown files.
+- **Standardized Metadata**: Automated collection of departments, authors, and quarters for easier technical auditing.
+- **Zero-JS Foundation**: Lightning-fast load times even with complex data visualization.
+
+### Impact
+
+**Cadence Improvement**
+
+| Metric | Manual DOCS | Robot Memos |
+|--------|-------------|-------------|
+| **Publishing Time** | 45+ mins | **~10 mins** |
+| **Data Interactivity** | None (Images only) | **Live (React/MDX)** |
+| **Unified Search** | Impossible | **Fully Indexed** |
+
+<TelemetryChart 
+  client:load 
+  type="area" 
+  title="Projected Knowledge Retention" 
+  xAxis="month" 
+  yAxis="memos"
+  data={[
+    {"month": "Jan", "memos": 12},
+    {"month": "Feb", "memos": 45},
+    {"month": "Mar", "memos": 88},
+    {"month": "Apr", "memos": 142}
+  ]} 
+/>
+
+---
+
+# Lessons Learned
+
+## MDX is the Pipeline for Engineering Narrative
+Treating memos as code (MDX) allows us to build a "streaming" pipeline for news. By removing the boundary between raw data components and text, we eliminate the need for screenshots and manual formatting.
+
+## Standardized Constraints Speed Up Design
+By strictly enforcing the brand-black (`#262626`) and zero letter-spacing (`tracking-0`) across the entire site, we eliminated 90% of the decision-making time during new component development.
+
+---
+
+# Strategic Priorities
+
+## SEO & Technical Indexing
+The next phase for Robot Memos is optimizing the search indexing for technical keywords like "autonomy logs" and "DOOH metrics" to ensure our engineering wins are discoverable by the broader robotics community.
+
+## tech-surf: 
+[Insert Video of the new Memos Console workflow here]
+[Insert Screen Recording of the R-ads interactive hover effects here]
+

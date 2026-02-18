@@ -1,0 +1,59 @@
+---
+import MarketingLayout from '../layouts/MarketingLayout.astro';
+import Hero from '../components/marketing/Hero.astro';
+import Navbar from '../components/marketing/Navbar.astro';
+import LaptopFeature from '../components/marketing/LaptopFeature.astro';
+import RealWorldMeasurement from '../components/marketing/RealWorldMeasurement.astro';
+import Testimonial from '../components/marketing/Testimonial.astro';
+import MetricGrid from '../components/marketing/MetricGrid.astro';
+import FinalCTA from '../components/marketing/FinalCTA.astro';
+import Footer from '../components/marketing/Footer.astro';
+import { performRequest } from '../lib/datocms';
+
+const PAGE_QUERY = `
+  query MyQuery {
+    allLandingPages(first: 1) {
+      heroTitle
+      heroSubtitle
+      laptopTitle
+      laptopDescription
+      testimonialQuote
+      testimonialAuthor
+    }
+  }
+`;
+
+let pageData = null;
+try {
+  const data = await performRequest({ query: PAGE_QUERY });
+  pageData = data?.allLandingPages?.[0] || null;
+} catch (e) {
+  console.log("No DatoCMS data found, using defaults");
+}
+---
+
+<MarketingLayout title="Robot.com | X-01 AI-Native Reach">
+  <Navbar />
+  <Hero 
+    title={pageData?.heroTitle} 
+    subtitle={pageData?.heroSubtitle} 
+  />
+  
+  <LaptopFeature 
+    title={pageData?.laptopTitle}
+    description={pageData?.laptopDescription}
+  />
+  
+  <RealWorldMeasurement />
+  
+  <Testimonial 
+    quote={pageData?.testimonialQuote}
+    author={pageData?.testimonialAuthor}
+  />
+  
+  <MetricGrid />
+  
+  <FinalCTA />
+  
+  <Footer />
+</MarketingLayout>

@@ -1,0 +1,168 @@
+---
+title: "Autonomy Department Q1 2026 OKRs - Week 6 Progress"
+pubDate: 2026-02-06
+author: "Autonomy Team"
+builderImage: "https://api.dicebear.com/7.x/avataaars/svg?seed=autonomy"
+coverImage: "https://www.datocms-assets.com/166246/1761680385-product_robot_kiwi.png?dpr=1.5"
+description: "Q1 2026 OKR progress update for the Autonomy Department - tracking autonomous performance, system reliability, AI research, and Robot Dogs roadmap."
+department: "Autonomy"
+quarter: "2026-Q1"
+---
+import TelemetryChart from '../../components/TelemetryChart';
+import MetricCard from '../../components/MetricCard';
+import CalloutBox from '../../components/CalloutBox';
+
+# Autonomy Department OKRs - 26Q1 Week 6
+
+**Overall Progress**: 36.78% | **Overall Score**: 0.32 / 1.00
+
+[View Full OKRs Sheet](https://docs.google.com/spreadsheets/d/10PFnPZsUD1aT81XQsY1RkYpSjTaWpsut-DwSRjYn588/edit?gid=897512901#gid=897512901)
+
+---
+
+## Key Performance Metrics
+
+<div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 4px; margin: 2rem 0;">
+  <MetricCard client:load value="36.78%" label="Overall Progress" description="Q1 2026 completion" />
+  <MetricCard client:load value="0.32" label="Overall Score" description="Out of 1.00" />
+  <MetricCard client:load value="3,307" label="Obstacles Recorded" description="For auto-routing" />
+  <MetricCard client:load value="1,650" label="Dataset Hours" description="Rover foundation model" />
+</div>
+
+---
+
+## O1: Boost Autonomous Performance KPIs (31.58%)
+
+### US Winter Visit - 80% Complete
+
+<CalloutBox client:load type="success" title="On Track">
+Consolidated agenda of findings delivered. Feedback from team discussions and action items pending for February 6th deployment.
+</CalloutBox>
+
+**Key Achievements:**
+- Comprehensive field testing completed
+- Cross-team collaboration agenda finalized
+- Deployment scheduled for fleet-wide release
+
+### MTBF Reduction - 46.17% Complete
+
+<CalloutBox client:load type="warning" title="Attention Needed">
+MTBF decreased due to limited QA bandwidth preventing router issue fix. Release now on staging, deployment scheduled for February 6th.
+</CalloutBox>
+
+<TelemetryChart 
+  client:load 
+  type="line" 
+  title="MTBF Progress Over Time" 
+  xAxis="week" 
+  yAxis="percentage"
+  data={[
+    {"week": "Week 1", "percentage": 10},
+    {"week": "Week 2", "percentage": 20},
+    {"week": "Week 3", "percentage": 30},
+    {"week": "Week 4", "percentage": 35},
+    {"week": "Week 5", "percentage": 40},
+    {"week": "Week 6", "percentage": 46}
+  ]} 
+/>
+
+### Obstacles Report for Auto-Dynamic Routing - 31.72%
+
+**Progress Update:**
+- **3,307** total obstacles recorded
+- **249** approved obstacles
+- **1,649** rejected obstacles
+- **9** auto-merges of trucks and vans
+
+<CalloutBox client:load type="important" title="Technical Improvements">
+Several technologies tested for performance improvement. Image tuning shows promise, awaiting latest model enablement. Working on prompt improvements and Physical AI model testing.
+</CalloutBox>
+
+**Next Steps:**
+- Improve time-distance calculation prompts
+- Test alternative Physical AI models
+- Implement feature to avoid registering obstacles when robot is perpendicular to sidewalk
+
+---
+
+## O2: Enhance System Reliability (31.58%)
+
+Focus on reducing technical debt and enabling efficient deployment and debugging processes.
+
+<TelemetryChart 
+  client:load 
+  type="bar" 
+  title="Key Results Progress" 
+  xAxis="metric" 
+  yAxis="completion"
+  data={[
+    {"metric": "Winter Visit", "completion": 80},
+    {"metric": "MTBF Reduction", "completion": 46},
+    {"metric": "Obstacles Report", "completion": 32}
+  ]} 
+/>
+
+---
+
+## O3: Advance Applied AI Research (35.59%)
+
+### 10k-Hour Rover Dataset - 64.80%
+
+<MetricCard client:load value="1,650 hrs" label="Hours Saved" description="~300/week production rate" />
+
+**Projection:** Expected to reach ~6k hours by end of semester (mid-May) at current production rate.
+
+### Published Labeled Data - 64.80%
+
+- **22 hours** curated and published
+- Multiple tuning improvements deployed
+- Productivity expected to increase in coming weeks
+
+### FoMo - Cloud Model Runtime Testing - 24.17%
+
+<CalloutBox client:load type="insight" title="Model Performance">
+OmniVA showing good results in trained context. Improvements implemented for session recording and navigation logic. Moving to observation phase next week.
+</CalloutBox>
+
+### FoMo - Data Training Pipeline - 24.17%
+
+Small-scale training jobs completed with LeRobot policies. Cloud large-scale training scheduled to start Week 8.
+
+---
+
+## O4: Robot Dogs Roadmap 2026 (10.67%)
+
+### Robot Dogs Acquisitions - 50%
+
+<CalloutBox client:load type="success" title="Payment Secured">
+Robot.com completed final 70% payment to Deep Robotics via Whale, securing priority production status.
+</CalloutBox>
+
+**Current Status:**
+- Payment processed through Whale
+- Priority production status confirmed
+- Shipping ETA to China and San Francisco pending confirmation
+
+**Challenges:**
+- Strategic misalignment: Whale began autonomy work despite official pause
+- Need to accelerate technical and administrative roadmap synchronization
+- Pending invoice clarification from David regarding payment coverage
+
+### RobotDogs Dev Master Plan - 3.33%
+
+Development framework coordination started this week. Plan to be shared with Whale and company first week of March, when Autonomy team arrives in China for collaboration.
+
+---
+
+## Summary
+
+The Autonomy Department is making steady progress across all Q1 objectives, with particularly strong performance in the Winter Visit initiative (80%) and dataset collection (64.80%). Key focus areas for the coming weeks include:
+
+1. Deploying the router fix to improve MTBF
+2. Enhancing obstacle detection algorithms
+3. Scaling up cloud training infrastructure
+4. Finalizing Robot Dogs partnership alignment
+
+<CalloutBox client:load type="info" title="Next Milestone">
+Week 8 marks the beginning of large-scale cloud training and continued progress on all OKR fronts.
+</CalloutBox>

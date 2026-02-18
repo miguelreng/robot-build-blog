@@ -1,0 +1,54 @@
+---
+const { title, description, subDescription, stats } = Astro.props;
+---
+
+<section class="bg-[#121212] py-32 text-white">
+  <div class="container mx-auto px-6">
+    <div class="relative max-w-5xl mx-auto mb-20 group">
+      <div class="absolute -inset-1 bg-gradient-to-r from-brand-yellow/30 to-blue-500/30 rounded-[24px] blur opacity-25 group-hover:opacity-40 transition duration-1000"></div>
+      <img 
+        src="/laptop-mockup.png" 
+        alt="Dashboard showing autonomous navigation" 
+        class="relative rounded-[20px] border border-white/10"
+      />
+    </div>
+    
+    <div class="grid md:grid-cols-2 gap-20 items-end">
+      <div>
+        <h2 class="text-4xl font-display font-bold mb-6">{title || "Reach"}</h2>
+        <p class="text-xl text-white/50 font-semibold mb-10 max-w-sm">
+          {description || "Real-time autonomous navigation for complex environments."}
+        </p>
+        <button class="bg-white text-brand-black px-8 py-3 rounded-full font-semibold hover:bg-brand-yellow transition-colors">
+          Learn more
+        </button>
+      </div>
+      
+      <div class="space-y-10">
+        <p class="text-lg text-white/70 leading-relaxed font-display">
+          {subDescription || "Space-filling and context-aware pathfinding ensures 100% reach even in highly dynamic pedestrian settings."}
+        </p>
+        
+        <div class="grid grid-cols-2 gap-8 border-t border-white/10 pt-10">
+          {stats?.map((stat: any) => (
+            <div>
+              <div class="text-white/40 text-sm font-bold mb-2">{stat.label}</div>
+              <div class="text-2xl font-bold">{stat.value}</div>
+            </div>
+          )) || (
+            <>
+              <div>
+                <div class="text-white/40 text-sm font-bold mb-2">Accuracy</div>
+                <div class="text-2xl font-bold">99.9%</div>
+              </div>
+              <div>
+                <div class="text-white/40 text-sm font-bold mb-2">Connectivity</div>
+                <div class="text-2xl font-bold">Space-filling</div>
+              </div>
+            </>
+          )}
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

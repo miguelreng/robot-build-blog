@@ -1,0 +1,312 @@
+---
+title: "Q1 2026 Executive Update - Operations & Growth"
+pubDate: 2026-02-03
+author: "Sergio Pachón Reyes"
+builderImage: "https://api.dicebear.com/7.x/avataaars/svg?seed=sergio"
+coverImage: "https://www.datocms-assets.com/166246/1768615545-r-cargo-fist-bump.png"
+description: "Comprehensive Q1 2026 operational update covering Robotics, Media, Field Operations, Maintenance, Logistics, and Truck Ads performance."
+department: "Executive"
+quarter: "2026-Q1"
+---
+import TelemetryChart from '../../components/TelemetryChart';
+import MetricCard from '../../components/MetricCard';
+import CalloutBox from '../../components/CalloutBox';
+import ImageGallery from '../../components/ImageGallery';
+
+# President's Executive Memo - February 2026
+
+**Date:** February 3, 2026 | **By:** Sergio Pachón Reyes
+
+This memo provides a comprehensive view of our current business status, combining quantitative metrics with highlights and lowlights across core operational areas.
+
+---
+
+## ROMS (Remote Ops & Media Services)
+
+### Robotics Operations
+
+<CalloutBox client:load type="success" title="Successful Launch">
+Successfully launched operations across 16 GH/Sodexo campuses. All deployments completed smoothly, except NMSU which required additional time due to Grubhub transition.
+</CalloutBox>
+
+**Key Achievements:**
+- ✅ 16 campus deployments completed
+- ✅ Contractor shift schedules adjusted for 2026 minimum wage compliance
+- ✅ Overall autonomy rate reached 70%+ initially
+
+**Autonomy Performance:**
+- Smooth deployment across all enabled campuses
+- Initial autonomy rate: **>70%**
+- Recent decline due to worsening snow conditions
+
+### Media Campaigns
+
+<div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 4px; margin: 2rem 0;">
+  <MetricCard client:load value="92%" label="Driver Fulfillment" description="Robot.com campaign" />
+  <MetricCard client:load value="7.2M" label="Impressions" description="118% of goal" />
+  <MetricCard client:load value="222,584" label="Miles Driven" description="100%+ of goal" />
+  <MetricCard client:load value="84%" label="Wrap Removals" description="39 completed" />
+</div>
+
+**Robot.com Foundational Campaign:**
+- 46 drivers onboarded (92% fulfillment)
+- 39 wrap removals completed (84%)
+- **7,203,288 impressions** (118% of goal achieved)
+- **222,584 miles** (100%+ of goal achieved)
+
+**Ponce Law Campaign:**
+- 5 drivers onboarded (83% fulfillment)
+- Final driver confirmation pending this week
+- Impressions & mileage data collection in progress
+
+---
+
+## Robotics SLA Performance
+
+### 4-Week Comparison: 2025 vs 2026
+
+<TelemetryChart 
+  client:load 
+  type="bar" 
+  title="SLA 0-40m Performance Improvement" 
+  xAxis="week" 
+  yAxis="percentage"
+  data={[
+    {"week": "Week 2", "percentage": 68},
+    {"week": "Week 3", "percentage": 69},
+    {"week": "Week 4", "percentage": 69},
+    {"week": "Week 5", "percentage": 67}
+  ]} 
+/>
+
+<CalloutBox client:load type="success" title="Significant Improvement">
+SLA under 40 minutes increased from 35% in 2025 to 68% in 2026. Orders over 50 minutes dropped from 44% to 18%.
+</CalloutBox>
+
+**Performance Metrics (Jan 5 - Feb 1, 2026):**
+
+| Metric | 2025 Average | 2026 Average | Improvement |
+|--------|--------------|--------------|-------------|
+| SLA 0-40m | 35% | 68% | +94% |
+| SLA >50m | 44% | 18% | -59% |
+| Total Orders | 9,991 | 10,574 | +5.8% |
+
+**Key Insights:**
+- Performance remained stable across all weeks despite snow disruptions
+- Consistent delivery times even with weather challenges
+- Volume increased while maintaining better SLA performance
+
+### Highlights
+
+**Robotics:**
+- 🎯 Strong and smooth launch across all 16 campuses
+- 🎯 Faster delivery times compared to same period last year, despite worse snow conditions
+
+**Media:**
+- 🎯 Robot.com campaign closed with strong performance metrics
+- 🎯 Over 80% of drivers completed wrap removals
+- 🎯 Retained 5 out of 6 drivers from previous Ponce campaign cycle
+
+### Lowlights
+
+**Robotics:**
+- ❄️ 5-6 campuses experienced full-day closures due to severe snow
+- 🚨 **Howard**: Demand exceeded fleet capacity (30+ orders, 21 bots available) + kitchen loading delays
+- 🚨 **Lafayette**: Kitchen delays and internal operational constraints (now resolved)
+- 📉 This week: 53% orders delivered in 0-40 minutes, 32% taking over 50 minutes
+
+<CalloutBox client:load type="warning" title="Weather Impact">
+Performance drop mainly due to worsening snow conditions. Autonomy team preparing new release to help improve operations.
+</CalloutBox>
+
+**Media:**
+- 6 drivers did not respond to wrap removal requests despite multiple contact attempts
+- Cybertruck driver payment issue requiring reassessment
+
+---
+
+## Field Operations
+
+[View Field Ops OKRs & KPIs](https://docs.google.com/spreadsheets/d/1C7EtJMUJPS67zCfgMjxsiKkMrGZzYJC6cbVIMedmLDc/edit?gid=171858921#gid=171858921)
+
+### Team Status
+- Pilots & Demos team visiting campuses supporting maintenance activities
+- Snow plans implemented - weather more aggressive than previous year
+- 14 robots went offline during snow season
+- 2 OCs returned to Colombia due to personal reasons (high pressure in field tasks)
+
+### January Performance Metrics
+
+**Orders Growth:**
+- ULL CFA implementation driving organic growth
+- Aramark Campuses: **+140% growth** vs last year
+- Marketing Plan implementations performing well
+- Could have achieved +30% growth but paused operations for 8 days due to snow
+
+<TelemetryChart 
+  client:load 
+  type="area" 
+  title="Campus Growth Rate" 
+  xAxis="campus" 
+  yAxis="growth"
+  data={[
+    {"campus": "Aramark", "growth": 140},
+    {"campus": "ULL CFA", "growth": 85},
+    {"campus": "Average", "growth": 30}
+  ]} 
+/>
+
+**Campus Launch Status:**
+- ✅ 100% of campuses launched
+- University of Wisconsin Eau Claire still pending orders after launch
+- NMSU finally launched with MP model guaranteed
+- NPS hit 41 (12 responses so far)
+- Tarleton State University paused MP model, then won it back with university directly
+
+**SLA Performance:**
+- Overall: 68.66%
+- Worst performers: ULL and Howard (deployment issues for robots needing maintenance)
+- Issues overcome, but experiencing more demand than planned
+- Action plans implemented for February improvement
+
+### College Expansion
+
+**Demos Completed:**
+- UM Bangor - offering different robot type (only 300 students onsite)
+- Washington University in St Louis - positive GM feedback, meeting scheduled
+- UMBC demo performed
+- U. Pittsburgh demo on track
+- Sodexo product suite presentation completed
+
+**Wins:**
+- 🎉 CFA negotiated with ASU - huge win
+- 🎉 George Washington University launch scheduled (pending DC operational permits)
+
+---
+
+## Maintenance
+
+<div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 4px; margin: 2rem 0;">
+  <MetricCard client:load value="100%" label="Logbook Implementation" description="Flowbots deprecated" />
+  <MetricCard client:load value="100%" label="OTAs Completed" description="PMP implemented" />
+  <MetricCard client:load value="39%" label="Tasks Done" description="Attached to FTM" />
+  <MetricCard client:load value="2.3 days" label="ARLT" description="Avg repair lead time" />
+</div>
+
+**Key Updates:**
+- Flowbots deprecated, Logbook implementation 100% complete
+- OTAs 100% done, PMP implemented (39% task completion rate)
+- Spare parts logistics delayed due to snow (12 shipments, 8 campuses affected)
+- After snow issues resolved, ARLT improved to 2.3 days
+- With adequate spare parts per campus, maintenance repairs completed quickly
+
+---
+
+## Logistics
+
+**Total Activity:**
+- 209 requests received
+- 253 transactions processed
+
+### Highlights
+
+1. **Traveler Experience** - 78 requests completed in Q1
+   - Supporting C-level, H&M, Sales, Autonomy, Maintenance, and Operations teams
+   - Services: travel itineraries, international insurance, accommodations, ground transportation, immigration documentation
+
+2. **Visa Management** - 16 visa processes led
+   - Destinations: China, Japan, Canada, United States
+   - 3 China visas already approved
+   - Remaining applications under review
+
+3. **International Mobility** - 32 OCs successfully entered United States
+   - No immigration issues
+   - Multiple university campuses
+
+4. **Finance Meeting** - Traveler experience successfully executed mid-January
+   - Miami trip in process: warehouse inventory review + external auditor meetings
+
+5. **Shipments** - 56 shipments managed in Q1
+   - Domestic and international
+   - Using DHL, UPS, FedEx contracted accounts
+   - Primary requesters: H&M and Maintenance teams
+
+6. **Import Processes** - Robotics equipment discussions ongoing with Whale Dynamic
+   - 10 units Astribot S1
+   - 5 units LYNX M20 Pro
+   - Clear alignment with Autonomy and Advanced Robotics teams
+   - Robot.com Foreign Trade team monitoring DDP Incoterm process
+
+### Lowlights
+
+1. **6 Robots Release Delay** (Temporary Import US → Colombia)
+   - December 30, 2025: DIAN did not authorize release due to 1kg weight discrepancy
+   - Manual processing required after new inspection
+   - Documentation uploaded to Guarantees SIE system
+   - DIAN final clearance pending
+   - No additional costs incurred, goods in good condition
+
+2. **Endicott Case** - 2022 property damage claim notification received
+   - Previous logistics team did not fully close case
+   - Current risk due to insufficient documentation for insurance provider
+
+3. **MDE Office Relocation** - Required significant team capacity
+   - Concern: pending definition of next steps and long-term office plan
+
+---
+
+## Truck Ads
+
+### ALDI 2026 Contract - Wrap Removals Update
+
+<MetricCard client:load value="14%" label="Progress" description="7 of 50 removals completed" />
+
+**Contract Context:**
+- Total units: 50 wrap removals
+- Coordination began January 2026
+- ALDI may request additional removals throughout year
+
+**Execution Status:**
+- Removals completed: **7 of 50** (14%)
+- Current pace: 0.5 trailers/day
+- Required pace: ≥1 trailer/day
+- **Deadline risk: HIGH** under current conditions
+- Normal capacity: 2 trailers/day
+- Deadline achievable once weather improves
+
+<TelemetryChart 
+  client:load 
+  type="pie" 
+  title="Removals by Location" 
+  xAxis="location" 
+  yAxis="count"
+  data={[
+    {"location": "OLA", "count": 15},
+    {"location": "CTV", "count": 14},
+    {"location": "MTJ", "count": 11},
+    {"location": "BAT", "count": 3},
+    {"location": "PET", "count": 3},
+    {"location": "OFA", "count": 3},
+    {"location": "FRE", "count": 1}
+  ]} 
+/>
+
+**Commercial Summary:**
+- Wrap removals: 50 × $1,800 = **$90,000**
+- Post-removal wash: 50 × $139 = **$6,950**
+- **Total invoice to ALDI: $96,950**
+
+**Payment Terms:**
+- Total contractor cost: $91,950
+- 50% upfront: $45,975 (to initiate and sustain removals)
+- 50% upon completion: $45,975
+
+<CalloutBox client:load type="warning" title="Weather Dependency">
+Current pace below target due to weather conditions. Deadline becomes achievable once conditions improve to allow normal 2 trailers/day capacity.
+</CalloutBox>
+
+---
+
+## Summary
+
+Q1 2026 shows strong operational performance across most areas despite significant weather challenges. Key achievements include successful campus launches, improved SLA performance, and strong media campaign results. Focus areas for improvement include addressing capacity constraints at high-demand campuses and accelerating truck wrap removal pace as weather permits.

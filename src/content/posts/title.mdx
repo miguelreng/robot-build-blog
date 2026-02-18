@@ -1,10 +1,11 @@
 ---
 title: "Title"
-pubDate: 2026-02-06
-author: "Fredhii"
+pubDate: 2026-02-07
+author: "Fredy Acuna"
 builderImage: "https://avatars.githubusercontent.com/u/57413945?v=4"
-description: "Title update by Fredhii."
-department: "Autonomy"
+coverImage: ""
+description: "Title update by Fredy Acuna."
+department: "IT & Software"
 quarter: "2026-Q1"
 ---
 import BeforeAfterSlider from '../../components/BeforeAfterSlider';
@@ -15,3 +16,100 @@ import MetricCard from '../../components/MetricCard';
 import CalloutBox from '../../components/CalloutBox';
 import TabsComponent from '../../components/TabsComponent';
 
+# Fredy Acuna | Data Engineer | Data Department Memo
+
+Memo period: 2026-Q1-W05 | Created: 2026-02-02
+
+---
+
+# Department Overview
+
+As a Data Engineer, my focus is on designing and optimizing scalable data pipelines and ensuring efficient data ingestion and transformation using tools such as BigQuery. I develop cloud-native architectures within GCP, implementing robust solutions for analytics, storage, and real-time processing. The department's goal is to empower the entire company with reliable, accessible, and high-quality data to drive informed decision-making.
+
+---
+
+# Achievements & Updates
+
+## Blackbox Data Ingestion Pipeline
+
+The Blackbox data ingestion pipeline is now **running in production** using Google Cloud Dataflow. This implementation replaces the previous multi-step ETL architecture, which suffered from data inconsistencies, high latency, and elevated costs.
+
+**Proposal:** [Blackbox Data Ingestion Proposal](https://docs.google.com/document/d/1LafBrDLwUxZ5k5XyhNJ02i0s7_z8OxwF_MrQmOQX8_E/edit?usp=sharing)
+
+### Previous Architecture
+
+The original pipeline employed a multi-step process: robots transmitted event data to Kafka, a Confluent connector wrote the data to BigQuery, and a Cloud Run ETL job then executed **hourly**, running three Python scripts to parse JSON and insert the data into PostgreSQL.
+
+```
+Robot -> Kafka -> Confluent Connector -> BigQuery -> Cloud Run ETL (hourly) -> PostgreSQL
+```
+
+**Key Issues:**
+
+- **Data Duplication:** UUIDs were generated within the ETL scripts instead of utilizing the robot's original ID, leading to duplicate and inconsistent records in both BigQuery and PostgreSQL.
+- **Data Discrepancies:** BigQuery and PostgreSQL frequently contained divergent data for the same events.
+- **High Latency:** Data was not available in PostgreSQL until the next ETL run completed, resulting in latency exceeding one hour.
+- **Frequent Failures:** The architecture's reliance on 6+ distinct components (Cloud Run, Cloud Scheduler, Confluent connector, deduplication jobs, synchronization jobs) led to frequent operational disruptions requiring manual intervention.
+- **Elevated Costs:** The operating cost across all components totaled approximately \$215/month.
+
+### New Architecture
+
+A single streaming pipeline on Google Cloud Dataflow (Apache Beam) now reads directly from Kafka and writes to both databases concurrently:
+
+```
+Robot -> Kafka -> Dataflow (streaming) --> PostgreSQL
+                                       \-> BigQuery
+```
+
+Key improvements include:
+
+- **Real-time Processing:** Data is processed as it arrives, eliminating delays associated with scheduled jobs.
+- **Data Synchronization:** Simultaneous writes to PostgreSQL and BigQuery maintain consistency across both databases.
+- **Duplicate Prevention:** The pipeline leverages the robot's original UUID, coupled with database constraints, to automatically prevent duplicates.
+- **Data Validation:** Every record is validated prior to writing; invalid records are directed to a dead-letter queue for review.
+
+The pipeline has been operational **since January 7, 2026**.
+
+### Impact
+
+**Cost Reduction: ~44% Savings**
+
+|                        | Old Pipeline | New Pipeline |
+| :--------------------- | :----------- | :----------- |
+| **Monthly cost**       | ~ \$215       | ~ \$120       |
+| **Savings**            |              | **~ \$95/month** |
+
+**Data Quality Improvement** (based on an 11-day pilot test):
+
+| Metric                   | Before   | After             |
+| :----------------------- | :------- | :---------------- |
+| BigQuery duplicates      | 25,837   | 447 (**98.3% reduction**) |
+| PostgreSQL duplicates    | 25,848   | 1 (**99.99% reduction**) |
+| Data latency             | 1+ hour  | **Seconds**       |
+| Manual fixes required    | Frequent | **Zero**          |
+
+---
+
+# Lessons Learned
+
+## Streaming vs. Batch for Real-Time Use Cases
+
+A single streaming pipeline offers greater reliability and cost-effectiveness compared to a multi-step batch ETL process. Eliminating BigQuery as an intermediate staging area removed the primary sources of data discrepancies and operational failures.
+
+## Importance of Source-Generated UUIDs
+
+The previous pipeline's centralized UUID generation emerged as the most critical data quality issue. Using the robot's original UUID, in conjunction with database constraints, effectively eliminates duplicates upon insertion, circumventing the need for separate deduplication jobs.
+
+## Validation at Ingestion
+
+Implementing schema validation within the pipeline, alongside a dead-letter queue, effectively captures invalid data before it reaches destination databases. The design intentionally ignores unknown fields, mitigating schema drift.
+
+---
+
+# Strategic Priorities
+
+## Historical Data Repair (2025)
+
+The legacy ETL pipeline introduced inconsistencies into the data ingested throughout 2025 (malformed records, missing fields). We are currently focused on **repairing the 2025 historical data**.
+
+We have a backup available that was generated by a separate Kafka connector, which writes raw messages to Google Cloud Storage (GCS). Originally intended as a disaster recovery mechanism, this GCS backup now serves as the source of truth for reprocessing and correcting the 2025 data that was erroneously ingested by the previous pipeline.

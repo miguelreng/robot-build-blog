@@ -1,0 +1,102 @@
+{
+    "teams": [
+        {
+            "id": "autonomy",
+            "name": "Autonomy",
+            "description": "Developing self-driving capabilities and robot navigation."
+        },
+        {
+            "id": "data",
+            "name": "Data",
+            "description": "Managing data pipelines, analytics, and infrastructure."
+        },
+        {
+            "id": "it-software",
+            "name": "IT & Software",
+            "description": "Core software architecture and information technology systems."
+        },
+        {
+            "id": "service-desk",
+            "name": "Service Desk",
+            "description": "IT support and service management."
+        },
+        {
+            "id": "hardware",
+            "name": "Hardware & Manufacturing",
+            "description": "Physical robot design and assembly."
+        },
+        {
+            "id": "robotics",
+            "name": "Advanced Robotics",
+            "description": "Sophisticated robotic limbs and movement systems."
+        },
+        {
+            "id": "design",
+            "name": "Product Design",
+            "description": "User experience and industrial design."
+        },
+        {
+            "id": "founders",
+            "name": "Founders",
+            "description": "Leadership and strategic direction."
+        }
+    ],
+    "members": [
+        {
+            "id": "lorenacardona",
+            "name": "Lorena Cardona",
+            "role": "AI Engineer",
+            "github": "lorenacardona",
+            "teamId": "autonomy"
+        },
+        {
+            "id": "jonathandeiloff",
+            "name": "Jonathan Deiloff",
+            "role": "Data Engineer",
+            "github": "jonathandeiloff",
+            "teamId": "data"
+        },
+        {
+            "id": "davidcardozo",
+            "name": "David Cardozo",
+            "role": "Data Advisor",
+            "github": "davidcardozo",
+            "teamId": "data"
+        },
+        {
+            "id": "kevintorres",
+            "name": "Kevin Torres",
+            "role": "Data Analyst",
+            "github": "kevintorres",
+            "teamId": "data"
+        },
+        {
+            "id": "57413945",
+            "name": "Fredy Acuna",
+            "role": "Data Engineer",
+            "github": "57413945",
+            "teamId": "data"
+        },
+        {
+            "id": "miguelreng",
+            "name": "Miguel Rengifo",
+            "role": "Design Engineer",
+            "github": "miguelreng",
+            "teamId": "founders"
+        },
+        {
+            "id": "sergiopachon",
+            "name": "Sergio Pachón Reyes",
+            "role": "President",
+            "github": "sergiopchon",
+            "teamId": "founders"
+        },
+        {
+            "id": "felipe",
+            "name": "Felipe Chávez",
+            "role": "CEO",
+            "github": "fchavez",
+            "teamId": "founders"
+        }
+    ]
+}

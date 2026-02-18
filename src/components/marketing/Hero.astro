@@ -1,0 +1,38 @@
+---
+const { title, subtitle, image } = Astro.props;
+---
+
+<section class="relative w-full min-h-[90vh] flex flex-col items-center justify-center pt-20 overflow-hidden bg-[#F2F2F2]">
+  <div class="container mx-auto px-6 z-10 text-center md:text-left flex flex-col md:flex-row items-center gap-12">
+    <div class="flex-1 max-w-2xl">
+      <h1 class="text-6xl md:text-8xl font-bold leading-[0.9] mb-6 font-display">
+        {title || "X-01"}
+      </h1>
+      <p class="text-xl md:text-2xl font-semibold text-brand-black/60 max-w-md">
+        {subtitle || "The world’s first AI-native reach & delivery mobile."}
+      </p>
+    </div>
+    <div class="flex-1 relative">
+      <img 
+        src={image || "/x01-robot.png"} 
+        alt="X-01 Robot" 
+        class="w-full h-auto object-contain"
+      />
+    </div>
+  </div>
+  
+  {/* Trusted By Grid (part of hero or separate?) */}
+  <div class="w-full bg-white py-12 border-t border-brand-black/5 mt-20">
+    <div class="container mx-auto px-6">
+      <p class="text-sm font-bold text-brand-black/30 mb-8">Trusted by</p>
+      <div class="grid grid-cols-2 md:grid-cols-6 gap-12 items-center opacity-40 grayscale">
+        <img src="/logos/directv.svg" alt="DIRECTV" class="h-6 object-contain" />
+        <img src="/logos/aws.svg" alt="AWS" class="h-8 object-contain" />
+        <img src="/logos/kiwibot.svg" alt="Kiwibot" class="h-6 object-contain" />
+        <img src="/logos/grubhub.svg" alt="Grubhub" class="h-6 object-contain" />
+        <img src="/logos/sodexo.svg" alt="Sodexo" class="h-6 object-contain" />
+        <img src="/logos/uber.svg" alt="Uber" class="h-6 object-contain" />
+      </div>
+    </div>
+  </div>
+</section>

@@ -1,0 +1,50 @@
+---
+const { isPublish } = Astro.props;
+---
+
+<div id="nav-container" class="fixed top-6 left-1/2 -translate-x-1/2 z-50 flex flex-col items-center">
+    
+    <!-- PILL (Closed State) -->
+    <div id="nav-pill" class="bg-brand-gray-20 rounded-full px-6 py-3 shadow-sm flex items-center justify-center w-[160px] max-w-[calc(100vw-2rem)] transition-all duration-300 relative group">
+        <a href="/" class="z-10 relative hover:opacity-70 transition-opacity">
+            <img src="/logo-robot.svg" alt="robot.com" class="h-[18px] w-auto" />
+        </a>
+    </div>
+
+
+</div>
+
+<!-- Right Side Links -->
+<div class="fixed top-6 right-6 z-50 flex items-center gap-6 text-sm">
+    <a href="/builders" class="text-brand-gray-90/60 hover:text-brand-gray-90 transition-colors font-semibold">Builders</a>
+    <a href="/publish" class="text-brand-gray-90/60 hover:text-brand-gray-90 transition-colors font-semibold">Publish</a>
+    <div id="logout-wrapper" class="hidden items-center gap-3">
+        <span class="text-brand-gray-90/20">|</span>
+        <button id="nav-logout-link" class="text-brand-gray-90/60 hover:text-brand-gray-90 transition-colors font-semibold">Log out</button>
+    </div>
+</div>
+
+<script>
+    const navPill = document.getElementById('nav-pill');
+    const navPillTrigger = document.getElementById('nav-pill-trigger');
+    const navMenu = document.getElementById('nav-menu');
+    const navClose = document.getElementById('nav-close');
+    const logoutWrapper = document.getElementById('logout-wrapper');
+    const navLogoutMenu = document.getElementById('nav-logout');
+
+    // Auth check
+    const isAuthorized = localStorage.getItem('builder_status') === 'authorized';
+    if (isAuthorized) {
+        logoutWrapper?.classList.remove('hidden');
+        logoutWrapper?.classList.add('flex');
+        navLogoutMenu?.classList.remove('hidden');
+    }
+
+    // Logout logic
+    const handleLogout = () => {
+        localStorage.removeItem('builder_status');
+        window.location.href = '/';
+    };
+
+    document.getElementById('nav-logout-link')?.addEventListener('click', handleLogout);
+</script>

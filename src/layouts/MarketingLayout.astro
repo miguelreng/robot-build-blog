@@ -1,0 +1,90 @@
+---
+interface Props {
+	title: string;
+}
+
+const { title } = Astro.props;
+---
+
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width" />
+		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+		<meta name="generator" content={Astro.generator} />
+		<title>{title}</title>
+		<style is:global>
+			@font-face {
+				font-family: 'Yellix';
+				src: url('/fonts/Yellix-Regular.ttf') format('truetype');
+				font-weight: 400;
+				font-style: normal;
+				font-display: swap;
+			}
+			@font-face {
+				font-family: 'Yellix';
+				src: url('/fonts/Yellix-Medium.ttf') format('truetype');
+				font-weight: 500;
+				font-style: normal;
+				font-display: swap;
+			}
+			@font-face {
+				font-family: 'Yellix';
+				src: url('/fonts/Yellix-SemiBold.ttf') format('truetype');
+				font-weight: 600;
+				font-style: normal;
+				font-display: swap;
+			}
+			@font-face {
+				font-family: 'Yellix';
+				src: url('/fonts/Yellix-Bold.ttf') format('truetype');
+				font-weight: 700;
+				font-style: normal;
+				font-display: swap;
+			}
+			@font-face {
+				font-family: 'Yellix';
+				src: url('/fonts/Yellix-ExtraBold.ttf') format('truetype');
+				font-weight: 800;
+				font-style: normal;
+				font-display: swap;
+			}
+			@font-face {
+				font-family: 'Yellix';
+				src: url('/fonts/Yellix-Black.ttf') format('truetype');
+				font-weight: 900;
+				font-style: normal;
+				font-display: swap;
+			}
+
+			:root {
+				--brand-yellow: #F0ED4E;
+				--brand-dark: #121212;
+			}
+			body {
+				font-family: 'Yellix', system-ui, sans-serif;
+				background-color: #fff;
+				color: var(--brand-dark);
+				margin: 0;
+				padding: 0;
+				overflow-x: hidden;
+			}
+			h1, h2, h3, h4, h5, .font-display {
+				font-family: 'Yellix', sans-serif;
+                font-weight: 700;
+				margin: 0;
+				letter-spacing: 0;
+			}
+			p, li {
+				font-weight: 600;
+				margin: 0;
+				font-size: 0.9em;
+				color: rgba(18, 18, 18, 0.8);
+			}
+		</style>
+	</head>
+	<body class="antialiased">
+		<slot />
+	</body>
+</html>

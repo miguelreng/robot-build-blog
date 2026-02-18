@@ -1,0 +1,35 @@
+---
+const { title, description } = Astro.props;
+---
+
+<section class="bg-[#F0ED4E] py-32 overflow-hidden">
+  <div class="container mx-auto px-6">
+    <div class="max-w-xl mb-24">
+      <h2 class="text-5xl md:text-7xl font-display font-bold leading-[0.9] mb-8">
+        {title || "Real-world measurement in real time."}
+      </h2>
+      <p class="text-xl font-semibold text-brand-black/40">
+        {description || "Transforming physical movement into digital insights with millisecond precision."}
+      </p>
+    </div>
+    
+    <div class="relative w-full aspect-[21/9] flex items-center justify-center">
+      {/* Grid of Dots Pattern */}
+      <div class="grid grid-cols-10 md:grid-cols-20 gap-4">
+        {Array.from({ length: 120 }).map((_, i) => (
+          <div 
+            class="w-full aspect-square bg-white rounded-full opacity-30 shadow-[0_0_15px_rgba(255,255,255,0.5)] transition-all hover:scale-150 hover:opacity-100 cursor-none"
+            style={`animation: pulse ${2 + Math.random() * 2}s infinite alternate ${Math.random()}s`}
+          ></div>
+        ))}
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  @keyframes pulse {
+    from { opacity: 0.1; transform: scale(0.8); }
+    to { opacity: 0.5; transform: scale(1.1); }
+  }
+</style>

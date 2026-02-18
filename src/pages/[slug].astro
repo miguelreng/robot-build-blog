@@ -1,0 +1,57 @@
+---
+import MarketingLayout from '../layouts/MarketingLayout.astro';
+import Footer from '../components/marketing/Footer.astro';
+import { performRequest } from '../lib/datocms';
+import pkg from 'datocms-structured-text-to-html-string';
+const renderStructuredText = pkg.renderStructuredText || (pkg as any).default?.renderStructuredText;
+
+export async function getStaticPaths() {
+  try {
+    const data = await performRequest({ query: '{ allPages { slug } }' });
+    return (data?.allPages || []).map(page => ({ params: { slug: page.slug } }));
+  } catch (e) {
+    console.error("DatoCMS Page Query Error:", e);
+    return [];
+  }
+}
+
+const { slug } = Astro.params;
+const QUERY = `
+  query PageQuery($slug: String!) {
+    page(filter: { slug: { eq: $slug } }) {
+      title
+      content {
+        value
+      }
+    }
+  }
+`;
+
+let data = { page: null };
+try {
+  data = await performRequest({ query: QUERY, variables: { slug } });
+} catch (e) {
+  console.error("DatoCMS Single Page Query Error:", e);
+}
+const page = data?.page;
+
+if (!page) {
+    return Astro.redirect('/404');
+}
+
+const contentHtml = renderStructuredText(page.content);
+---
+
+<MarketingLayout title={page.title}>
+  <header class="py-20 bg-white border-b border-brand-black/5">
+    <div class="container mx-auto px-6">
+      <h1 class="text-6xl font-display font-semibold">{page.title}</h1>
+    </div>
+  </header>
+  
+  <main class="py-20 container mx-auto px-6">
+    <article class="prose prose-xl max-w-4xl prose-headings:font-semibold prose-p:leading-[1.6] prose-p:my-2 prose-p:text-brand-gray-90/80 prose-p:font-semibold prose-li:my-0.5 prose-li:text-brand-gray-90/80 prose-li:font-semibold prose-ul:my-2 prose-img:shadow-none" set:html={contentHtml} />
+  </main>
+  
+  <Footer />
+</MarketingLayout>
